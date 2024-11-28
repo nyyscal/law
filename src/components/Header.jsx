@@ -1,26 +1,34 @@
-import { useLocation } from "react-router-dom";
 import { Button, Navbar } from "flowbite-react";
 const Header = () => {
   return (
-    <Navbar fluid rounded>
+    <Navbar fluid rounded className="opacity-75">
       <Navbar.Brand href="/">
         <img
           src="/logo.png"
-        //   className=" mr-3 sm:h-9"
-                  alt="lawfirm logo"
-                  height={100} width={70}
+          className="h-[100px] w-[100px] ml-20"
+          alt="lawfirm logo"
         />
       </Navbar.Brand>
       <div className="flex md:order-2">
-        <Button>Make an appointment</Button>
+        <Button>Free Consultation</Button>
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <Navbar.Link href="/" >Home</Navbar.Link>
-        <Navbar.Link href="/about">About</Navbar.Link>
-        <Navbar.Link href="/services">Services</Navbar.Link>
-        <Navbar.Link href="/blog">Blog</Navbar.Link>
-        <Navbar.Link href="/contact">Contact</Navbar.Link>
+        <Navbar.Link href="/" className="text-lg">
+          Home
+        </Navbar.Link>
+        <Navbar.Link href="/about" className="text-lg">
+          About
+        </Navbar.Link>
+        <Navbar.Link href="/services" className="text-lg">
+          Services
+        </Navbar.Link>
+        <Navbar.Link href="/blog" className="text-lg">
+          Blog
+        </Navbar.Link>
+        <Navbar.Link href="/contact" className="text-lg">
+          Contact
+        </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
   );
