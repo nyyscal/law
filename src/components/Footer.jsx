@@ -24,6 +24,7 @@ export default function Component() {
               tailored to your needs.
             </span>
           </div>
+          
           <div className="ml-4 grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6">
             <div>
               <Footer.Title
@@ -75,16 +76,18 @@ export default function Component() {
           </div>
         </div>
         <Footer.Divider />
-        <div className="w-full sm:flex sm:items-center sm:justify-center">
-          <div>
+        <div className="flex flex-wrap items-center justify-center gap-4 text-center px-4 md:px-8">
+          <div className="flex items-center gap-1 text-sm md:text-base">
             <Footer.Copyright
               href="/"
               by="Law Firm™"
               year={new Date().getFullYear()}
-              className="text-black dark:text-white mr-1"
+              className="text-black dark:text-white"
             />
-          </div>||
-          <span className="text-sm ml-1">All right reserved</span>
+            <span className="text-black dark:text-white">
+              | All rights reserved
+            </span>
+          </div>
         </div>
       </div>
     </Footer>
