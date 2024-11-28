@@ -5,6 +5,8 @@ import Services from "./pages/Services";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
 import Header from "./components/Header";
+import { Footer } from "flowbite-react";
+import Footers from "./components/Footers";
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
         <Route path="/service" element={<Services />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
       </Routes>
+      <Footers />
     </>
   );
 }

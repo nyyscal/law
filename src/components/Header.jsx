@@ -7,7 +7,7 @@ const Header = () => {
         <img src="/logo1.png" alt="lawfirm logo" height={100} width={70} />
       </Navbar.Brand>
       <div className="flex md:order-2">
-        <Button>Make an appointment</Button>
+        <Button>Free Consultation</Button>
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
