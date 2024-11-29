@@ -1,6 +1,4 @@
 const Services = () => {
-  return (
-    <div>Services</div>
-  )
-}
-export default Services
+  return <div className="flex jus">Services</div>;
+};
+export default Services;
