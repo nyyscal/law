@@ -26,6 +26,7 @@ function App() {
         <Route path="/createpost" element={<CreatePost />} />
         <Route path="/blogpostpage/:postSlug" element={<BlogPostPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
+      
         <Route path="*" element={<h1>Page not found</h1>} />
       </Routes>
       <Footers />

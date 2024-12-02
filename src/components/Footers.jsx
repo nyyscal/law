@@ -1,6 +1,5 @@
 import { Footer } from "flowbite-react";
 
-
 export default function Footers() {
   return (
     <Footer container className="bg-[#161414] ">
@@ -21,10 +20,7 @@ export default function Footers() {
 
           <div className="ml-4 grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6">
             <div>
-              <Footer.Title
-                title="contact"
-                className="mb-2 text-white"
-              />
+              <Footer.Title title="contact" className="mb-2 text-white" />
               <Footer.LinkGroup col>
                 <span className="text-white">
                   Phone: +977 9801234567,
@@ -35,10 +31,7 @@ export default function Footers() {
               </Footer.LinkGroup>
             </div>
             <div>
-              <Footer.Title
-                title="Address"
-                className="mb-2 text-white"
-              />
+              <Footer.Title title="Address" className="mb-2 text-white" />
               <Footer.LinkGroup col>
                 <span className="text-white">
                   Location: 4th floor, Pokhara Center <br /> (Trade Mall),
@@ -48,27 +41,15 @@ export default function Footers() {
               </Footer.LinkGroup>
             </div>
             <div>
-              <Footer.Title
-                title="Legal"
-                className="mb-2 text-white"
-              />
+              <Footer.Title title="Legal" className="mb-2 text-white" />
               <Footer.LinkGroup col>
-                <Footer.Link
-                  href="#"
-                  className="text-white hover:underline"
-                >
+                <Footer.Link href="#" className="text-white hover:underline">
                   Privacy Policy
                 </Footer.Link>
-                <Footer.Link
-                  href="#"
-                  className="text-white hover:underline"
-                >
+                <Footer.Link href="#" className="text-white hover:underline">
                   Terms &amp; Conditions
                 </Footer.Link>
-                <Footer.Link
-                  href="#"
-                  className="text-white hover:underline"
-                >
+                <Footer.Link href="#" className="text-white hover:underline">
                   Disclaimer
                 </Footer.Link>
               </Footer.LinkGroup>
@@ -84,9 +65,7 @@ export default function Footers() {
               year={new Date().getFullYear()}
               className="text-white"
             />
-            <span className="text-white">
-              | All rights reserved
-            </span>
+            <span className="text-white">| All rights reserved</span>
           </div>
         </div>
       </div>

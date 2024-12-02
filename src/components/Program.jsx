@@ -1,10 +1,10 @@
 import React from "react";
-import program1 from "../../public/program-1.png";
-import program2 from "../../public/program-2.png";
-import program3 from "../../public/program-3.png";
-import program_icon_1 from "../../public/program-icon-1.png";
-import program_icon_2 from "../../public/program-icon-2.png";
-import program_icon_3 from "../../public/program-icon-3.png";
+import program1 from "/program-1.png";
+import program2 from "/program-2.png";
+import program3 from "/program-3.png";
+import program_icon_1 from "/program-icon-1.png";
+import program_icon_2 from "/program-icon-2.png";
+import program_icon_3 from "/program-icon-3.png";
 import { useNavigate } from "react-router-dom";
 
 const Program = () => {
