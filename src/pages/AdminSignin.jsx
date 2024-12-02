@@ -1,25 +1,16 @@
 import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-// import {
-//   signInStart,
-//   signInSuccess,
-//   signInFailure,
-// } from "../redux/user/userSlice";
-// import { useDispatch, useSelector } from "react-redux";
-// import Oauth from "../components/Oauth";
+import axiosInstance from "../utils/axiosInstance";
+import { useDispatch } from "react-redux";
+import { signInFailure, signInSuccess } from "../redux/user/userSlice";
 
 const SignIn = () => {
   const [formData, setFormData] = useState({});
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // if()
   const [loading, setLoading] = useState("");
   const [error, setError] = useState("");
-
-  // const { loading, error: errorMessage } = useSelector((state) => {
-  //   return state.user;
-  // });
 
   const navigate = useNavigate();
 
@@ -32,7 +23,7 @@ const SignIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.password || !formData.email) {
+    if (!formData.password || !formData.username) {
       // return dispatch(signInFailure("Please fill in all fields"));
       console.log("Please fill in all fields");
       return;
@@ -41,26 +32,22 @@ const SignIn = () => {
 
     // Perform form validation and API call to sign up the user
     try {
-      // dispatch(signInStart());
-
-      const res = await fetch(`localhost:3000/api/admin`, {
-        method: "POST",
+      console.log(formData);
+      const res = await axiosInstance.post(`/api/admin/signin`, formData, {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
       });
+      console.log(res);
+      // console.log(res.statusText==="OK");
 
-      const data = await res.json();
-      console.log(data);
-
-      if (data.success === false) {
-        // dispatch(signInFailure(data.message));
+      if (res.success === false) {
+        dispatch(signInFailure(res.message));
         console.log("signInFailure");
       }
-      if (res.ok) {
-        // dispatch(signInSuccess(data));
-        navigate("/");
+      if (res.statusText === "OK") {
+        dispatch(signInSuccess(res.data.user));
+        navigate("/createpost");
       }
     } catch (error) {
       console.log(error.message);
@@ -74,24 +61,20 @@ const SignIn = () => {
         {/* left */}
         <div className="flex-1">
           <Link to="/" className="font-bold text-teal-600 text-4xl">
-            <span className="px-2 py-1 text-teal-600 rounded-lg ">
-              Builder&apos;s
-            </span>
-            Blog
+            <span className="px-2 py-1 text-teal-600 rounded-lg ">LAW</span>
+            NEPAL
           </Link>
-          <p className="text-sm mt-5">
-            Sign in to post and read the amazing blogs by millions of bloggers
-          </p>
+          <p className="text-sm mt-5">Sign in to post blogs on your website</p>
         </div>
         {/* right */}
         <div className="flex-1">
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
             <div>
-              <Label value="email" />
+              <Label value="Username" />
               <TextInput
-                placeholder="name@company.com"
-                type="email"
-                id="email"
+                placeholder="Username..."
+                type="string"
+                id="username"
                 onChange={handleChange}
               />
             </div>

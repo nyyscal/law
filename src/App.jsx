@@ -7,6 +7,9 @@ import Contact from "./pages/Contact";
 import Header from "./components/Header";
 import Footers from "./components/Footers";
 import AdminSignin from "./pages/AdminSignin";
+import CreatePost from "./pages/CreatePost";
+import BlogPostPage from "./pages/BlogPostPage";
+import Dashboard from "./pages/DashBoard";
 
 function App() {
   return (
@@ -14,12 +17,15 @@ function App() {
       <Header />
 
       <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/about" element={<About />}></Route>
-        <Route path="/blog" element={<Blog />}></Route>
-        <Route path="/service" element={<Services />}></Route>
-        <Route path="/contact" element={<Contact />}></Route>
-        <Route path="/admin" element={<AdminSignin />}></Route>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/service" element={<Services />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/admin" element={<AdminSignin />} />
+        <Route path="/createpost" element={<CreatePost />} />
+        <Route path="/blogpostpage/:postSlug" element={<BlogPostPage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="*" element={<h1>Page not found</h1>} />
       </Routes>
       <Footers />
