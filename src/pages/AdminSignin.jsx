@@ -49,7 +49,7 @@ const SignIn = () => {
       // console.log(res.data)
       if (res.statusText === "OK") {
         dispatch(signInSuccess(res.data));
-        navigate("/createpost");
+        navigate("/");
       }
     } catch (error) {
       console.log(error.message);
