@@ -38,6 +38,7 @@ const SignIn = () => {
           "Content-Type": "application/json",
         },
       });
+
       console.log(res);
       // console.log(res.statusText==="OK");
 
@@ -45,8 +46,9 @@ const SignIn = () => {
         dispatch(signInFailure(res.message));
         console.log("signInFailure");
       }
+      // console.log(res.data)
       if (res.statusText === "OK") {
-        dispatch(signInSuccess(res.data.user));
+        dispatch(signInSuccess(res.data));
         navigate("/createpost");
       }
     } catch (error) {

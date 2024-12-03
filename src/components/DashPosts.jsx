@@ -10,20 +10,19 @@ import axiosInstance from "../utils/axiosInstance";
 
 const DashPosts = () => {
   const { currentUser } = useSelector((state) => state.user);
+  console.log(currentUser)
 
   const [userPosts, setUserPosts] = useState([]);
   const [showMore, setShowMore] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [postIdToDelete, setPostIdToDelete] = useState("");
 
-  // console.log(currentUser.data)
-  console.log(userPosts.length);
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const res = await axiosInstance.get(
-          `api/post/getposts?userId=${currentUser.data._id}`
+          `api/post/getposts?userId=${currentUser._id}`
         );
         console.log(res);
         // const data = await res.json();
@@ -37,25 +36,25 @@ const DashPosts = () => {
           }
         }
       } catch (error) {
-        console.log(error.message);
+        console.log(error);
       }
     };
 
-    if (currentUser.data.isAdmin) {
+    if (currentUser.isAdmin) {
       fetchPosts();
     }
-  }, [currentUser.data._id]);
+  }, [currentUser._id]);
+
+  console.log(userPosts)
 
   const handleDeletePost = async (req, res, next) => {
     setShowModal(false);
     try {
-      
+      console.log(postIdToDelete)
       const res = await axiosInstance.delete(
-        `/api/post/deletepost/${postIdToDelete}/${currentUser.data._id}_`
+        `/api/post/deletepost/${postIdToDelete}`
       );
-      // const data = await res.json();
 
-      console.log(res);
 
       if (!res.statusText == "OK") {
         console.log(res.data.message);
@@ -71,7 +70,7 @@ const DashPosts = () => {
 
   return (
     <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
-      {currentUser.data.isAdmin && userPosts.length > 0 ? (
+      {currentUser.isAdmin && userPosts.length > 0 ? (
         <>
           <Table hoverable className="shadow-md">
             <Table.Head>
@@ -116,6 +115,7 @@ const DashPosts = () => {
                     <span
                       onClick={() => {
                         setShowModal(true);
+                        console.log(post._id)
                         setPostIdToDelete(post._id);
                       }}
                       className="font-medium text-red-500 hover:underline cursor-pointer"

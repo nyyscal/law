@@ -49,7 +49,8 @@ const DashSidebar = () => {
     }
   };
 
-  console.log(currentUser.data);
+
+  // console.log(currentUser.data);
 
   return (
     <Sidebar className="w-full md:w-56">
@@ -59,13 +60,13 @@ const DashSidebar = () => {
             <Sidebar.Item
               active={tab === "profile"}
               icon={HiUser}
-              label={currentUser.data.isAdmin ? "Admin" : "User"}
+              label={currentUser.isAdmin ? "Admin" : "User"}
             >
               Profile
             </Sidebar.Item>
           </Link>
 
-          {currentUser.data.isAdmin && (
+          {currentUser.isAdmin && (
             <Link to="/dashboard?tab=posts">
               <Sidebar.Item active={tab === "posts"} icon={HiDocumentText}>
                 Posts

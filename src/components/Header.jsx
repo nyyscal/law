@@ -1,4 +1,4 @@
-import { Button, Navbar } from "flowbite-react";
+import { Navbar } from "flowbite-react";
 import {
   FaFacebookF,
   FaLinkedinIn,
@@ -7,8 +7,11 @@ import {
 } from "react-icons/fa";
 import "../index.css";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const {currentUser} = useSelector((state) => state.user);
+  console.log(currentUser);
   const navigate = useNavigate();
   return (
     <Navbar fluid rounded className="bg-[#161414]">
@@ -102,6 +105,17 @@ const Header = () => {
           Contact
           <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full group-hover:bg-[#FFD700]"></span>
         </Navbar.Link>
+        {currentUser?.isAdmin ? (
+          <Navbar.Link
+            href="/dashboard"
+            className="text-white relative group text-xl hover:text-[#FFD700]"
+          >
+            Dashboard
+            <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full group-hover:bg-[#FFD700]"></span>
+          </Navbar.Link>
+        ) : (
+          ""
+        )}
       </Navbar.Collapse>
     </Navbar>
   );

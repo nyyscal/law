@@ -10,6 +10,8 @@ import AdminSignin from "./pages/AdminSignin";
 import CreatePost from "./pages/CreatePost";
 import BlogPostPage from "./pages/BlogPostPage";
 import Dashboard from "./pages/DashBoard";
+import OnlyAdminPrivateRoute from "./components/OnlyAdminPrivateRoute";
+import UpdatePost from "./pages/UpdatePost";
 
 function App() {
   return (
@@ -20,13 +22,17 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/blog" element={<Blog />} />
-        <Route path="/service" element={<Services />} />
+        <Route path="/services" element={<Services />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/admin" element={<AdminSignin />} />
-        <Route path="/createpost" element={<CreatePost />} />
-        <Route path="/blogpostpage/:postSlug" element={<BlogPostPage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-      
+        <Route element={<OnlyAdminPrivateRoute />}>
+          
+          <Route path="/createpost" element={<CreatePost />} />
+          <Route path="/blogpostpage/:postSlug" element={<BlogPostPage />} />
+          <Route path="/update-post/:postId" element={<UpdatePost />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
+
         <Route path="*" element={<h1>Page not found</h1>} />
       </Routes>
       <Footers />

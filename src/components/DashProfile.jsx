@@ -9,6 +9,7 @@ import {
 } from "../redux/user/userSlice";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import axiosInstance from "../utils/axiosInstance";
 // import { backendURl } from "../config";
 
 const DashProfile = () => {
@@ -34,20 +35,9 @@ const DashProfile = () => {
     try {
       dispatch(updateStart());
 
-      // Perform form validation and API call to update the user profile
-      // Update user profile using the formData
-      // Example: await axios.put(`/api/users/${currentUser.id}`, formData);
-      // Update Redux state with the updated user profile
-      // dispatch(updateUserProfile(formData));
-
-      // Reset form data
-      const res = await fetch(`api/user/update/${currentUser._id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      //
+      const res = await axiosInstance.put(`api/user/update/${currentUser._id}`);
+      console.log(res);
 
       const data = await res.json();
 
@@ -57,7 +47,6 @@ const DashProfile = () => {
       } else {
         dispatch(updateFailure(data.message));
       }
-      
     } catch (error) {
       dispatch(updateFailure(error));
     }
@@ -104,13 +93,13 @@ const DashProfile = () => {
               defaultValue={currentUser.username}
               onChange={handleChange}
             />
-            <TextInput
+            {/* <TextInput
               type="text"
               id="email"
               placeholder="Email"
               defaultValue={currentUser.email}
               onChange={handleChange}
-            />
+            /> */}
             <TextInput
               type="text"
               id="password"
@@ -119,8 +108,10 @@ const DashProfile = () => {
             />
             <Button type="submit">Update</Button>
             {currentUser.isAdmin && (
-              <Link to={"/create-post"}>
-                <Button type="button" className="w-full">Create a Post</Button>
+              <Link to={"/createpost"}>
+                <Button type="button" className="w-full">
+                  Create a Post
+                </Button>
               </Link>
             )}
           </div>
