@@ -6,7 +6,6 @@ import { Button, Modal, Table } from "flowbite-react";
 import { Link } from "react-router-dom";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import axiosInstance from "../utils/axiosInstance";
-// import { backendURl } from "../config";
 
 const DashPosts = () => {
   const { currentUser } = useSelector((state) => state.user);

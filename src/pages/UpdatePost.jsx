@@ -29,7 +29,7 @@ const UpdatePost = () => {
         }
 
         setPublishError(null);
-        
+
         console.log(res.data);
         setFormData(res.data);
 
@@ -42,24 +42,31 @@ const UpdatePost = () => {
     }
   }, [postId]);
 
-  console.log("formdata title:",formData.title, "formdata content:",formData.content);
+  console.log(
+    "formdata title:",
+    formData.title,
+    "formdata content:",
+    formData.content
+  );
 
-  // console.log(postId)
+  console.log(formData.title)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log("test")
-      const res = await axiosInstance.put(
-        `/api/post/updatepost/?postId=${postId}`, 
+      console.log("test");
+      const res = await axiosInstance.post(
+        `/api/post/updatepost/${postId}`,
         {
-          title: formData.title,
-          content: formData.content,
-        }, 
+          data: {
+            title: formData.title,
+            content: formData.content,
+          },
+        },
         {
           headers: {
-            'Content-Type': 'application/json'
-          }
+            "Content-Type": "application/json",
+          },
         }
       );
 
@@ -69,10 +76,9 @@ const UpdatePost = () => {
         return;
       }
 
-      
-        setPublishError(null);
-        navigate(`/blogpostpage/${res.slug}`);
-      
+      setFormData(res.data)
+      setPublishError(null);
+      navigate(`/blogpostpage/${res.data.slug}`);
     } catch (error) {
       setPublishError(error.message || "Something went wrong");
     }
