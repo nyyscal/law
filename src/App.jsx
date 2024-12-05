@@ -3,7 +3,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import Blog from "./pages/Blog";
-import Contact from "./pages/Contact";
+import Contact from "./pages/Contact1";
 import Header from "./components/Header";
 import Footers from "./components/Footers";
 import AdminSignin from "./pages/AdminSignin";

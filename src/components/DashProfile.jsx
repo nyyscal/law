@@ -110,12 +110,12 @@ const DashProfile = () => {
             )}
           </div>
         </form>
-        <div className="text-red-500 flex justify-between  mt-3">
+        {/* <div className="text-red-500 flex justify-between  mt-3">
           <span className="cursor-pointer">Delete</span>
           <span className="cursor-pointer" onClick={handleSignOut}>
             Sign out
           </span>
-        </div>
+        </div> */}
       </div>
     </>
   );

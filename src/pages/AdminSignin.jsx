@@ -24,15 +24,14 @@ const SignIn = () => {
     e.preventDefault();
 
     if (!formData.password || !formData.username) {
-      // return dispatch(signInFailure("Please fill in all fields"));
       console.log("Please fill in all fields");
-      return;
+      return dispatch(signInFailure("Please fill in all fields"));
     }
     // Handle form submission here
 
     // Perform form validation and API call to sign up the user
     try {
-      console.log(formData);
+      // console.log(formData);
       const res = await axiosInstance.post(`/api/admin/signin`, formData);
 
       console.log(res);
@@ -42,14 +41,13 @@ const SignIn = () => {
       //   console.log("signInFailure");
       // }
       // console.log(res.data)
-      
+
       dispatch(signInSuccess(res.data));
       navigate("/");
     } catch (error) {
       dispatch(signInFailure(error.response.data.message));
       // console.log(error);
       // console.log(error.response.data.message);
-      
     }
   };
 
