@@ -10,7 +10,6 @@ import {
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../utils/axiosInstance";
-// import { backendURl } from "../config";
 
 const DashProfile = () => {
   const { currentUser } = useSelector((state) => state.user);
@@ -36,18 +35,19 @@ const DashProfile = () => {
       dispatch(updateStart());
 
       //
-      const res = await axiosInstance.put(`api/user/update/${currentUser._id}`);
-      console.log(res);
+      console.log(currentUser._id)
+      const res = await axiosInstance.put(`api/admin/update/${currentUser._id}`, formData);
+      console.log(res.data.message);
 
-      const data = await res.json();
 
-      if (res.ok) {
-        dispatch(updateSuccess(data));
+      if (res.statusText =="OK") {
+        dispatch(updateSuccess(res.data.message));
         // Reset form data
       } else {
-        dispatch(updateFailure(data.message));
+        dispatch(updateFailure(res.data.message));
       }
     } catch (error) {
+      
       dispatch(updateFailure(error));
     }
   };
@@ -93,13 +93,7 @@ const DashProfile = () => {
               defaultValue={currentUser.username}
               onChange={handleChange}
             />
-            {/* <TextInput
-              type="text"
-              id="email"
-              placeholder="Email"
-              defaultValue={currentUser.email}
-              onChange={handleChange}
-            /> */}
+            
             <TextInput
               type="text"
               id="password"

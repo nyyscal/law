@@ -32,11 +32,11 @@ const DashSidebar = () => {
       setTabs(tabFromUrl);
     }
   }, [location.search]);
-  console.log(tab);
+  // console.log(tab);
 
   const handleSignOut = async () => {
     try {
-      const res = await axiosInstance.post(`api/user/signout`);
+      const res = await axiosInstance.post(`api/admin/signout`);
       if (!res.statusText == "OK") {
         console.log("signout failed");
       } else {
@@ -75,6 +75,7 @@ const DashSidebar = () => {
           )}
 
           <Sidebar.Item
+            className="cursor-pointer"
             active={tab === "signout"}
             icon={GoSignOut}
             label="Sign out"

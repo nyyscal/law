@@ -33,27 +33,23 @@ const SignIn = () => {
     // Perform form validation and API call to sign up the user
     try {
       console.log(formData);
-      const res = await axiosInstance.post(`/api/admin/signin`, formData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const res = await axiosInstance.post(`/api/admin/signin`, formData);
 
       console.log(res);
       // console.log(res.statusText==="OK");
 
-      if (res.success === false) {
-        dispatch(signInFailure(res.message));
-        console.log("signInFailure");
-      }
+      // if (!res.statusText === "OK") {
+      //   console.log("signInFailure");
+      // }
       // console.log(res.data)
-      if (res.statusText === "OK") {
-        dispatch(signInSuccess(res.data));
-        navigate("/");
-      }
+      
+      dispatch(signInSuccess(res.data));
+      navigate("/");
     } catch (error) {
-      console.log(error.message);
-      // dispatch(signInFailure(error).mesage);
+      dispatch(signInFailure(error.response.data.message));
+      // console.log(error);
+      // console.log(error.response.data.message);
+      
     }
   };
 
