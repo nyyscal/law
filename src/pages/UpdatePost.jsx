@@ -10,7 +10,6 @@ const UpdatePost = () => {
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
 
-  // const { currentUser } = useSelector((state) => state.user);
 
   const navigate = useNavigate();
   const { postId } = useParams();

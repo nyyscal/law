@@ -7,7 +7,7 @@ const OnlyAdminPrivateRoute = () => {
   return currentUser && currentUser.isAdmin ? (
     <Outlet />
   ) : (
-    <Navigate to="/admin" />
+    <Navigate to="/adminportal" />
   );
 };
 export default OnlyAdminPrivateRoute;

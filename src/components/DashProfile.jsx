@@ -5,10 +5,10 @@ import {
   updateSuccess,
   updateFailure,
   updateStart,
-  signOutSuccess,
+  
 } from "../redux/user/userSlice";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axiosInstance from "../utils/axiosInstance";
 
 const DashProfile = () => {
@@ -18,7 +18,6 @@ const DashProfile = () => {
 
   const dispatch = useDispatch();
 
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -52,23 +51,7 @@ const DashProfile = () => {
     }
   };
 
-  const handleSignOut = async () => {
-    try {
-      const res = await fetch(`api/user/signout`, {
-        method: "POST",
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        console.log(data.message);
-      } else {
-        dispatch(signOutSuccess());
-        // Navigate to login page
-        navigate("/sign-in");
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+ 
 
   return (
     <>

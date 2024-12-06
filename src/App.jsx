@@ -24,7 +24,7 @@ function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/services" element={<Services />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/admin" element={<AdminSignin />} />
+        <Route path="/adminportal" element={<AdminSignin />} />
         <Route element={<OnlyAdminPrivateRoute />}>
           
           <Route path="/createpost" element={<CreatePost />} />
