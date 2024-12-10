@@ -1,17 +1,17 @@
 import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Services from "./pages/Services";
-import Blog from "./pages/Blog";
-import Contact from "./pages/Contact";
+import Home from "./pages/Home.jsx";
+import About from "./pages/About.jsx";
+import Services from "./pages/Services.jsx";
+import Blog from "./pages/Blog.jsx";
+import Contact from "./pages/Contact.jsx";
 import Header from "./components/User/Header.jsx";
-import Footers from "./components/User/Footers";
-import Login from "./pages/Login";
-import CreatePost from "./pages/CreatePost";
-import BlogPostPage from "./pages/BlogPostPage";
-import Dashboard from "./pages/DashBoard";
-import OnlyAdminPrivateRoute from "./components/Admin/OnlyAdminPrivateRoute";
-import UpdatePost from "./pages/UpdatePost";
+import Footers from "./components/User/Footers.jsx";
+import Login from "./pages/Login.jsx";
+import CreatePost from "./pages/CreatePost.jsx";
+import BlogPostPage from "./pages/BlogPostPage.jsx";
+import Dashboard from "./pages/DashBoard.jsx";
+import OnlyAdminPrivateRoute from "./components/Admin/OnlyAdminPrivateRoute.jsx";
+import UpdatePost from "./pages/UpdatePost.jsx";
 
 function App() {
   return (
