@@ -4,7 +4,7 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
-import Header from "./components/User/Header";
+import Header from "./components/User/Header.jsx";
 import Footers from "./components/User/Footers";
 import Login from "./pages/Login";
 import CreatePost from "./pages/CreatePost";
