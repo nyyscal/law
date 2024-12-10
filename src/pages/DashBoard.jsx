@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import DashSidebar from "../components/DashSidebar";
-import DashProfile from "../components/DashProfile";
-import DashPosts from "../components/DashPosts";
+import DashSidebar from "../components/Admin/DashSidebar";
+import DashProfile from "../components/Admin/DashProfile";
+import DashPosts from "../components/Admin/DashPosts";
 
 const Dashboard = () => {
   // Get the tab from the URL query parameters (if any)
@@ -27,7 +27,8 @@ const Dashboard = () => {
 
       {/* profile... */}
       {/* <DashProfile/> */}
-      {tab === "" && <DashProfile />||tab==="profile" && <DashProfile />}
+      {(tab === "" && <DashProfile />) ||
+        (tab === "profile" && <DashProfile />)}
 
       {/* posts... */}
       {tab === "posts" && <DashPosts />}

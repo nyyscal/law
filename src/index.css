@@ -9,3 +9,21 @@
 a:hover {
   color: #ffd700 !important;
 }
+
+.custom-hover:hover {
+  color: white !important; /* Override the default gold hover */
+}
+
+.custom-toast {
+  background-color: black !important; /* Gold background */
+  color: white; /* Black text */
+  font-weight: bold;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.custom-progress {
+  background-color: #ffd900 !important; /* Gold progress bar */
+}
+
+

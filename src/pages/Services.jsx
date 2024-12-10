@@ -1,127 +1,116 @@
-import { useState } from "react";
+import React, { useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 
 const Services = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [serviceDetails, setServiceDetails] = useState({
-    title: "",
-    description: "",
-  });
-
-  const services = [
+  const topics = [
     {
-      title: "Litigation",
-      shortDescription:
-        "Our expert litigation team provides effective representation in both civil and criminal matters.",
-      fullDescription:
-        "Our expert litigation team provides effective representation in both civil and criminal matters. We are committed to achieving the best possible outcomes for our clients, whether it's defending a lawsuit or pursuing legal action.",
-    },
-    {
-      title: "Corporate Law",
-      shortDescription:
-        "Our corporate law services help businesses navigate complex legal issues, from mergers to dispute resolution.",
-      fullDescription:
-        "Our corporate law services help businesses navigate complex legal issues, from mergers and acquisitions to compliance and dispute resolution. We guide our clients through the intricacies of corporate law to safeguard their interests.",
-    },
-    {
-      title: "Family Law",
-      shortDescription:
-        "We provide compassionate support in matters like divorce, child custody, and alimony.",
-      fullDescription:
-        "Our family law experts provide compassionate, knowledgeable support in matters such as divorce, child custody, and alimony, ensuring the best interests of all parties involved. We help families navigate emotional and legal challenges.",
-    },
-    {
-      title: "Real Estate Law",
-      shortDescription:
-        "Our real estate lawyers ensure that property transactions comply with the law and protect your interests.",
-      fullDescription:
-        "Whether you're buying, selling, or leasing property, our real estate lawyers ensure all aspects of your transaction comply with the law and protect your interests. We offer legal services for property disputes, contracts, and agreements.",
-    },
-    {
-      title: "Intellectual Property",
-      shortDescription:
-        "We help protect your intellectual property, including patents, trademarks, and copyrights.",
-      fullDescription:
-        "We offer a full range of services to protect your intellectual property, including patents, trademarks, and copyrights. We assist in ensuring your creative works are safeguarded from infringement and misappropriation.",
-    },
-    {
+      id: "employment-law",
       title: "Employment Law",
-      shortDescription:
-        "We help both employers and employees navigate issues such as workplace discrimination and wrongful termination.",
-      fullDescription:
-        "Our employment law team helps both employers and employees navigate issues such as workplace discrimination, wrongful termination, and employment contracts. We aim to resolve conflicts fairly and efficiently.",
+      description:
+        "The Fair Labor Standards Act (FLSA) mandates that employees who work more than 40 hours in a week must be paid overtime unless they meet specific exemption criteria.Employment law governs the relationship between employers and employees, ensuring that both parties comply with legal obligations and rights. It covers a wide range of topics, including workplace discrimination, wrongful termination, wage disputes, and employee benefits.<br/> Employment law also addresses issues such as workplace safety, harassment, and union representation. Laws in this field are designed to protect workers' rights while balancing the needs of employers, promoting fairness, and preventing exploitation or abuse in the workplace.",
+      image: "/card/Employment.jpg",
+    },
+    {
+      id: "real-estate-law",
+      title: "Real Estate Law",
+      description:
+        "In real estate law, a closing refers to the final step in a property transaction, where the buyer formally takes ownership, and the title is transferred.Real estate law governs the buying, selling, and use of land and properties. It encompasses a broad range of issues, including property rights, leases, title disputes, zoning laws, and environmental regulations. Real estate law is critical for individuals and businesses involved in transactions involving commercial or residential properties, as well as those dealing with landlord-tenant relationships. Legal experts in this field help clients understand their rights, obligations, and legal protections related to property ownership and use, ensuring that deals are executed properly and in accordance with the law.",
+      image: "/card/Tax.jpg",
+    },
+    {
+      id: "divorce-settlement",
+      title: "Divorce Settlement",
+      description:
+        "Divorce law deals with the dissolution of marriages. It includes legal guidance on asset division, child custody, alimony, and other related matters to ensure a fair resolution for all parties.Divorce law pertains to the legal processes surrounding the dissolution of marriage, helping individuals navigate the complexities of separation, property division, child custody, alimony, and spousal support. It addresses issues such as the equitable distribution of assets, child visitation rights, and the overall well-being of children in divorce cases. Divorce law is designed to ensure that the interests of both parties, especially children, are considered during the dissolution of marriage. Legal professionals specializing in divorce law offer guidance and representation throughout the emotional and legal challenges associated with ending a marriage.",
+      image: "/card/Divorce.jpg",
+    },
+    {
+      id: "insurance-claims",
+      title: "Insurance Claims",
+      description:
+        "Insurance law focuses on the regulation of insurance policies and claims. It protects policyholders from unfair practices and ensures companies fulfill their obligations during claims.Insurance law regulates the practices of insurance companies and their policies, ensuring that they act in good faith and in compliance with applicable laws. This field covers a variety of insurance types, including health, life, auto, home, and liability insurance. Insurance law addresses the rights of policyholders, claims processes, and disputes between insurers and insured parties. Attorneys specializing in insurance law may help individuals and businesses file claims, resolve coverage disputes, or challenge denials of coverage. It also involves the regulatory framework that governs the insurance industry, ensuring fairness and transparency.",
+      image: "/card/Insurance.jpg",
+    },
+    {
+      id: "tax-law",
+      title: "Tax Law",
+      description:
+        "Tax law governs how taxes are imposed, collected, and managed. It includes regulations on income tax, corporate tax, and other levies that ensure government funding for public services.Tax law involves the regulation of taxes levied by government authorities, guiding individuals and businesses on how to comply with tax obligations. It covers everything from income tax, corporate tax, and sales tax to estate tax and tax deductions. Tax law is constantly evolving, and changes in legislation can have significant effects on both personal and corporate finances. Professionals in tax law assist clients with tax planning, dispute resolution, audits, and ensuring compliance with local, state, and federal tax requirements.",
+      image: "/card/Tax.jpg",
+    },
+    {
+      id: "immigration-law",
+      title: "Immigration Law",
+      description:
+        "Immigration law oversees the rules for entering and residing in a country. It addresses issues like visas, citizenship, asylum, and deportation to regulate migration effectively.Immigration law focuses on the legal processes surrounding the entry, stay, and removal of individuals in a country. This area of law deals with visas, asylum, work permits, green cards, and citizenship applications. It also addresses the rights of undocumented immigrants, family reunification, and deportation procedures. Immigration law can be complex, as it involves both national policies and international agreements.Legal professionals in this field help clients navigate the bureaucratic processes and advocate for their rights to remain in or enter a country.",
+      image: "/card/Immigration.jpg",
     },
   ];
 
-  const openModal = (title, fullDescription) => {
-    setServiceDetails({
-      title: title,
-      description: fullDescription,
-    });
-    setIsModalOpen(true);
-  };
+  const location = useLocation();
+  const sectionRefs = useRef({});
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  useEffect(() => {
+    const hash = location.hash.replace("#", "");
+    if (hash && sectionRefs.current[hash]) {
+      sectionRefs.current[hash].scrollIntoView({ behavior: "smooth" });
+    }
+  }, [location]);
 
   return (
-    <div className="bg-[url('/background5.jpg')] bg-cover bg-center bg-opacity-30 w-full py-16">
-      <div className="max-w-6xl mx-auto px-6 text-center">
-        <h1 className="text-4xl font-bold text-white mb-6">Our Services</h1>
-        <p className="text-xl text-white mb-12">
-          We offer a range of expert legal services tailored to meet the diverse
-          needs of our clients.
+    <div className="min-h-screen bg-black px-8 lg:px-20 py-10">
+      <header className="text-center mb-16">
+        <h1 className="text-4xl lg:text-5xl font-bold text-[#FFD700]">
+          Legal Topics
+        </h1>
+        <p className="text-lg lg:text-xl text-white mt-4">
+          Explore the essentials of various legal fields.
         </p>
+      </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {services.map((service, index) => (
+      <main>
+        {topics.map((topic) => (
+          <>
             <div
-              key={index}
-              className="bg-white bg-opacity-20 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+              key={topic.id}
+              id={topic.id}
+              ref={(el) => (sectionRefs.current[topic.id] = el)}
+              className="flex flex-col lg:flex-row items-center mb-16 min-h-[400px]"
+              style={{ minHeight: "400px" }} // Set a consistent height
             >
-              <h2 className="text-2xl font-semibold text-[#212EA0] mb-4">
-                {service.title}
-              </h2>
-              <p className="text-lg text-gray-950 mb-4">
-                {service.shortDescription}
-              </p>
-              <button
-                className="bg-[#212EA0] text-white px-6 py-2 rounded-lg mt-4 hover:bg-[#256EA0] transition-all"
-                onClick={() =>
-                  openModal(service.title, service.fullDescription)
-                }
-              >
-                Learn More
-              </button>
-            </div>
-          ))}
-        </div>
-      </div>
+              {/* Parent Wrapper */}
+              <div className="flex flex-col lg:flex-row items-center w-full">
+                {/* Image Section */}
+                <div className="w-full lg:w-1/2 h-auto rounded-lg shadow-md mb-6 lg:mb-0">
+                  <img
+                    src={topic.image}
+                    alt={topic.title}
+                    className="w-full h-auto rounded-lg"
+                  />
+                </div>
 
-      {/* Modal */}
-      {isModalOpen && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-8 rounded-lg max-w-4xl w-full sm:w-2/3 md:w-1/2 lg:w-1/3 xl:w-1/4 relative">
-            {/* Modal Header with X Button */}
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-3xl font-semibold text-[#212EA0]">
-                {serviceDetails.title}
-              </h2>
-              <button
-                className="text-2xl text-white bg-red-600 hover:bg-red-700 rounded-full w-8 h-8 flex items-center justify-center"
-                onClick={closeModal}
-              >
-                &times;
-              </button>
+                {/* Text Section */}
+                <div className="flex flex-col lg:ml-10 lg:mr-10 items-start w-full lg:w-1/2">
+                  {/* Vertical Line */}
+                  <div>
+                    <div className="flex">
+                      <div className="w-1 h-8 bg-[#FFD700] mr-2 mt-1"></div>
+                      <h2 className="text-2xl lg:text-3xl font-semibold text-[#FFD700]">
+                        {topic.title}
+                      </h2>
+                    </div>
+
+                    <div className="mt-4 text-white lg:text-xl max-h-96 overflow-y-hidden">
+                      <p>{topic.description}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            {/* Separator Line */}
-            <hr className="my-4 border-t-2 border-[#212EA0]" />
-            <p className="text-lg text-gray-950 mb-6">
-              {serviceDetails.description}
-            </p>
-          </div>
-        </div>
-      )}
+            <hr className="my-8 border-t-2 border-[#FFD700] w-full" />
+          </>
+        ))}
+      </main>
     </div>
   );
 };
