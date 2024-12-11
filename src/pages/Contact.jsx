@@ -92,9 +92,9 @@ const ContactPage = () => {
                 <h2 className="text-3xl font-bold mb-4 text-[#FFD700]">
                   Get in Touch
                 </h2>
-                <p className="text-white text-xl">
+                <p className="text-white text-lg">
                   Feel free to reach us.{" "}
-                  <span className="text-white text-2xl">
+                  <span className="text-white text-lg">
                     Call us: +977 9846678402
                   </span>
                 </p>
