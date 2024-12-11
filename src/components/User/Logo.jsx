@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 const Logo = () => {
+  const DESKTOP_SPEED = 15;
+  const MOBILE_SPEED = DESKTOP_SPEED * (2 / 5);
+
   const logos = [
     "/logo2.png",
     "/logo2.png",
@@ -11,71 +14,70 @@ const Logo = () => {
     "/logo2.png",
   ];
 
-  // We duplicate the logos array to create the illusion of an infinite loop
-  const loopedLogos = [...logos, ...logos];
-
-  const [currentLogo, setCurrentLogo] = useState(0);
-
-  // Function to handle circular shifting of logos
-  const handleNextLogo = () => {
-    setCurrentLogo((prevLogo) => (prevLogo + 1) % logos.length); // Increment logo index
-  };
-
-  useEffect(() => {
-    const interval = setInterval(handleNextLogo, 3000); // Change logo every 3 seconds
-
-    return () => clearInterval(interval); // Cleanup interval on unmount
-  }, []);
+  // Seamless looping with dynamic duplication
+  const seamlessLogos = [...logos, ...logos]; // Duplicate logos for seamless looping
 
   return (
     <div className="relative text-white bg-black">
-      {/* Desktop view: Circular carousel showing 5 logos */}
-      <div className="hidden sm:block overflow-hidden w-full h-48">
-        {/* Carousel container */}
-        <div
-          className="flex transition-transform duration-700 h-[250px]"
-          style={{
-            transform: `translateX(-${(currentLogo % logos.length) * 20}%)`, // Move 20% to show 5 logos
-          }}
-        >
-          {loopedLogos.map((logo, index) => (
+      {/* Desktop view */}
+      <div className="hidden sm:block overflow-hidden w-full h-48 relative">
+        <div className="flex absolute animate-infinite-scroll">
+          {seamlessLogos.map((logo, index) => (
             <div
-              key={index}
-              className="w-1/5 flex-shrink-0 flex justify-center items-center h-45 mx-auto bg-black"
+              key={`desktop-${index}`}
+              className="w-[20%] flex-shrink-0 flex justify-center items-center h-48"
             >
               <img
                 src={logo}
                 alt={`Logo ${index + 1}`}
-                className="h-32 w-auto"
+                className="h-32 w-auto object-contain transition-transform duration-300 group-hover:scale-110"
               />
             </div>
           ))}
         </div>
       </div>
 
-      {/* Mobile view: Circular carousel showing 2 logos */}
-      <div className="sm:hidden overflow-hidden w-full h-48">
-        {/* Carousel container */}
-        <div
-          className="flex transition-transform duration-700 h-[250px]"
-          style={{
-            transform: `translateX(-${(currentLogo % logos.length) * 50}%)`, // Move 50% to show 2 logos at a time
-          }}
-        >
-          {loopedLogos.map((logo, index) => (
+      {/* Mobile view */}
+      <div className="sm:hidden overflow-hidden w-full h-48 relative">
+        <div className="flex absolute animate-infinite-scroll-mobile">
+          {seamlessLogos.map((logo, index) => (
             <div
-              key={index}
-              className="w-1/2 flex-shrink-0 flex justify-center items-center h-45 mx-auto bg-black"
+              key={`mobile-${index}`}
+              className="w-[50%] flex-shrink-0 flex justify-center items-center h-48"
             >
               <img
                 src={logo}
                 alt={`Logo ${index + 1}`}
-                className="h-32 w-auto"
+                className="h-32 w-auto object-contain transition-transform duration-300 group-hover:scale-110"
               />
             </div>
           ))}
         </div>
       </div>
+
+      <style jsx global>{`
+        .animate-infinite-scroll {
+          animation: infiniteScroll ${DESKTOP_SPEED}s linear infinite;
+        }
+
+        .animate-infinite-scroll-mobile {
+          animation: infiniteScroll ${MOBILE_SPEED}s linear infinite;
+        }
+
+        @keyframes infiniteScroll {
+          from {
+            transform: translateX(0);
+          }
+          to {
+            transform: translateX(-100%);
+          }
+        }
+
+        .animate-infinite-scroll:hover,
+        .animate-infinite-scroll-mobile:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
     </div>
   );
 };
