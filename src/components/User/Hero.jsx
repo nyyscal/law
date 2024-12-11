@@ -57,13 +57,13 @@ const Hero = () => {
             </p>
 
             <button
-              className="border border-white mt-3 -ml-3 flex items-center justify-center text-xl text-white px-8 py-5 rounded-full group hover:scale-105 hover:transition-all hover:text-[#FFD700] hover:border-[#FFD700] "
+              className="border border-white mt-3 -ml-3 flex items-center justify-center text-lg sm:text-xl text-white px-6 sm:px-8 py-3 sm:py-5 rounded-full group hover:scale-105 hover:transition-all hover:text-[#FFD700] hover:border-[#FFD700]"
               onClick={() => navigate("/about")}
             >
               Explore!
               <FaArrowCircleRight
-                size={20}
-                className="ml-3 group-hover:translate-x-3 transition-transform duration-300"
+                size={16} // Smaller size for the icon on mobile
+                className="ml-2 sm:ml-3 group-hover:translate-x-2 sm:group-hover:translate-x-3 transition-transform duration-300"
               />
             </button>
           </div>
