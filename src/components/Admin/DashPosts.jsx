@@ -21,14 +21,14 @@ const DashPosts = () => {
     const fetchPosts = async () => {
       try {
         const res = await axiosInstance.get(
-          `api/post/getposts?userId=${currentUser._id}`
+          `/api/post/getposts?userId=${currentUser._id}`
         );
         console.log(res);
         // const data = await res.json();
 
         // console.log(data.posts.length);
 
-        if (res.statusText == "OK") {
+        if (res.status == 200) {
           setUserPosts(res.data.posts);
           if (res.data.posts.length < 9) {
             setShowMore(false);
@@ -65,6 +65,7 @@ const DashPosts = () => {
       console.log(error.message);
     }
   };
+  console.log(currentUser);
 
   return (
     <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500 bg-black">
