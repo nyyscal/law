@@ -8,7 +8,7 @@ export default function Blog() {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axiosInstance.get(`api/post/getPosts`);
+      const res = await axiosInstance.get(`/api/post/getPosts`);
       const posts = res.data.posts;
       setPost(posts);
     };
