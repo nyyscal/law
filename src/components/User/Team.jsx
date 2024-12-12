@@ -36,7 +36,7 @@ const About = () => {
   return (
     <div className="flex flex-col items-center justify-center">
       <Title title="Our Legal Assets" subTitle="Nepal's Finest" />
-      <div className="bg-black flex flex-col md:flex-row w-full h-[800px] mt-2 items-center gap-6 p-2">
+      <div className="bg-black flex flex-col md:flex-row w-full h-[700px] items-center  p-2">
         {/* Left Side: Image */}
         <div className="flex items-center justify-center w-full md:w-1/2 h-1/2 md:h-full">
           <img
@@ -52,7 +52,7 @@ const About = () => {
         <div className="hidden md:block w-[2px] bg-[#FFD700] h-[70%]"></div>
 
         {/* Right Side: Text */}
-        <div className="flex flex-col text-xl justify-normal w-full md:w-1/2 p-4 text-left font-mono max-w-[900px]">
+        <div className="flex flex-col text-xl justify-normal w-full md:w-1/2 p-4 text-left font-mono max-w-[900px] sm:ml-6">
           <div>
             <h1 className="text-3xl font-bold mb-6 font-serif top-0 text-[#FFD700] z-10 py-4">
               Meet our Legal Team

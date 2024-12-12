@@ -1,20 +1,18 @@
-import { Button, TextInput } from "flowbite-react";
+import { Button, Label, TextInput } from "flowbite-react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   updateSuccess,
   updateFailure,
   updateStart,
 } from "../../redux/user/userSlice";
-import { useDispatch } from "react-redux";
-import { toast, ToastContainer } from "react-toastify"; // Import Toastify
+import { toast, ToastContainer } from "react-toastify";
 import axiosInstance from "../../utils/axiosInstance";
+import "react-toastify/dist/ReactToastify.css";
 
 const DashProfile = () => {
   const { currentUser } = useSelector((state) => state.user);
-
   const [formData, setFormData] = useState({});
-
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -25,108 +23,128 @@ const DashProfile = () => {
     e.preventDefault();
 
     if (Object.keys(formData).length === 0) {
-      toast.warn("No changes made to update!", { position: "top-center" });
       return;
+    }
+
+    if (!formData.old_password) {
+      return dispatch(updateFailure("Please enter your old password"));
+    }
+
+    if (!formData.new_password) {
+      return dispatch(updateFailure("Please enter your new password"));
     }
 
     try {
       dispatch(updateStart());
-
       const res = await axiosInstance.put(
         `api/admin/update/${currentUser._id}`,
         formData
       );
 
-      // Check for a successful response
+      // Check if the request was successful using the response status
       if (res.status === 200) {
         dispatch(updateSuccess(res.data.message));
-        toast.success("Profile updated successfully!", {
-          position: "top-center",
+        toast.success("Password updated successfully!", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
         });
       } else {
-        // This case handles unexpected responses, like non-200 codes.
-        dispatch(updateFailure(res.data.message));
-        toast.error("Failed to update profile. Try again!", {
-          position: "top-center",
-        });
+        // Handle unsuccessful updates
+        dispatch(
+          updateFailure(res.data.message || "Failed to update password.")
+        );
+        toast.error(
+          res.data.message || "Failed to update password. Please try again.",
+          {
+            position: "top-right",
+          }
+        );
       }
     } catch (error) {
-      dispatch(updateFailure(error));
-      toast.error("An error occurred during the update!", {
-        position: "top-center",
-      });
+      dispatch(updateFailure(error.response?.data?.message || error.message));
+      toast.error(
+        error.response?.data?.message ||
+          "An error occurred while updating the password.",
+        {
+          position: "top-right",
+        }
+      );
     }
   };
 
   return (
     <>
-      <ToastContainer /> {/* Toast Container */}
-      <div className="flex items-center justify-center min-h-screen w-screen bg-black">
-        <form
-          onSubmit={handleSubmit}
-          className="flex flex-col items-center gap-4 rounded-lg border border-[#FFD700] shadow-md w-full max-w-md px-8 py-10"
-        >
-          <h1 className="text-center text-3xl text-[#FFD700]">
-            GC Law Chamber Dashboard
-          </h1>
-          <div className="w-38 h-32">
-            <img
-              src="/user-4.png"
-              alt="user_profile_picture"
-              className="rounded-3xl h-36 w-34 border-4 border-[#FFD700]"
+      <ToastContainer />
+      <div className="w-full max-w-md p-6 bg-black border-4 border-[#FFD700] rounded-lg shadow-lg">
+        <h1 className="text-3xl text-center text-[#FFD700] mb-6">
+          GC Law Chamber Dashboard
+        </h1>
+
+        <div className="w-32 h-32 mx-auto mb-4">
+          <img
+            src={currentUser.profilePicture || "/avatar.png"}
+            alt="User Profile"
+            className="rounded-full border-4 border-[#FFD700] w-full h-full object-cover"
+          />
+        </div>
+
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <div>
+            <Label
+              htmlFor="old_username"
+              className="mb-2 block text-[#FFD700] font-semibold"
+            >
+              Current Username
+            </Label>
+            <TextInput
+              type="text"
+              id="old_username"
+              readOnly
+              defaultValue={currentUser.username}
+              className="text-black p-2 rounded-md w-full border border-gray-300 focus:ring-2 focus:ring-[#FFD700]"
             />
           </div>
-          <div className="flex flex-col gap-3 mt-5 w-full">
-            {/* Username Field */}
-            <div className="flex flex-col gap-1">
-              <label
-                htmlFor="username"
-                className="text-[#FFD700] font-semibold"
-              >
-                Username
-              </label>
-              <div className="relative">
-                <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"></span>
-                <input
-                  type="text"
-                  id="username"
-                  placeholder="Username"
-                  defaultValue={currentUser.username}
-                  onChange={handleChange}
-                  className="text-black rounded-md p-2 w-full"
-                />
-              </div>
-            </div>
 
-            {/* Password Field */}
-            <div className="flex flex-col gap-1">
-              <label
-                htmlFor="password"
-                className="text-[#FFD700] font-semibold"
-              >
-                Password:
-              </label>
-              <div className="relative">
-                <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">
-                  <i className="fas fa-key"></i>
-                </span>
-                <TextInput
-                  type="password"
-                  id="password"
-                  placeholder="Change your password"
-                  onChange={handleChange}
-                  className="pl-10 text-black rounded-md p-2 w-full"
-                />
-              </div>
-            </div>
-
-            <Button
-              type="submit"
-              className="bg-[#FFD700] text-black font-semibold py-2 rounded-md w-full"
+          <div>
+            <Label
+              htmlFor="old_password"
+              className="mb-2 block text-[#FFD700] font-semibold"
             >
-              Update
-            </Button>
+              Old Password
+            </Label>
+            <TextInput
+              type="password"
+              id="old_password"
+              placeholder="Enter your old password"
+              onChange={handleChange}
+              className="text-black p-2 rounded-md w-full border border-gray-300 focus:ring-2 focus:ring-[#FFD700]"
+            />
           </div>
+
+          <div>
+            <Label
+              htmlFor="new_password"
+              className="mb-2 block text-[#FFD700] font-semibold"
+            >
+              New Password
+            </Label>
+            <TextInput
+              type="password"
+              id="new_password"
+              placeholder="Enter your new password"
+              onChange={handleChange}
+              className="text-black p-2 rounded-md w-full border border-gray-300 focus:ring-2 focus:ring-[#FFD700]"
+            />
+          </div>
+
+          <Button
+            type="submit"
+            className="bg-[#FFD700] text-black font-semibold py-2 rounded-md w-full hover:bg-yellow-600"
+          >
+            Update Password
+          </Button>
         </form>
       </div>
     </>

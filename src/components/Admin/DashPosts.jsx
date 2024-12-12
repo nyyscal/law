@@ -1,159 +1,178 @@
-import { useEffect, useState } from "react";
-
-import { useSelector } from "react-redux";
-
-import { Button, Modal, Table } from "flowbite-react";
-import { Link } from "react-router-dom";
-import { HiOutlineExclamationCircle } from "react-icons/hi";
+import {
+  Button,
+  TextInput,
+  Label,
+  Spinner,
+  Modal,
+  Table,
+} from "flowbite-react";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { toast, ToastContainer } from "react-toastify";
 import axiosInstance from "../../utils/axiosInstance";
+import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
 import { IoMdAddCircle } from "react-icons/io";
+import { HiOutlineExclamationCircle } from "react-icons/hi";
+import { FiEdit, FiTrash2 } from "react-icons/fi";
 
 const DashPosts = () => {
   const { currentUser } = useSelector((state) => state.user);
-  console.log(currentUser);
 
   const [userPosts, setUserPosts] = useState([]);
-  const [showMore, setShowMore] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [postIdToDelete, setPostIdToDelete] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchPosts = async () => {
+      setIsLoading(true);
       try {
         const res = await axiosInstance.get(
           `/api/post/getposts?userId=${currentUser._id}`
         );
-        console.log(res);
-        // const data = await res.json();
-
-        // console.log(data.posts.length);
-
-        if (res.status == 200) {
+        if (res.status === 200) {
           setUserPosts(res.data.posts);
-          if (res.data.posts.length < 9) {
-            setShowMore(false);
-          }
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
+        toast.error("Failed to fetch posts. Please try again later.");
+      } finally {
+        setIsLoading(false);
       }
     };
 
-    if (currentUser.isAdmin) {
+    if (currentUser?.isAdmin) {
       fetchPosts();
     }
   }, [currentUser._id]);
 
-  console.log(userPosts);
-
-  const handleDeletePost = async (req, res, next) => {
+  const handleDeletePost = async () => {
     setShowModal(false);
     try {
-      console.log(postIdToDelete);
       const res = await axiosInstance.delete(
         `/api/post/deletepost/${postIdToDelete}`
       );
-
-      if (!res.statusText == "OK") {
-        console.log(res.data.message);
-      } else {
+      if (res.status === 200) {
         setUserPosts((prev) =>
           prev.filter((post) => post._id !== postIdToDelete)
         );
+        toast.success("Post deleted successfully!");
       }
     } catch (error) {
-      console.log(error.message);
+      console.error(error);
+      toast.error("Failed to delete the post. Please try again.");
     }
   };
-  console.log(currentUser);
 
   return (
-    <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500 bg-black">
-      <div className="w-screen  ">
-        {currentUser?.isAdmin ? ( // Ensure `currentUser` and `isAdmin` are defined
-          <Link to={"/createpost"}>
-            <button
-              type="button"
-              className="bg-[#FFD700] text-black font-semibold py-2 px-4 rounded-md flex items-center justify-center"
-            >
-              <IoMdAddCircle size={20} className=" mr-1 text-black" />
-              Create a Post
-            </button>
-          </Link>
-        ) : (
-          <p className="text-white">Admin access required to see the button.</p> // Debug message
-        )}
+    <div className="min-h-screen bg-black text-white p-5 relative">
+      {/* Toast Container */}
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+
+      {/* Header */}
+      <div className="flex justify-between items-center mb-5">
+        <div className="flex justify-between items-center w-full">
+          <h1 className="text-2xl font-bold text-[#FFD700] text-center flex-grow">
+            Manage Posts
+          </h1>
+          {currentUser?.isAdmin && (
+            <Link to="/createpost">
+              <button
+                type="button"
+                className="bg-[#FFD700] hover:bg-yellow-600 text-black font-semibold py-3 px-6 rounded-full shadow-lg flex items-center ml-auto"
+              >
+                <IoMdAddCircle size={20} className="mr-2" />
+                Create a Post
+              </button>
+            </Link>
+          )}
+        </div>
       </div>
 
-      {currentUser.isAdmin && userPosts.length > 0 ? (
-        <>
-          <Table hoverable className="shadow-md">
-            <Table.Head>
-              <Table.HeadCell>Date Updated</Table.HeadCell>
-              <Table.HeadCell>Post Image</Table.HeadCell>
-              <Table.HeadCell>Post Title</Table.HeadCell>
-              <Table.HeadCell>Category</Table.HeadCell>
-              <Table.HeadCell>Delete</Table.HeadCell>
-              <Table.HeadCell>
-                <span>Edit</span>
-              </Table.HeadCell>
-            </Table.Head>
-
-            {userPosts.map((post) => (
-              <Table.Body className="divide-y" key={post._id}>
-                <Table.Row className="bg-white text-white">
-                  <Table.Cell>
-                    {new Date(post.updatedAt).toLocaleDateString()}
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Link to={`/post/${post.slug}`}>
-                      <img
-                        src={post.image}
-                        alt={post.title}
-                        className="w-20 h-10 object-cover bg-white"
+      {/* Loader or Table Section */}
+      {isLoading ? (
+        <div className="flex justify-center items-center min-h-[50vh]">
+          <Spinner color="yellow" size="xl" />
+        </div>
+      ) : userPosts.length > 0 ? (
+        <div className="flex justify-center">
+          <div className="overflow-x-auto w-full max-w-5xl bg-gray-800 rounded-lg shadow-lg">
+            <Table hoverable className="w-full text-white">
+              <Table.Head>
+                <Table.HeadCell>Date Updated</Table.HeadCell>
+                <Table.HeadCell>Post Image</Table.HeadCell>
+                <Table.HeadCell>Post Title</Table.HeadCell>
+                <Table.HeadCell>Category</Table.HeadCell>
+                <Table.HeadCell>Actions</Table.HeadCell>
+              </Table.Head>
+              {userPosts.map((post) => (
+                <Table.Body key={post._id}>
+                  <Table.Row className="bg-gray-700">
+                    <Table.Cell className="py-4 px-2 text-amber-400">
+                      {new Date(post.updatedAt).toLocaleDateString()}
+                    </Table.Cell>
+                    <Table.Cell className="py-4 px-2">
+                      <Link to={`/post/${post.slug}`}>
+                        <img
+                          src={post.image}
+                          alt={post.title}
+                          className="w-24 h-16 object-cover rounded"
+                        />
+                      </Link>
+                    </Table.Cell>
+                    <Table.Cell className="py-4 px-2">
+                      <Link
+                        to={`/post/${post.slug}`}
+                        className="text-[#FFD700]"
+                      >
+                        {post.title}
+                      </Link>
+                    </Table.Cell>
+                    <Table.Cell className="py-4 px-2">
+                      {post.category}
+                    </Table.Cell>
+                    <Table.Cell className="py-4 px-2 flex items-center space-x-4">
+                      {/* Delete Icon */}
+                      <FiTrash2
+                        className="text-red-500 hover:text-red-700 cursor-pointer"
+                        size={20}
+                        onClick={() => {
+                          setShowModal(true);
+                          setPostIdToDelete(post._id);
+                        }}
                       />
-                    </Link>
-                  </Table.Cell>
-
-                  <Table.Cell>
-                    <Link
-                      to={`/post/${post.slug}`}
-                      className="fond-medium text-white "
-                    >
-                      {post.title}
-                    </Link>
-                  </Table.Cell>
-
-                  <Table.Cell>{post.category}</Table.Cell>
-
-                  <Table.Cell>
-                    <span
-                      onClick={() => {
-                        setShowModal(true);
-                        console.log(post._id);
-                        setPostIdToDelete(post._id);
-                      }}
-                      className="font-medium text-red-500 hover:underline cursor-pointer"
-                    >
-                      Delete
-                    </span>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Link to={`/update-post/${post._id}`}>
-                      <span className="text-teal-500 hover:underline cursor-pointer">
-                        Edit
-                      </span>
-                    </Link>
-                  </Table.Cell>
-                </Table.Row>
-              </Table.Body>
-            ))}
-          </Table>
-        </>
+                      {/* Edit Icon */}
+                      <Link to={`/update-post/${post._id}`}>
+                        <FiEdit
+                          className="text-teal-500 hover:text-teal-700 cursor-pointer"
+                          size={20}
+                        />
+                      </Link>
+                    </Table.Cell>
+                  </Table.Row>
+                </Table.Body>
+              ))}
+            </Table>
+          </div>
+        </div>
       ) : (
-        <p className="text-[#FFD700] mt-5">Publish your first blog.</p>
+        <p className="text-[#FFD700] mt-5 text-center">
+          {currentUser?.isAdmin
+            ? "You haven't published any posts yet."
+            : "Admin access is required to view posts."}
+        </p>
       )}
 
+      {/* Modal */}
       <Modal
         show={showModal}
         onClose={() => setShowModal(false)}
@@ -163,8 +182,8 @@ const DashPosts = () => {
         <Modal.Header />
         <Modal.Body>
           <div className="text-center">
-            <HiOutlineExclamationCircle className="h-14 w-14 text-gray-400 dark:text-gray-200 mb-4 mx-auto" />
-            <h3 className="mb-5 text-lg text-gray-500 dark:text-gray-400">
+            <HiOutlineExclamationCircle className="h-14 w-14 text-gray-400 mb-4 mx-auto" />
+            <h3 className="mb-5 text-lg text-gray-500">
               Are you sure you want to delete this post?
             </h3>
             <div className="flex justify-center gap-4">
@@ -172,7 +191,7 @@ const DashPosts = () => {
                 Yes, I&apos;m sure
               </Button>
               <Button color="gray" onClick={() => setShowModal(false)}>
-                No, cancel
+                Cancel
               </Button>
             </div>
           </div>

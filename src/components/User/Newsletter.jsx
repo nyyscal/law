@@ -32,7 +32,7 @@ const Newsletter = () => {
               type="email"
               placeholder="info@example.com"
             />
-            <button className="bg-black text-white px-6 py-3 rounded-r-lg font-medium transition-all flex justify-center items-center ">
+            <button className="bg-black hover:bg-[#1e1d1d] text-white px-6 py-3 rounded-r-lg font-medium transition-all flex justify-center items-center ">
               <IoSend size={25} /> {/* Adjust size of the icon */}
             </button>
           </div>

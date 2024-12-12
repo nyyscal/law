@@ -8,7 +8,7 @@ const Overview = () => {
   return (
     <div className="bg-black flex flex-col md:flex-row w-full h-auto items-center gap-6 p-4 md:p-6 overflow-hidden">
       {/* Left Side: Image */}
-      <div className="flex items-center justify-center w-full md:w-1/2 h-[300px] sm:h-[400px] md:h-[350px] lg:h-[400px]">
+      <div className="flex items-center justify-center w-full pl-16 md:w-1/2 h-[300px] sm:h-[400px] md:h-[350px] lg:h-[400px]">
         <img
           className="object-cover border border-white rounded-3xl w-[80%] h-[90%] md:w-[70%] md:h-[80%] lg:w-[70%] lg:h-[100%]"
           src="/overview.jpg"
@@ -16,8 +16,8 @@ const Overview = () => {
         />
       </div>
 
-      {/* Vertical Line */}
-      <div className="hidden md:block border-l-2 border-white h-[80%] mx-2"></div>
+      {/* Vertical Golden Line (Visible on md and larger screens) */}
+      <div className="hidden md:block border-l-2 border-[#FFD700] h-auto mx-2 md:h-[300px] lg:h-[400px]"></div>
 
       {/* Right Side: Text */}
       <div className="flex flex-col justify-center w-full md:w-1/2 p-4 text-center font-mono">
