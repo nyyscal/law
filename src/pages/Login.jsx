@@ -5,11 +5,13 @@ import axiosInstance from "../utils/axiosInstance";
 import { useDispatch } from "react-redux";
 import { signInFailure, signInSuccess } from "../redux/user/userSlice";
 import { toast, ToastContainer } from "react-toastify";
+import { HiEye, HiEyeOff, HiUser, HiKey } from "react-icons/hi";
 import "react-toastify/dist/ReactToastify.css";
 
 const SignIn = () => {
   const [formData, setFormData] = useState({});
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -46,63 +48,83 @@ const SignIn = () => {
   };
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen flex-col md:flex-row bg-gray-900">
       {/* Left Div */}
-      <div className="w-1/2 bg-black flex items-center justify-center">
-        <div className="text-center p-6">
-          <h1 className="text-4xl font-bold text-[#FFD700] mb-4">
+      <div className="w-full md:w-1/2 bg-black flex items-center justify-center p-8">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold text-[#FFD700] mb-6">
             GC Law Chamber
           </h1>
-          <p className="text-gray-100">
+          <p className="text-gray-300 text-lg mb-8">
             Sign in to manage your account and post blogs on the website.
           </p>
           <img
             src="logo2.png"
             alt="Law Illustration"
-            className="w-3/4 mx-auto mt-6"
+            className="w-3/4 sm:w-2/3 mx-auto"
           />
         </div>
       </div>
 
-      {/* Vertical Line */}
-      <div className="w-px h-[80%] bg-[#FFD700]"></div>
+      {/* Vertical Divider */}
+      <div className="hidden md:block w-px h-4/5 bg-[#FFD700]"></div>
 
       {/* Right Div */}
-      <div className="w-1/2 bg-black flex items-center justify-center">
+      <div className="w-full md:w-1/2 flex items-center justify-center p-8">
         <form
-          className="flex flex-col gap-6 w-3/4 max-w-md"
+          className="flex flex-col gap-6 w-full sm:w-3/4 max-w-md bg-gray-800 p-8 rounded-lg shadow-lg"
           onSubmit={handleSubmit}
         >
-          <h2 className="text-2xl font-bold text-[#FFD700] text-center">
+          <h2 className="text-3xl font-bold text-[#FFD700] text-center mb-4">
             Sign In
           </h2>
 
-          <div>
-            <Label value="Username:" className="text-white text-lg" />
+          {/* Username Field */}
+          <div className="relative">
+            <HiUser
+              className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+              size={24}
+            />
             <TextInput
-              placeholder="Enter your username..."
               type="text"
               id="username"
+              placeholder="Enter your username"
               onChange={handleChange}
+              className="pl-12 py-3 bg-gray-700 text-white rounded-lg focus:ring-[#FFD700] focus:border-[#FFD700] placeholder-gray-400"
             />
           </div>
 
-          <div>
-            <Label value="Password:" className="text-white text-lg" />
+          {/* Password Field */}
+          <div className="relative">
+            <HiKey
+              className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+              size={24}
+            />
             <TextInput
-              placeholder="Enter your password..."
-              type="password"
+              type={showPassword ? "text" : "password"}
               id="password"
+              placeholder="Enter your password"
               onChange={handleChange}
+              className="pl-12 pr-12 py-3 bg-gray-700 text-white rounded-lg focus:ring-[#FFD700] focus:border-[#FFD700] placeholder-gray-400"
             />
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 cursor-pointer hover:text-white"
+            >
+              {showPassword ? <HiEyeOff size={24} /> : <HiEye size={24} />}
+            </span>
           </div>
 
-          <Button type="submit" disabled={loading} className="text-white">
+          <Button
+            type="submit"
+            disabled={loading}
+            className="py-3 text-lg bg-[#FFD700] text-black rounded-lg hover:bg-yellow-600 focus:ring focus:ring-yellow-500"
+          >
             {loading ? (
-              <>
-                <Spinner size="sm" />
-                <span className="pl-3 ">Logging In...</span>
-              </>
+              <div className="flex items-center justify-center">
+                <Spinner size="sm" className="mr-2" />
+                Logging In...
+              </div>
             ) : (
               "Log in"
             )}
