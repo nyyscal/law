@@ -41,7 +41,6 @@ const DashProfile = () => {
         formData
       );
 
-      // Check if the request was successful using the response status
       if (res.status === 200) {
         dispatch(updateSuccess(res.data.message));
         toast.success("Password updated successfully!", {
@@ -51,7 +50,6 @@ const DashProfile = () => {
           closeOnClick: true,
         });
       } else {
-        // Handle unsuccessful updates
         dispatch(
           updateFailure(res.data.message || "Failed to update password.")
         );
@@ -77,20 +75,23 @@ const DashProfile = () => {
   return (
     <>
       <ToastContainer />
-      <div className="w-full max-w-md p-6 bg-black border-4 border-[#FFD700] rounded-lg shadow-lg">
+      <div className="w-full max-w-lg mx-auto p-4 bg-black border-4 border-[#FFD700] rounded-lg shadow-lg overflow-auto">
         <h1 className="text-3xl text-center text-[#FFD700] mb-6">
           GC Law Chamber Dashboard
         </h1>
 
-        <div className="w-32 h-32 mx-auto mb-4">
-          <img
-            src={currentUser.profilePicture || "/avatar.png"}
-            alt="User Profile"
-            className="rounded-full border-4 border-[#FFD700] w-full h-full object-cover"
-          />
+        {/* Image Rectangle Between Title and Form */}
+        <div className="flex justify-center mb-6">
+          <div className="w-32 h-32 bg-gray-300 rounded-md overflow-hidden border-4 border-amber-300">
+            <img
+              src="/avatar.png" // Replace with your image URL
+              alt="Profile"
+              className="w-full h-full object-cover "
+            />
+          </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
           <div>
             <Label
               htmlFor="old_username"
@@ -106,7 +107,6 @@ const DashProfile = () => {
               className="text-black p-2 rounded-md w-full border border-gray-300 focus:ring-2 focus:ring-[#FFD700]"
             />
           </div>
-
           <div>
             <Label
               htmlFor="old_password"
@@ -122,7 +122,6 @@ const DashProfile = () => {
               className="text-black p-2 rounded-md w-full border border-gray-300 focus:ring-2 focus:ring-[#FFD700]"
             />
           </div>
-
           <div>
             <Label
               htmlFor="new_password"
@@ -138,7 +137,6 @@ const DashProfile = () => {
               className="text-black p-2 rounded-md w-full border border-gray-300 focus:ring-2 focus:ring-[#FFD700]"
             />
           </div>
-
           <Button
             type="submit"
             className="bg-[#FFD700] text-black font-semibold py-2 rounded-md w-full hover:bg-yellow-600"

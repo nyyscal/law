@@ -1,4 +1,4 @@
-import { Alert, Button, FileInput, Select, TextInput } from "flowbite-react";
+import { Alert, Button, FileInput, TextInput } from "flowbite-react";
 import { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -6,30 +6,34 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance from "../utils/axiosInstance";
 
 const CreatePost = () => {
-  const [formData, setFormData] = useState({});
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [selectedFile, setSeletedFile] = useState();
+
   const [publishError, setPublishError] = useState();
 
   const navigate = useNavigate();
-  console.log(formData);
 
   const handlesubmit = async (e) => {
     e.preventDefault();
+    // console.log(seletedFile);
 
-    if (Object.keys(formData).length === 0) {
-      return;
+    console.log("test");
+    console.log(
+      `title: ${title}, content: ${content}, selectedFile: ${selectedFile}`
+    );
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("content", content);
+
+    if (selectedFile) {
+      formData.append("file", selectedFile);
     }
 
     // Submit form data to your backend here.
     try {
-      const res = await axiosInstance.post(`api/post/createpost`, formData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      // const data = await res.json();
-      // if (!res.ok) {
-      //   setPublishError(data.message);
-      // }
+      const res = await axiosInstance.post(`api/post/createpost`, formData);
 
       console.log(res);
       if (res.statusText === "Created") {
@@ -40,7 +44,7 @@ const CreatePost = () => {
       // if (res.ok) {
       //   setPublishError(null);
       //   setFormData({});
-      //   navigate(`/posts/${data.slug}`);
+      //   navigate(/posts/${data.slug});
       // Reset form data
       // }
     } catch (error) {
@@ -63,16 +67,20 @@ const CreatePost = () => {
             required
             id="title"
             className="flex-1"
-            onChange={(e) =>
-              setFormData({ ...formData, title: e.target.value })
-            }
+            onChange={(e) => setTitle(e.target.value)}
           />
         </div>
         <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted  p-3 ">
-          <FileInput type="file" accept="image/*" />
-          <Button type="button" size="sm" outline>
+          <FileInput
+            type="file"
+            // accept="image/*"
+            onChange={(e) => {
+              setSeletedFile(e.target.files[0]);
+            }}
+          />
+          {/* <Button type="button" size="sm" outline>
             Upload
-          </Button>
+          </Button> */}
         </div>
 
         <ReactQuill
@@ -80,8 +88,9 @@ const CreatePost = () => {
           placeholder="Write something interesting..."
           className="h-72"
           required
+          id="content"
           onChange={(value) => {
-            setFormData({ ...formData, content: value });
+            setContent(value);
           }}
         />
 
