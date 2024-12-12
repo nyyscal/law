@@ -3,25 +3,17 @@ import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { HiDocumentText, HiUser } from "react-icons/hi";
 import { GoSignOut } from "react-icons/go";
-
 import { useEffect, useState } from "react";
-
 import { useDispatch } from "react-redux";
-
 import { signOutSuccess } from "../../redux/user/userSlice.js";
-
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../utils/axiosInstance.js";
 
 const DashSidebar = () => {
   const { currentUser } = useSelector((state) => state.user);
-  console.log(currentUser);
   const location = useLocation();
-
   const dispatch = useDispatch();
-
   const [tab, setTabs] = useState();
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -32,16 +24,14 @@ const DashSidebar = () => {
       setTabs(tabFromUrl);
     }
   }, [location.search]);
-  // console.log(tab);
 
   const handleSignOut = async () => {
     try {
       const res = await axiosInstance.post(`api/admin/signout`);
-      if (!res.statusText == "OK") {
+      if (!res.statusText === "OK") {
         console.log("signout failed");
       } else {
         dispatch(signOutSuccess());
-        // Navigate to login page
         navigate("/sign-in");
       }
     } catch (error) {
@@ -49,12 +39,10 @@ const DashSidebar = () => {
     }
   };
 
-  // console.log(currentUser.data);
-
   return (
-    <Sidebar className="w-full md:w-56  ">
+    <Sidebar className="w-full md:w-56 !bg-gray-800 text-white">
       <Sidebar.Items>
-        <Sidebar.ItemGroup className="flex flex-col gap-2 ">
+        <Sidebar.ItemGroup className="flex flex-col gap-2">
           <Link to="/dashboard?tab=profile">
             <Sidebar.Item
               active={tab === "profile"}

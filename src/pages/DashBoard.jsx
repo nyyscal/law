@@ -19,19 +19,19 @@ const Dashboard = () => {
   }, [location.search]);
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row">
+    <div className="min-h-screen flex bg-black">
       <div className="md:w-56">
         {/* Sidebar */}
         <DashSidebar />
       </div>
+      <div className="flex-grow flex justify-center items-center p-4">
+        {/* Profile */}
+        {(tab === "" && <DashProfile />) ||
+          (tab === "profile" && <DashProfile />)}
 
-      {/* profile... */}
-      {/* <DashProfile/> */}
-      {(tab === "" && <DashProfile />) ||
-        (tab === "profile" && <DashProfile />)}
-
-      {/* posts... */}
-      {tab === "posts" && <DashPosts />}
+        {/* Posts */}
+        {tab === "posts" && <DashPosts />}
+      </div>
     </div>
   );
 };
