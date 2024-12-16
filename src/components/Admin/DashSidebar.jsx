@@ -1,8 +1,13 @@
-import { useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
-import { HiDocumentText, HiUser } from "react-icons/hi";
+import {
+  HiDocumentText,
+  HiUser,
+  HiChevronDown,
+  HiChevronUp,
+} from "react-icons/hi"; // Import new icons
 import { GoSignOut } from "react-icons/go";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { Link, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signOutSuccess } from "../../redux/user/userSlice.js";
 import { useNavigate } from "react-router-dom";
@@ -14,33 +19,27 @@ const DashSidebar = () => {
   const { currentUser } = useSelector((state) => state.user);
   const location = useLocation();
   const dispatch = useDispatch();
-  const [tab, setTabs] = useState();
   const navigate = useNavigate();
 
   const [isMobile, setIsMobile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(location.search);
-    const tabFromUrl = urlParams.get("tab");
-
-    if (tabFromUrl) {
-      setTabs(tabFromUrl);
-    }
-
     const checkMobileView = () => setIsMobile(window.innerWidth < 768);
     checkMobileView();
     window.addEventListener("resize", checkMobileView);
     return () => window.removeEventListener("resize", checkMobileView);
-  }, [location.search]);
+  }, []);
 
   const handleSignOut = async () => {
     try {
       const res = await axiosInstance.post(`api/admin/signout`);
       if (res.status === 200) {
-        dispatch(signOutSuccess());
         toast.success("Logout successful!");
-        navigate("/admin-portal");
+        setTimeout(() => {
+          dispatch(signOutSuccess());
+          navigate("/admin-portal");
+        }, 2000);
       } else {
         toast.error("Logout failed. Please try again.");
       }
@@ -57,9 +56,9 @@ const DashSidebar = () => {
         <div className="bg-gray-800 text-white flex justify-between items-center p-4 relative">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="text-yellow-400 text-2xl"
+            className="text-yellow-400 text-2xl transition-transform duration-300"
           >
-            {menuOpen ? "X" : "+"}
+            {menuOpen ? <HiChevronUp size={24} /> : <HiChevronDown size={24} />}
           </button>
           {menuOpen && (
             <div className="absolute top-16 right-0 bg-gray-800 p-4 rounded-lg shadow-lg flex flex-col items-center space-y-4 z-50 transition-all ease-in-out duration-300">

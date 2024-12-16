@@ -29,7 +29,7 @@ function App() {
         <Route path="/admin-portal" element={<Login />} />
         <Route path="/blogpostpage/:postSlug" element={<BlogPostPage />} />
         <Route element={<OnlyAdminPrivateRoute />}>
-          <Route path="/createpost" element={<CreatePost />} />
+          <Route path="/create-post" element={<CreatePost />} />
           <Route path="/update-post/:postId" element={<UpdatePost />} />
           <Route path="/dashboard" element={<Dashboard />} />
         </Route>
