@@ -10,7 +10,6 @@ import { HiOutlineExclamationCircle } from "react-icons/hi";
 
 const DashPosts = () => {
   const { currentUser } = useSelector((state) => state.user);
-
   const [userPosts, setUserPosts] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [postIdToDelete, setPostIdToDelete] = useState("");
@@ -57,9 +56,48 @@ const DashPosts = () => {
     }
   };
 
+  // Mobile post card component
+  const PostCard = ({ post }) => (
+    <div className="bg-gray-700 rounded-lg p-4 mb-4">
+      <div className="flex flex-col space-y-3">
+        <div className="flex items-center justify-between">
+          <span className="text-amber-400 text-sm">
+            {new Date(post.updatedAt).toLocaleDateString()}
+          </span>
+          <div className="flex space-x-3">
+            <FiTrash2
+              className="text-red-500 hover:text-red-700 cursor-pointer"
+              size={20}
+              onClick={() => {
+                setShowModal(true);
+                setPostIdToDelete(post._id);
+              }}
+            />
+            <Link to={`/update-post/${post._id}`}>
+              <FiEdit
+                className="text-teal-500 hover:text-teal-700 cursor-pointer"
+                size={20}
+              />
+            </Link>
+          </div>
+        </div>
+        <Link to={`/blogpostpage/${post.slug}`}>
+          <img
+            src={post.image}
+            alt={post.title}
+            className="w-full h-48 object-cover rounded-lg"
+          />
+        </Link>
+        <Link to={`/post/${post.slug}`} className="text-[#FFD700] text-lg">
+          {post.title}
+        </Link>
+        <span className="text-gray-300 text-sm">{post.category}</span>
+      </div>
+    </div>
+  );
+
   return (
-    <div className="w-full bg-black text-white">
-      {/* Main header for the dashboard */}
+    <div className="w-full bg-black text-white max-w-full overflow-hidden">
       <ToastContainer
         position="top-right"
         autoClose={3000}
@@ -69,32 +107,37 @@ const DashPosts = () => {
         draggable
         pauseOnHover
       />
-      {/* Sub-header */}
-      <div className="flex justify-between items-center py-2 px-5 bg-gray-800 z-10 border-b border-gray-700">
-        <h1 className="text-2xl font-bold text-[#FFD700]">Manage Posts</h1>
+
+      <div className="flex justify-between items-center py-2 px-4 ">
+        <h1 className="text-xl sm:text-2xl font-bold text-[#FFD700]">
+          Manage Posts
+        </h1>
         {currentUser?.isAdmin && (
           <Link to="/createpost">
-            <button
-              type="button"
-              className="bg-[#FFD700] hover:bg-yellow-600 text-black font-semibold py-3 px-6 rounded-full shadow-lg flex items-center ml-auto"
-            >
-              <IoMdAddCircle size={24} className="mr-2 hidden sm:inline-flex" />
-              <span className="hidden sm:inline">Create a Post</span>
+            <button className="bg-[#FFD700] hover:bg-yellow-600 text-black font-semibold py-2 px-4 rounded-full shadow-lg hidden sm:flex items-center">
+              <IoMdAddCircle size={24} className="mr-2" />
+              <span>Create a Post</span>
             </button>
           </Link>
         )}
       </div>
 
-      {/* Content */}
-      <div className="px-4 sm:px-6 pt-5">
+      <div className="p-4">
         {isLoading ? (
           <div className="flex justify-center items-center min-h-[50vh]">
             <Spinner color="yellow" size="xl" />
           </div>
         ) : userPosts.length > 0 ? (
-          <div className="overflow-x-auto w-full bg-gray-800 rounded-lg shadow-lg mx-auto max-w-full">
-            {/* Wrap the table in an overflow container to prevent overflow */}
-            <div className="overflow-x-auto w-full">
+          <div>
+            {/* Mobile View */}
+            <div className="block md:hidden">
+              {userPosts.map((post) => (
+                <PostCard key={post._id} post={post} />
+              ))}
+            </div>
+
+            {/* Desktop View */}
+            <div className="hidden md:block overflow-x-auto">
               <Table hoverable className="w-full text-white">
                 <Table.Head>
                   <Table.HeadCell className="text-xl">
@@ -109,9 +152,12 @@ const DashPosts = () => {
                   <Table.HeadCell className="text-xl">Category</Table.HeadCell>
                   <Table.HeadCell className="text-xl">Actions</Table.HeadCell>
                 </Table.Head>
-                {userPosts.map((post) => (
-                  <Table.Body key={post._id}>
-                    <Table.Row className="bg-gray-700">
+                <Table.Body>
+                  {userPosts.map((post) => (
+                    <Table.Row
+                      key={post._id}
+                      className="bg-gray-700 hover:bg-gray-800"
+                    >
                       <Table.Cell className="py-4 px-4 text-amber-400 text-lg">
                         {new Date(post.updatedAt).toLocaleDateString()}
                       </Table.Cell>
@@ -152,8 +198,8 @@ const DashPosts = () => {
                         </Link>
                       </Table.Cell>
                     </Table.Row>
-                  </Table.Body>
-                ))}
+                  ))}
+                </Table.Body>
               </Table>
             </div>
           </div>
@@ -165,6 +211,15 @@ const DashPosts = () => {
           </p>
         )}
       </div>
+
+      {/* Fixed Mobile Add Button */}
+      {currentUser?.isAdmin && (
+        <Link to="/createpost">
+          <button className="sm:hidden fixed bottom-4 right-4 bg-[#FFD700] hover:bg-yellow-600 text-black font-semibold p-4 rounded-full shadow-lg flex items-center z-50">
+            <IoMdAddCircle size={28} />
+          </button>
+        </Link>
+      )}
 
       <Modal
         show={showModal}
@@ -181,7 +236,7 @@ const DashPosts = () => {
             </h3>
             <div className="flex justify-center gap-4">
               <Button color="failure" onClick={handleDeletePost}>
-                Yes, I&apos;m sure
+                Yes, I'm sure
               </Button>
               <Button color="gray" onClick={() => setShowModal(false)}>
                 No, cancel
@@ -190,18 +245,6 @@ const DashPosts = () => {
           </div>
         </Modal.Body>
       </Modal>
-
-      {/* Mobile + Button */}
-      {currentUser?.isAdmin && (
-        <Link to="/createpost">
-          <button
-            type="button"
-            className="sm:hidden fixed bottom-4 right-4 bg-[#FFD700] hover:bg-yellow-600 text-black font-semibold p-4 rounded-full shadow-lg flex items-center"
-          >
-            <IoMdAddCircle size={28} />
-          </button>
-        </Link>
-      )}
     </div>
   );
 };
