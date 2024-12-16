@@ -20,7 +20,7 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen flex bg-black">
-      <div className="md:w-56">
+      <div className="md:w-[50]">
         {/* Sidebar */}
         <DashSidebar />
       </div>

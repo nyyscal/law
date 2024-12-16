@@ -11,7 +11,7 @@ const Card = () => {
       title: "Real Estate Law",
       content:
         "In real estate law, a closing refers to the final step in a property transaction, where the buyer formally takes ownership, and the title is transferred.You may need a lawyer.",
-      image: "/card/Tax.jpg", // Example placeholder image
+      image: "/card/Tax.jpg",
     },
     {
       id: 2,
@@ -52,7 +52,18 @@ const Card = () => {
 
   const handleCardClick = (title) => {
     const formattedTitle = title.toLowerCase().replace(/\s+/g, "-");
-    navigate(`/services#${formattedTitle}`);
+    const targetId = `#${formattedTitle}`;
+    const targetElement = document.querySelector(targetId);
+
+    if (window.innerWidth <= 768) {
+      // Smooth scroll for mobile view
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    } else {
+      // Navigate normally for desktop view
+      navigate(`/services${targetId}`);
+    }
   };
 
   const [startIndex, setStartIndex] = useState(0);

@@ -8,10 +8,7 @@ export default function BlogPostPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [post, setPost] = useState(null);
-  // const [recentPosts, setRecentPosts] = useState(null);
 
-  console.log(postSlug);
-  console.log('test')
   useEffect(() => {
     const fetchPost = async () => {
       try {
@@ -22,32 +19,17 @@ export default function BlogPostPage() {
 
         if (res.data.posts && res.data.posts.length > 0) {
           setPost(res.data.posts[0]);
-          setLoading(false);
         } else {
           setError(true);
-          setLoading(false);
         }
-        // const data = await res.json();
-        // console.log(res.data);
-        // if (!res.ok) {
-        //   setError(true);
-        //   setLoading(false);
-        //   return;
-        // }
-        // if (res.ok) {
-        //   setPost(res.posts[0]);
-        //   setLoading(false);
-        //   setError(false);
-        // }
       } catch (error) {
-        console.log("Fetch post error", error);
+        console.error("Fetch post error", error);
         setError(true);
+      } finally {
         setLoading(false);
       }
     };
-    if (postSlug) {
-      fetchPost();
-    }
+    if (postSlug) fetchPost();
   }, [postSlug]);
 
   if (loading)
@@ -56,33 +38,41 @@ export default function BlogPostPage() {
         <Spinner size="xl" />
       </div>
     );
+
+  if (error)
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <p className="text-red-500">
+          Failed to load the blog post. Please try again later.
+        </p>
+      </div>
+    );
+
   return (
-    <main className="p-3 flex flex-col items-center justify-center max-w-6xl mx-auto min-h-screen">
-      <h1 className="text-3xl mt-10 p-3 text-center font-serif max-w-2xl mx-auto lg:text-4xl">
-        {post && post.title}
+    <main className="px-4 py-8 flex flex-col items-center max-w-4xl mx-auto">
+      <h1 className="text-4xl font-bold text-center font-serif mb-6 lg:text-5xl text-[#FFD700] break-words sm:break-normal">
+        {post?.title}
       </h1>
       <Link
-        to={`/search?category=${post && post.category}`}
-        className="self-center mt-5"
+        to={`/search?category=${post?.category}`}
+        className="mb-6 text-sm inline-block bg-gray-200 text-gray-700 rounded-full px-4 py-1 hover:bg-gray-300"
       >
-        <Button color="gray" pill size="xs">
-          {post && post.category}
-        </Button>
+        {post?.category}
       </Link>
       <img
-        src={post && post.image}
-        alt={post && post.title}
-        className="mt-10 p-3 max-h-[300px] flex items-center justify-center w-[300px] object-cover"
+        src={post?.image}
+        alt={post?.title}
+        className="rounded-lg mb-6 w-full max-h-[500px] object-cover"
       />
-      <div className="flex justify-between p-3 border-b border-slate-500 mx-auto w-full max-w-2xl text-xs">
+      <div className="flex justify-between w-full border-b border-gray-300 pb-2 text-sm text-white mb-6">
         <span>{post && new Date(post.createdAt).toLocaleDateString()}</span>
-        <span className="italic">
-          {post && (post.content.length / 1000).toFixed(0)} mins read
+        <span>
+          {post && `${(post.content.length / 1000).toFixed(0)} mins read`}
         </span>
       </div>
       <div
-        className="p-3 max-w-2xl mx-auto w-full post-content"
-        dangerouslySetInnerHTML={{ __html: post && post.content }}
+        className="prose prose-lg max-w-full text-white text-xl"
+        dangerouslySetInnerHTML={{ __html: post?.content }}
       ></div>
     </main>
   );

@@ -51,7 +51,7 @@ const Program = () => {
             <img
               src={program.image}
               alt={program.text}
-              className="w-full h-64 object-cover rounded-lg" // Ensure images are properly scaled
+              className="w-full h-66 object-contain rounded-lg" // Ensure images are properly scaled
             />
 
             {/* Name and Designation */}

@@ -17,7 +17,7 @@ const About = () => {
     },
     {
       image: "/lawyer3.1.jpg",
-      text: `"I am proud to be part of a firm that prioritizes the well-being and success of its clients. We approach each case with dedication and a commitment to excellence. From legal consultation to representation, we offer comprehensive services that meet the needs of individuals and businesses alike. It’s rewarding to be part of a team that truly makes a difference in people’s lives.We are here to stand by you through every step of the legal process"`,
+      text: `"I am proud to be part of a firm that prioritizes the well-being and success of its clients. We approach each case with dedication and a commitment to excellence. From legal consultation to representation, we offer comprehensive services that meet the needs of individuals and businesses alike. "`,
       name: "Alex Brown",
       designation: "Managing Partner",
     },
@@ -35,8 +35,7 @@ const About = () => {
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <Title title="Our Legal Assets" subTitle="Nepal's Finest" />
-      <div className="bg-black flex flex-col md:flex-row w-full h-[700px] items-center  p-2">
+      <div className="bg-black flex flex-col md:flex-row w-full h-[700px] items-center p-2">
         {/* Left Side: Image */}
         <div className="flex items-center justify-center w-full md:w-1/2 h-1/2 md:h-full">
           <img
@@ -58,9 +57,10 @@ const About = () => {
               Meet our Legal Team
             </h1>
           </div>
-          <p className="transition-all ease-in-out duration-700 mb-4 text-gray-200">
+          {/* Fixed height container for text */}
+          <div className="transition-all ease-in-out duration-700 mb-4 text-gray-200 h-[150px] overflow-hidden">
             {slides[currentSlide].text}
-          </p>
+          </div>
 
           {/* Name and Designation */}
           <div className="font-semibold text-lg mt-4 text-[#FFD700]">

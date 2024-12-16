@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import user1 from "/user-1.png";
 import user2 from "/user-2.png";
 import user3 from "/user-3.png";
@@ -7,6 +7,9 @@ import Title from "./Title";
 
 const Testimonials = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [swipeStart, setSwipeStart] = useState(0);
+  const [swipeEnd, setSwipeEnd] = useState(0);
+
   const testimonials = [
     {
       image: user1,
@@ -18,25 +21,25 @@ const Testimonials = () => {
       image: user2,
       name: "Michael Rogers",
       company: "Rogers Law Group, UK",
-      text: "I was in a tough legal situation, but the lawyers here guided me through every step with clarity and confidence. Their attention to detail and strategic advice were key to my case's success. I highly recommend their services.",
+      text: "The team at this law firm provided outstanding legal representation during a very stressful time. They were compassionate, professional, and always kept me informed throughout the process. I couldn't be more grateful for their expertise and dedication.",
     },
     {
       image: user3,
       name: "Sophia Carter",
       company: "Carter Legal Services, Canada",
-      text: "This law firm went above and beyond to ensure my case was handled professionally and with care. They worked tirelessly, and I felt truly supported from the moment I reached out. Their team is exceptional, and I am incredibly satisfied with the outcome.",
+      text: "The team at this law firm provided outstanding legal representation during a very stressful time. They were compassionate, professional, and always kept me informed throughout the process. I couldn't be more grateful for their expertise and dedication.",
     },
     {
       image: user4,
       name: "David Brown",
       company: "Brown & Associates, Australia",
-      text: "The legal team provided top-notch service and excellent advice during a complex legal matter. I always felt like a priority, and their communication was clear and timely. They made an otherwise stressful process manageable and ultimately successful.",
+      text: "The team at this law firm provided outstanding legal representation during a very stressful time. They were compassionate, professional, and always kept me informed throughout the process. I couldn't be more grateful for their expertise and dedication.",
     },
     {
       image: user2,
       name: "Bart Simpson",
       company: "Thompson & Co., USA",
-      text: "I was in a tough legal situation, but the lawyers here guided me through every step with clarity and confidence. Their attention to detail and strategic advice were key to my case's success. I highly recommend their services.",
+      text: "The team at this law firm provided outstanding legal representation during a very stressful time. They were compassionate, professional, and always kept me informed throughout the process. I couldn't be more grateful for their expertise and dedication.",
     },
     {
       image: user1,
@@ -54,16 +57,49 @@ const Testimonials = () => {
     testimonials.length / slidesPerPageDesktop
   );
 
+  // Handle next slide change
+  const handleNext = () => {
+    setCurrentSlide((prevSlide) => {
+      const totalSlides =
+        window.innerWidth < 1024 ? totalSlidesMobile : totalSlidesDesktop;
+      return (prevSlide + 1) % totalSlides;
+    });
+  };
+
+  // Handle previous slide change
+  const handlePrev = () => {
+    setCurrentSlide((prevSlide) => {
+      const totalSlides =
+        window.innerWidth < 1024 ? totalSlidesMobile : totalSlidesDesktop;
+      return (prevSlide - 1 + totalSlides) % totalSlides;
+    });
+  };
+
+  // Swipe handlers
+  const handleSwipeStart = (e) => {
+    setSwipeStart(e.touches[0].clientX);
+  };
+
+  const handleSwipeMove = (e) => {
+    setSwipeEnd(e.touches[0].clientX);
+  };
+
+  const handleSwipeEnd = () => {
+    if (swipeStart - swipeEnd > 50) {
+      handleNext(); // Swipe Left (next)
+    } else if (swipeEnd - swipeStart > 50) {
+      handlePrev(); // Swipe Right (previous)
+    }
+    setSwipeStart(0); // Reset swipe positions
+    setSwipeEnd(0);
+  };
+
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prevSlide) => {
-        const totalSlides =
-          window.innerWidth < 1024 ? totalSlidesMobile : totalSlidesDesktop;
-        return (prevSlide + 1) % totalSlides;
-      });
+      handleNext(); // Auto slide every 4 seconds
     }, 4000);
 
-    return () => clearInterval(interval);
+    return () => clearInterval(interval); // Cleanup on unmount
   }, [totalSlidesMobile, totalSlidesDesktop]);
 
   const groupedTestimonials =
@@ -79,7 +115,12 @@ const Testimonials = () => {
       <Title subTitle="Testimonials" title="What our clients say?" />
 
       {/* Slider */}
-      <div className="overflow-hidden">
+      <div
+        className="overflow-hidden relative"
+        onTouchStart={handleSwipeStart}
+        onTouchMove={handleSwipeMove}
+        onTouchEnd={handleSwipeEnd}
+      >
         <ul className="flex transition-transform duration-500">
           <li className="list-none w-full px-4 py-5 sm:px-6 lg:px-10 lg:py-8">
             <div className="flex flex-wrap justify-between gap-4 sm:gap-4 lg:gap-3 xl:gap-3">
@@ -111,6 +152,24 @@ const Testimonials = () => {
             </div>
           </li>
         </ul>
+
+        {/* Navigation buttons */}
+        <div className="absolute top-1/2 w-full transform -translate-y-1/2 flex justify-between px-4 mt-44">
+          <button
+            className="text-[#FFD700] text-2xl"
+            onClick={handlePrev}
+            aria-label="Previous"
+          >
+            &#8592;
+          </button>
+          <button
+            className="text-[#FFD700] text-2xl"
+            onClick={handleNext}
+            aria-label="Next"
+          >
+            &#8594;
+          </button>
+        </div>
       </div>
 
       {/* Navigation Dots */}

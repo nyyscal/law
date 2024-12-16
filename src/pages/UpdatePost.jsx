@@ -10,7 +10,6 @@ const UpdatePost = () => {
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
 
-
   const navigate = useNavigate();
   const { postId } = useParams();
 
@@ -30,7 +29,7 @@ const UpdatePost = () => {
         setPublishError(null);
 
         console.log(res.data);
-        setFormData(res.data);
+        setFormData(res.data.posts[0]);
 
         // console.log(res.data.posts);
       };
@@ -48,7 +47,7 @@ const UpdatePost = () => {
     formData.content
   );
 
-  console.log(formData.title)
+  console.log(formData.title);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -75,7 +74,7 @@ const UpdatePost = () => {
         return;
       }
 
-      setFormData(res.data)
+      setFormData(res.data);
       setPublishError(null);
       navigate(`/blogpostpage/${res.data.slug}`);
     } catch (error) {

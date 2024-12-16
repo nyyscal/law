@@ -1,3 +1,4 @@
+import Articles from "../components/User/Articles.jsx";
 import Gap from "../components/User/Gap.jsx";
 import Logo from "../components/User/Logo.jsx";
 import Team from "../components/User/Team.jsx";
@@ -7,8 +8,8 @@ const About = () => {
   return (
     <div className="bg-black mt-10">
       <Team />
-      <Title title="Articles & Publications" className="mt-2" />
-      <Logo />
+
+      <Articles />
       <div className="bg-black flex flex-col px-10 py-20 md:flex-row w-[800] h-[800] items-center gap-6 p-6">
         {/* Left Side: Image */}
         <div className="flex items-center justify-center w-full md:w-1/2 h-1/2 md:h-full">
@@ -24,7 +25,7 @@ const About = () => {
         {/* Right Side: Text */}
         <div className="flex flex-col md:flex-row text-xl justify-normal w-full md:w-1/2 p-4 text-left font-mono max-w-[900px]">
           {/* Content */}
-          <div className="max-w-[800px] mx-auto px-4 flex items-center">
+          <div className="max-w-[800px] mx-auto px-2 flex items-center">
             {/* Mission Text */}
             <div>
               <div className="flex items-center">

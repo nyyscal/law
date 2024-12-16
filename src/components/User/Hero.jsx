@@ -7,10 +7,7 @@ const Hero = () => {
   const navigate = useNavigate();
 
   // List of image URLs for the slideshow
-  const images = [
-    "/lawyer1.jpg", // Replace with your actual image URLs
-    "/lawyer2.jpg",
-  ];
+  const images = ["/lawyer1.jpg", "/lawyer2.jpg"];
 
   useEffect(() => {
     // Set an interval to change the image every 7 seconds
@@ -25,7 +22,7 @@ const Hero = () => {
   }, [images.length]);
 
   return (
-    <div className="w-full h-[800px] flex items-center justify-center bg-black">
+    <div className="w-full h-[800px] flex items-center justify-center bg-black mb-6">
       {/* Outer container */}
       <div className="w-[90%] h-[700px] flex flex-col items-center justify-center border px-4 sm:px-10 lg:px-14 border-black">
         {/* First inner div with left and right content */}
@@ -48,12 +45,17 @@ const Hero = () => {
             {/* Vertical Line */}
             <div className="border border-l-8 w-[90%] mt-2"></div>
 
-            <p className="text-xl sm:text-2xl mb-4 mt-6 text-white max-w-full sm:max-w-[90%] md:max-w-[80%] lg:max-w-[90%] overflow-hidden">
-              "At Law Nepal, our mission is to offer exceptional legal terms
-              services with a focus on integrity, professionalism, and client
-              satisfaction. We are dedicated to understanding the unique needs
-              of each client and providing tailored solutions across various
-              areas of law."
+            <p className="text-xl sm:text-2xl mb-4 mt-6 text-white max-w-full sm:max-w-[90%] md:max-w-[80%] lg:max-w-[95%] overflow-hidden">
+              G.C. Law Chamber is the best Law Firm in Nepal which provide
+              exceptional legal services in various Sector with a commitment to
+              integrity, professionalism, and client satisfaction. With a team
+              of experienced and dedicated lawyers, we offer strategic legal
+              solutions.
+            </p>
+            <p className="text-xl sm:text-2xl mb-4 text-white max-w-full sm:max-w-[90%] md:max-w-[80%] lg:max-w-[95%] overflow-hidden">
+              Whether you're navigating complex business law, facing personal
+              legal challenges, or need expert advice on any legal matter, our
+              firm is here to guide you every step of the way.
             </p>
 
             <button

@@ -8,6 +8,7 @@ import Newsletter from "../components/User/Newsletter";
 import Overview from "../components/User/Overview";
 import Logo from "../components/User/Logo";
 import Card from "../components/User/Card";
+import ResponsiveCard from "../components/User/ResponsiveCard";
 const Home = () => {
   return (
     <div className="bg-black">
@@ -19,7 +20,7 @@ const Home = () => {
       <Program />
       <Title subTitle="Our vow" title="Why choose us?" />
       <Overview />
-      <Card />
+      <ResponsiveCard />
       <Testimonials />
       <Newsletter />
     </div>

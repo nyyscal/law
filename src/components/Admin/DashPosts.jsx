@@ -1,20 +1,12 @@
-import {
-  Button,
-  TextInput,
-  Label,
-  Spinner,
-  Modal,
-  Table,
-} from "flowbite-react";
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { toast, ToastContainer } from "react-toastify";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import axiosInstance from "../../utils/axiosInstance";
-import "react-toastify/dist/ReactToastify.css";
+import { toast, ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
 import { IoMdAddCircle } from "react-icons/io";
-import { HiOutlineExclamationCircle } from "react-icons/hi";
+import { Button, Modal, Spinner, Table } from "flowbite-react";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
+import { HiOutlineExclamationCircle } from "react-icons/hi";
 
 const DashPosts = () => {
   const { currentUser } = useSelector((state) => state.user);
@@ -66,8 +58,8 @@ const DashPosts = () => {
   };
 
   return (
-    <div className="w-full bg-black text-white p-5">
-      {/* Toast Container */}
+    <div className="w-full bg-black text-white">
+      {/* Main header for the dashboard */}
       <ToastContainer
         position="top-right"
         autoClose={3000}
@@ -77,89 +69,93 @@ const DashPosts = () => {
         draggable
         pauseOnHover
       />
-
-      {/* Header */}
-      <div className="flex justify-between items-center mb-5 fixed top-0 left-0 w-full bg-black z-10 p-5 border-b border-gray-700">
-        <h1 className="text-2xl font-bold text-[#FFD700] text-center">
-          Manage Posts
-        </h1>
+      {/* Sub-header */}
+      <div className="flex justify-between items-center py-2 px-5 bg-gray-800 z-10 border-b border-gray-700">
+        <h1 className="text-2xl font-bold text-[#FFD700]">Manage Posts</h1>
         {currentUser?.isAdmin && (
           <Link to="/createpost">
             <button
               type="button"
-              className="bg-[#FFD700] hover:bg-yellow-600 text-black font-semibold py-3 px-6 rounded-full shadow-lg flex items-center"
+              className="bg-[#FFD700] hover:bg-yellow-600 text-black font-semibold py-3 px-6 rounded-full shadow-lg flex items-center ml-auto"
             >
-              <IoMdAddCircle size={24} className="mr-2" />
-              Create a Post
+              <IoMdAddCircle size={24} className="mr-2 hidden sm:inline-flex" />
+              <span className="hidden sm:inline">Create a Post</span>
             </button>
           </Link>
         )}
       </div>
 
       {/* Content */}
-      <div className="pt-20 px-4 sm:px-6">
+      <div className="px-4 sm:px-6 pt-5">
         {isLoading ? (
           <div className="flex justify-center items-center min-h-[50vh]">
             <Spinner color="yellow" size="xl" />
           </div>
         ) : userPosts.length > 0 ? (
-          <div className="overflow-x-auto w-full bg-gray-800 rounded-lg shadow-lg mx-auto">
-            <Table hoverable className="w-full text-white">
-              <Table.Head>
-                <Table.HeadCell className="text-xl">
-                  Date Updated
-                </Table.HeadCell>
-                <Table.HeadCell className="text-xl">Post Image</Table.HeadCell>
-                <Table.HeadCell className="text-xl">Post Title</Table.HeadCell>
-                <Table.HeadCell className="text-xl">Category</Table.HeadCell>
-                <Table.HeadCell className="text-xl">Actions</Table.HeadCell>
-              </Table.Head>
-              {userPosts.map((post) => (
-                <Table.Body key={post._id}>
-                  <Table.Row className="bg-gray-700">
-                    <Table.Cell className="py-4 px-4 text-amber-400 text-lg">
-                      {new Date(post.updatedAt).toLocaleDateString()}
-                    </Table.Cell>
-                    <Table.Cell className="py-4 px-4">
-                      <Link to={`/post/${post.slug}`}>
-                        <img
-                          src={post.image}
-                          alt={post.title}
-                          className="w-32 h-24 object-cover rounded-lg"
-                        />
-                      </Link>
-                    </Table.Cell>
-                    <Table.Cell className="py-4 px-4 text-lg">
-                      <Link
-                        to={`/post/${post.slug}`}
-                        className="text-[#FFD700] text-xl"
-                      >
-                        {post.title}
-                      </Link>
-                    </Table.Cell>
-                    <Table.Cell className="py-4 px-4 text-lg">
-                      {post.category}
-                    </Table.Cell>
-                    <Table.Cell className="py-4 px-4 flex items-center space-x-6">
-                      <FiTrash2
-                        className="text-red-500 hover:text-red-700 cursor-pointer"
-                        size={28}
-                        onClick={() => {
-                          setShowModal(true);
-                          setPostIdToDelete(post._id);
-                        }}
-                      />
-                      <Link to={`/update-post/${post._id}`}>
-                        <FiEdit
-                          className="text-teal-500 hover:text-teal-700 cursor-pointer"
+          <div className="overflow-x-auto w-full bg-gray-800 rounded-lg shadow-lg mx-auto max-w-full">
+            {/* Wrap the table in an overflow container to prevent overflow */}
+            <div className="overflow-x-auto w-full">
+              <Table hoverable className="w-full text-white">
+                <Table.Head>
+                  <Table.HeadCell className="text-xl">
+                    Date Updated
+                  </Table.HeadCell>
+                  <Table.HeadCell className="text-xl">
+                    Post Image
+                  </Table.HeadCell>
+                  <Table.HeadCell className="text-xl">
+                    Post Title
+                  </Table.HeadCell>
+                  <Table.HeadCell className="text-xl">Category</Table.HeadCell>
+                  <Table.HeadCell className="text-xl">Actions</Table.HeadCell>
+                </Table.Head>
+                {userPosts.map((post) => (
+                  <Table.Body key={post._id}>
+                    <Table.Row className="bg-gray-700">
+                      <Table.Cell className="py-4 px-4 text-amber-400 text-lg">
+                        {new Date(post.updatedAt).toLocaleDateString()}
+                      </Table.Cell>
+                      <Table.Cell className="py-4 px-4">
+                        <Link to={`/blogpostpage/${post.slug}`}>
+                          <img
+                            src={post.image}
+                            alt={post.title}
+                            className="w-32 h-24 object-cover rounded-lg"
+                          />
+                        </Link>
+                      </Table.Cell>
+                      <Table.Cell className="py-4 px-4 text-lg">
+                        <Link
+                          to={`/post/${post.slug}`}
+                          className="text-[#FFD700] text-xl"
+                        >
+                          {post.title}
+                        </Link>
+                      </Table.Cell>
+                      <Table.Cell className="py-4 px-4 text-lg">
+                        {post.category}
+                      </Table.Cell>
+                      <Table.Cell className="py-4 px-4 flex items-center space-x-6">
+                        <FiTrash2
+                          className="text-red-500 hover:text-red-700 cursor-pointer"
                           size={28}
+                          onClick={() => {
+                            setShowModal(true);
+                            setPostIdToDelete(post._id);
+                          }}
                         />
-                      </Link>
-                    </Table.Cell>
-                  </Table.Row>
-                </Table.Body>
-              ))}
-            </Table>
+                        <Link to={`/update-post/${post._id}`}>
+                          <FiEdit
+                            className="text-teal-500 hover:text-teal-700 cursor-pointer"
+                            size={28}
+                          />
+                        </Link>
+                      </Table.Cell>
+                    </Table.Row>
+                  </Table.Body>
+                ))}
+              </Table>
+            </div>
           </div>
         ) : (
           <p className="text-[#FFD700] mt-5 text-center">
@@ -169,6 +165,7 @@ const DashPosts = () => {
           </p>
         )}
       </div>
+
       <Modal
         show={showModal}
         onClose={() => setShowModal(false)}
@@ -193,6 +190,18 @@ const DashPosts = () => {
           </div>
         </Modal.Body>
       </Modal>
+
+      {/* Mobile + Button */}
+      {currentUser?.isAdmin && (
+        <Link to="/createpost">
+          <button
+            type="button"
+            className="sm:hidden fixed bottom-4 right-4 bg-[#FFD700] hover:bg-yellow-600 text-black font-semibold p-4 rounded-full shadow-lg flex items-center"
+          >
+            <IoMdAddCircle size={28} />
+          </button>
+        </Link>
+      )}
     </div>
   );
 };

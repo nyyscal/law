@@ -61,7 +61,7 @@ const SignIn = () => {
           <img
             src="logo2.png"
             alt="Law Illustration"
-            className="w-3/4 sm:w-2/3 mx-auto"
+            className="w-3/4 sm:w-2/3 mx-auto hidden sm:block"
           />
         </div>
       </div>
@@ -82,7 +82,7 @@ const SignIn = () => {
           {/* Username Field */}
           <div className="relative">
             <HiUser
-              className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+              className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-200"
               size={24}
             />
             <TextInput
@@ -97,7 +97,7 @@ const SignIn = () => {
           {/* Password Field */}
           <div className="relative">
             <HiKey
-              className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+              className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-200"
               size={24}
             />
             <TextInput
@@ -111,7 +111,11 @@ const SignIn = () => {
               onClick={() => setShowPassword(!showPassword)}
               className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 cursor-pointer hover:text-white"
             >
-              {showPassword ? <HiEyeOff size={24} /> : <HiEye size={24} />}
+              {showPassword ? (
+                <HiEyeOff size={24} />
+              ) : (
+                <HiEye size={24} className="text-gray-200" />
+              )}
             </span>
           </div>
 

@@ -6,12 +6,16 @@ import {
   FaPhoneAlt,
 } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-
+import { docs } from "../../utils/assets";
 const Footers = () => {
   const navigate = useNavigate();
 
   const handleNavigate = (sectionId) => {
     navigate(`/services#${sectionId}`);
+  };
+
+  const openDocument = (docUrl) => {
+    window.open(docUrl, "_blank");
   };
 
   return (
@@ -79,64 +83,76 @@ const Footers = () => {
                 </div>
               </div>
             </div>
-            {/* Center Section */}
-            <div className="ml-4 grid grid-cols-1 gap-8 mt-3 sm:grid-cols-2 lg:grid-cols-3 sm:gap-6 lg:gap-12">
-              <div className="w-full">
-                <Footer.Title
-                  title="Quick Links"
-                  className="mb-2 text-[#FFD700] text-lg"
-                />
-                <Footer.LinkGroup col>
-                  <div className="text-white space-y-3 mt-2">
-                    <a className="flex items-center gap-2 text-base cursor-pointer">
-                      <span>Employment Law</span>
-                    </a>
-                    <a className="flex items-center gap-2 text-base cursor-pointer">
-                      <span>Labour Law</span>
-                    </a>
-                    <a className="flex items-center gap-2 text-base cursor-pointer">
-                      <span>Immigration Law</span>
-                    </a>
-                    <a className="flex items-center gap-2 text-base cursor-pointer">
-                      <span>Taxation Law</span>
-                    </a>
-                  </div>
-                </Footer.LinkGroup>
+            {/* Center and Right Sections - Modified for mobile layout */}
+            <div className="ml-2 grid grid-cols-2 gap-4 mt-3 sm:grid-cols-2 lg:grid-cols-3 sm:gap-6 lg:gap-12">
+              {/* Quick Links Section */}
+              <div className="w-[80%]">
+                <h3 className="mb-2 text-[#FFD700] text-lg font-semibold">
+                  Quick Links
+                </h3>
+                <ul className="text-white space-y-3 mt-2">
+                  <li>
+                    <button className="flex items-center gap-2 text-base cursor-pointer hover:text-[#FFD700] transition-colors duration-300">
+                      <span>Court Marriage</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button className="flex items-center gap-2 text-base cursor-pointer hover:text-[#FFD700] transition-colors duration-300">
+                      <span>FIR Report</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button className="flex items-center gap-2 text-base cursor-pointer hover:text-[#FFD700] transition-colors duration-300">
+                      <span>Corporate Law</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button className="flex items-center gap-2 text-base cursor-pointer hover:text-[#FFD700] transition-colors duration-300">
+                      <span>Foreign Court</span>
+                    </button>
+                  </li>
+                </ul>
               </div>
 
+              {/* Services Section */}
               <div className="w-full">
-                <Footer.Title
-                  title="Services"
-                  className="mb-2 text-[#FFD700] text-lg"
-                />
-                <Footer.LinkGroup col>
-                  <div className="text-white space-y-3 mt-2">
-                    <a
-                      className="flex items-center gap-2 text-base cursor-pointer"
+                <h3 className="mb-2 text-[#FFD700] text-lg font-semibold">
+                  Services
+                </h3>
+                <ul className="text-white space-y-3 mt-2">
+                  <li>
+                    <button
                       onClick={() => handleNavigate("employment-law")}
+                      className="flex items-center gap-2 text-base cursor-pointer hover:text-[#FFD700] transition-colors duration-300"
                     >
                       <span>Employment Law</span>
-                    </a>
-                    <a
-                      className="flex items-center gap-2 text-base cursor-pointer"
+                    </button>
+                  </li>
+                  <li>
+                    <button
                       onClick={() => handleNavigate("insurance-claims")}
+                      className="flex items-center gap-2 text-base cursor-pointer hover:text-[#FFD700] transition-colors duration-300"
                     >
                       <span>Insurance Law</span>
-                    </a>
-                    <a
-                      className="flex items-center gap-2 text-base cursor-pointer"
+                    </button>
+                  </li>
+                  <li>
+                    <button
                       onClick={() => handleNavigate("immigration-law")}
+                      className="flex items-center gap-2 text-base cursor-pointer hover:text-[#FFD700] transition-colors duration-300"
                     >
                       <span>Immigration Law</span>
-                    </a>
-                    <a
-                      className="flex items-center gap-2 text-base cursor-pointer"
+                    </button>
+                  </li>
+                  <li>
+                    <button
                       onClick={() => handleNavigate("tax-law")}
+                      className="flex items-center gap-2 text-base cursor-pointer hover:text-[#FFD700] transition-colors duration-300"
                     >
                       <span>Taxation Law</span>
-                    </a>
-                  </div>
-                </Footer.LinkGroup>
+                    </button>
+                  </li>
+                </ul>
               </div>
 
               <div className="w-full">

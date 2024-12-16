@@ -12,6 +12,7 @@ import {
 } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axiosInstance from "../utils/axiosInstance";
 
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
 import NepalFlag from "/nepal-flag.png"; // Add Nepal flag image path
@@ -19,6 +20,7 @@ import IndiaFlag from "/india-flag.png"; // Add India flag image path
 import markerIconUrl from "leaflet/dist/images/marker-icon.png";
 import markerShadowUrl from "leaflet/dist/images/marker-shadow.png";
 import Title from "../components/User/Title";
+import { useDispatch } from "react-redux";
 
 // Explicitly set marker icon
 const markerIconCustom = new L.Icon({
@@ -35,6 +37,10 @@ const ContactPage = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
+  const [formData, setFormData] = useState({});
+
+  const dispatch = useDispatch();
+
   // Handle click outside dropdown to close it
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -50,9 +56,29 @@ const ContactPage = () => {
     };
   }, []);
 
-  const handleFormSubmit = (e) => {
+  const handleDataChange = (e) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
+  };
+
+  console.log(formData);
+
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    toast.success("Your response has been submitted successfully !", {
+    console.log("test successful");
+    console.log(formData.name);
+
+    if (!formData.name && !formData.email && !formData.messsage) {
+      return dispatch(signInFailure("Please fill in all fields"));
+    }
+    try {
+      console.log("test");
+      const res = await axiosInstance.post(`/api/user/email`, formData);
+      console.log(res);
+      console.log("response");
+    } catch (error) {
+      return console.log(error.message);
+    }
+    toast.success("Your response has been successfully submitted!", {
       position: "top-right",
       autoClose: 3000,
       hideProgressBar: false,
@@ -113,6 +139,7 @@ const ContactPage = () => {
                     id="name"
                     className="w-full mb-2 bg-black text-white text-xl border border-[#FFD700] rounded-lg px-3 py-4 focus:outline-none focus:border-[#FFD700] focus:border-2"
                     placeholder="John Doe"
+                    onChange={handleDataChange}
                   />
                 </div>
                 <div>
@@ -128,6 +155,7 @@ const ContactPage = () => {
                     id="email"
                     className="w-full mb-2 bg-black text-white text-xl border border-[#FFD700] rounded-lg px-3 py-4 focus:outline-none focus:border-[#FFD700] focus:border-6"
                     placeholder="info@example.com"
+                    onChange={handleDataChange}
                   />
                 </div>
                 <div>
@@ -186,7 +214,7 @@ const ContactPage = () => {
                       id="phone"
                       className="w-full px-3 py-4 bg-black text-xl text-white border border-[#FFD700] focus:outline-none focus:border-[#FFD700] focus:border-2 rounded-r-lg h-full"
                       placeholder="Phone Number"
-                      onChange={() => {}}
+                      onChange={handleDataChange}
                     />
                   </div>
                 </div>
@@ -203,6 +231,7 @@ const ContactPage = () => {
                     id="message"
                     className="w-full mb-2 h-40 resize-none text-xl border border-[#FFD700] rounded-lg px-3 py-4 bg-black text-white focus:outline-none focus:border-[#FFD700] focus:border-6"
                     placeholder="Enter your message..."
+                    onChange={handleDataChange}
                   ></textarea>
                 </div>
                 <div className="flex items-center justify-start my-10">

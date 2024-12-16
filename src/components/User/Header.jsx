@@ -229,6 +229,18 @@ const Header = () => {
             About
             <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full group-hover:bg-[#FFD700]" />
           </Link>
+          <Link
+            to="/team"
+            className={`text-2xl relative group ${
+              activeLink === "/team"
+                ? "text-[#FFD700]"
+                : "text-white hover:text-[#FFD700]"
+            }`}
+            onClick={() => handleSetActive("/team")}
+          >
+            Team
+            <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full group-hover:bg-[#FFD700]" />
+          </Link>
 
           {/* Services Dropdown */}
           <div ref={servicesRef} className="relative group">
