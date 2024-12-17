@@ -3,7 +3,12 @@ import { docs } from "../../utils/assets"; // Assuming your assets are in a sepa
 import Title from "./Title";
 
 const Articles = () => {
-  const logos = ["/logo2.png", "/logo2.png", "/logo2.png", "/logo2.png"]; // Array of logos
+  const logos = [
+    "/logo/logo2.png",
+    "/logo/logo2.png",
+    "/logo/logo2.png",
+    "/logo/logo2.png",
+  ]; // Array of logos
   const docMapping = [
     { logoIndex: 0, doc: docs[0].doc1, name: docs[0].name }, // Logo 1 maps to FIR Report
     { logoIndex: 1, doc: docs[1].doc1, name: docs[1].name }, // Logo 2 maps to Company Registration

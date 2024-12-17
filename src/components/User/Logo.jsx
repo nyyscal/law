@@ -5,13 +5,14 @@ const Logo = () => {
   const MOBILE_SPEED = DESKTOP_SPEED * (2 / 5);
 
   const logos = [
-    "/logo2.png",
-    "/logo2.png",
-    "/logo2.png",
-    "/logo2.png",
-    "/logo2.png",
-    "/logo2.png",
-    "/logo2.png",
+    "/logo/logo2.png",
+    "/logo/logo2.png",
+    "/logo/logo2.png",
+    "/logo/logo2.png",
+    "/logo/logo2.png",
+    "/logo/logo2.png",
+    "/logo/logo2.png",
+    "/logo/logo2.png",
   ];
 
   // Seamless looping with dynamic duplication

@@ -1,5 +1,4 @@
 import React from "react";
-// Replace with the correct path to the image
 import aboutImage from "/image1.jpg";
 
 const About = () => {
@@ -9,7 +8,7 @@ const About = () => {
         {/* Left Section: Image */}
         <div className="basis-full lg:basis-2/5 flex justify-center items-center mb-6 lg:mb-0 lg:mt-8">
           <img
-            src="/lawyer.jpg"
+            src="/image1.jpg"
             alt="About Us"
             className="w-full h-auto max-h-[400px] object-cover"
           />
