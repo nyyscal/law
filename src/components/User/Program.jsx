@@ -20,7 +20,7 @@ const Program = () => {
             className="relative flex flex-col items-center w-full lg:w-[31%] mb-8 lg:mb-0 group"
           >
             {/* Image Container */}
-            <div className="w-full max-w-[426.55px] h-[284.68px] flex justify-center items-center overflow-hidden rounded-lg shadow-md bg-gray-900">
+            <div className="w-full max-w-[426.55px] h-[284.68px] flex justify-center items-center overflow-hidden rounded-lg shadow-md ">
               <img
                 src={program.image}
                 alt={program.text}

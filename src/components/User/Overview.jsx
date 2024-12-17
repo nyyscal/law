@@ -45,7 +45,7 @@ const Overview = () => {
           {listItems.map((item, index) => (
             <li key={index} className="flex items-center">
               <FaCircleCheck size={15} className="text-[#FFD700] mr-2" />
-              <b>{item.title}</b>
+              <b className="text-[#FFD700]">{item.title}</b>
               <p className="hidden sm:block">:&nbsp;{item.description}</p>
             </li>
           ))}

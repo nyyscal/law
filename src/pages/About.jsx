@@ -34,13 +34,14 @@ const About = () => {
               </div>
 
               <p className="text-gray-200 sm:max-w-[90%]">
-                "At Law Nepal, our mission is to offer exceptional legal
-                services with a focus on integrity, professionalism, and client
-                satisfaction. We are dedicated to understanding the unique needs
-                of each client and providing tailored solutions across various
-                areas of law.."
+                Our mission is to offer exceptional legal services with a focus
+                on integrity, professionalism, and client satisfaction. We are
+                dedicated to understanding the unique needs of each client and
+                providing tailored solutions across various areas of law.
               </p>
-              <p className="text-gray-400 mt-3">-Law Nepal, Kathmandu 2024</p>
+              <p className="text-gray-300 text-base mt-3">
+                -Law Nepal, Kathmandu 2024
+              </p>
             </div>
           </div>
         </div>
