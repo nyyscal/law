@@ -1,22 +1,19 @@
 import Articles from "../components/User/Articles.jsx";
-import Gap from "../components/User/Gap.jsx";
-import Logo from "../components/User/Logo.jsx";
 import Team from "../components/User/Team.jsx";
 import Testimonials from "../components/User/Testimonial.jsx";
-import Title from "../components/User/Title.jsx";
+
 const About = () => {
   return (
-    <div className="bg-black mt-10">
+    <div className="bg-black">
       <Team />
-
       <Articles />
       <div className="bg-black flex flex-col px-10 py-20 md:flex-row w-[800] h-[800] items-center gap-6 p-6">
         {/* Left Side: Image */}
-        <div className="flex items-center justify-center w-full md:w-1/2 h-1/2 md:h-full">
+        <div className="flex items-center justify-center w-full md:w-1/2 h-1/2 md:h-full mt-4">
           <img
             className="object-contain"
-            width={700}
-            height={700}
+            width={550}
+            height={600}
             src="/lawyer4.jpg"
             alt="Lawyer"
           />
@@ -36,7 +33,7 @@ const About = () => {
                 </h1>
               </div>
 
-              <p className="text-gray-200">
+              <p className="text-gray-200 sm:max-w-[90%]">
                 "At Law Nepal, our mission is to offer exceptional legal
                 services with a focus on integrity, professionalism, and client
                 satisfaction. We are dedicated to understanding the unique needs

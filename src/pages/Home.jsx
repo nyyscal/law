@@ -16,11 +16,13 @@ const Home = () => {
       <Title title="Partners & Collaborators" />
       <Logo />
       <Info />
-      <Title subTitle="Our Team" title="GET THE BEST CONSULTATION!" />
+      <Title subTitle="Our Team" title="GET THE BEST CONSULTANT" />
       <Program />
-      <Title subTitle="Our vow" title="Why choose us?" />
+      <Title title="WHY CHOOSE US?" />
       <Overview />
+      <Title title="OUR SERVICES" />
       <ResponsiveCard />
+
       <Testimonials />
       <Newsletter />
     </div>

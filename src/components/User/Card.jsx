@@ -10,7 +10,7 @@ const Card = () => {
       id: 1,
       title: "Real Estate Law",
       content:
-        "In real estate law, a closing refers to the final step in a property transaction, where the buyer formally takes ownership, and the title is transferred.You may need a lawyer.",
+        "In real estate law, a closing refers to the final step in a property transaction, where the buyer formally takes ownership, and the title is transferred.",
       image: "/card/Tax.jpg",
     },
     {
@@ -31,21 +31,21 @@ const Card = () => {
       id: 4,
       title: "Tax Law",
       content:
-        "The U.S. tax code is over 74,000 pages long, and tax law changes frequently, with over 4,000 amendments made in just the last decade.You may need a lawyer to fix the issue.",
+        "The U.S. tax code is over 74,000 pages long, and tax law changes frequently, with over 4,000 amendments made in just the last decade.",
       image: "/card/Tax.jpg",
     },
     {
       id: 5,
       title: "Immigration Law",
       content:
-        "U.S. immigration law is complex, with more than 50 different visa categories for foreign nationals seeking entry to the U.S., including work, family, and student visas.",
+        "U.S. immigration law is complex, with more than 50 different visa categories for foreign nationals seeking entry to the U.S., including work, family.",
       image: "/card/Immigration.jpg",
     },
     {
       id: 6,
       title: "Employment Law",
       content:
-        "The Fair Labor Standards Act mandates that employees who work more than 40 hours in a week must be paid overtime unless they meet specific exemption criteria.",
+        "The Fair Labor Standards Act mandates that employees who work more than 40 hours in a week must be paid overtime unless  including work, family, and student visas..",
       image: "/card/Employment.jpg",
     },
   ];
@@ -104,10 +104,8 @@ const Card = () => {
   }, [startIndex, cardData.length]);
 
   return (
-    <div className="flex flex-col items-center mx-6">
-      <Title subTitle="Our Services" title="GET THE BEST ADVICE!" />
-      <h1 className="text-2xl font-bold mb-6">Card Slider</h1>
-      <div className="relative w-full overflow-hidden">
+    <div className="flex flex-col items-center mx-6 mb-8">
+      <div className="relative w-full overflow-hidden mt-6">
         <div
           className={`flex transition-transform ${
             isTransitioning ? "duration-700 ease-in-out" : ""
@@ -125,15 +123,19 @@ const Card = () => {
                 key={card.id}
                 onClick={() => handleCardClick(card.title)}
                 className="bg-black shadow-md rounded-2xl p-6 text-center border-4 border-white hover:shadow-xl transition-transform hover:border-[#FFD700] hover:scale-105"
+                style={{ height: "auto" }} // Remove fixed height, let it adjust to content
               >
+                {/* Image with fixed height */}
                 <img
                   src={card.image}
                   alt={card.title}
                   className="w-full h-48 sm:h-56 object-cover rounded-t-lg mb-4"
+                  style={{ objectFit: "cover" }} // Ensure image fits within the container
                 />
                 <h2 className="text-2xl font-semibold mb-2 text-[#FFD700]">
                   {card.title}
                 </h2>
+                {/* Content that adjusts its height */}
                 <p className="text-white text-base sm:text-lg">
                   {card.content}
                 </p>
@@ -142,6 +144,8 @@ const Card = () => {
           ))}
         </div>
       </div>
+
+      {/* Pagination Dots */}
       <div className="flex mx-4 py-4">
         {Array.from({ length: cardData.length }).map((_, index) => (
           <div

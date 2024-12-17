@@ -17,15 +17,15 @@ const About2 = () => {
               <img
                 src={member.image}
                 alt={member.name}
-                className="w-[20rem] h-[20rem] border-4 border-[#FFD700] object-fit"
+                className="w-[18rem] h-[18rem] border-4 border-[#FFD700] object-fit"
               />
               <h3 className="mt-2 text-xl text-[#FFD700]">{member.name}</h3>
-              <p className="text-gray-400 text-xl">{member.designation}</p>
-              <div className="flex items-center gap-2 text-gray-300 text-xl">
+              <p className="text-gray-400 text-base">{member.designation}</p>
+              <div className="flex items-center gap-2 text-gray-300 text-base">
                 <FaPhoneAlt size={15} />
                 <span>:+977&nbsp;{member.contact}</span>
               </div>
-              <div className="flex items-center gap-2 text-gray-300 text-xl">
+              <div className="flex items-center gap-2 text-gray-300 text-base">
                 <IoIosMail size={20} />
                 <span>:&nbsp;{member.mail}</span>
               </div>
@@ -40,15 +40,15 @@ const About2 = () => {
               <img
                 src={member.image}
                 alt={member.name}
-                className="w-[20rem] h-[20rem] border-4 border-[#FFD700] object-fit"
+                className="w-[18rem] h-[18rem] border-4 border-[#FFD700] object-fit"
               />
               <h3 className="mt-2 text-xl text-[#FFD700]">{member.name}</h3>
-              <p className="text-gray-400 text-xl">{member.designation}</p>
-              <div className="flex items-center gap-2 text-gray-300 text-xl">
+              <p className="text-gray-400 text-base">{member.designation}</p>
+              <div className="flex items-center gap-2 text-gray-300 text-base">
                 <FaPhoneAlt size={15} />
                 <span>:+977&nbsp;{member.contact}</span>
               </div>
-              <div className="flex items-center gap-2 text-gray-300 text-xl">
+              <div className="flex items-center gap-2 text-gray-300 text-base">
                 <IoIosMail size={20} />
                 <span>:&nbsp;{member.mail}</span>
               </div>
@@ -63,15 +63,15 @@ const About2 = () => {
               <img
                 src={member.image}
                 alt={member.name}
-                className="w-[20rem] h-[20rem] border-4 border-[#FFD700] object-fit"
+                className="w-[18rem] h-[18rem] border-4 border-[#FFD700] object-fit"
               />
               <h3 className="mt-2 text-xl text-[#FFD700]">{member.name}</h3>
-              <p className="text-gray-400 text-xl">{member.designation}</p>
-              <div className="flex items-center gap-2 text-gray-300 text-xl">
+              <p className="text-gray-400 text-base">{member.designation}</p>
+              <div className="flex items-center gap-2 text-gray-300 text-base">
                 <FaPhoneAlt size={15} />
                 <span>:+977&nbsp;{member.contact}</span>
               </div>
-              <div className="flex items-center gap-2 text-gray-300 text-xl">
+              <div className="flex items-center gap-2 text-gray-300 text-base">
                 <IoIosMail size={20} />
                 <span>:&nbsp;{member.mail}</span>
               </div>

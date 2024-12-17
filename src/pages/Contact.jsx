@@ -14,9 +14,8 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axiosInstance from "../utils/axiosInstance";
 
-import markerShadow from "leaflet/dist/images/marker-shadow.png";
-import NepalFlag from "/nepal-flag.png"; // Add Nepal flag image path
-import IndiaFlag from "/india-flag.png"; // Add India flag image path
+import NepalFlag from "/nepal-flag.png";
+
 import markerIconUrl from "leaflet/dist/images/marker-icon.png";
 import markerShadowUrl from "leaflet/dist/images/marker-shadow.png";
 import Title from "../components/User/Title";
@@ -105,17 +104,17 @@ const ContactPage = () => {
     }
   `}
       </style>
-
       <div className="main-div flex justify-center items-center min-h-screen bg-black pb-12">
         <ToastContainer />
-        <div className="flex flex-col items-center justify-center w-full px-4 sm:w-4/5">
+        <div className="flex flex-col items-center justify-center w-full px-4 lg:w-3/4">
           <div className="mb-8">
-            <Title subTitle="Get in Touch" title="Feel free to reach out" />
+            <Title title="Contact Us" />
           </div>
-          <div className="w-full sm:w-4/5 bg-black shadow-md rounded-lg p-6 flex flex-col sm:flex-row border border-white">
+          <div className="w-full lg:w-full bg-black shadow-md rounded-lg p-6 flex flex-col sm:flex-row border border-white">
+            {/* Left Side: Form */}
             <div className="left-div w-full sm:w-1/2 pr-6 flex flex-col justify-between h-full mb-6 sm:mb-0">
               <div className="flex flex-col items-center justify-center text-center mb-6">
-                <h2 className="text-3xl font-bold mb-4 text-[#FFD700]">
+                <h2 className="text-2xl font-bold mb-4 text-[#FFD700]">
                   Get in Touch
                 </h2>
                 <p className="text-white text-lg">
@@ -126,10 +125,11 @@ const ContactPage = () => {
                 </p>
               </div>
               <form className="space-y-4" onSubmit={handleFormSubmit}>
+                {/* Name Input */}
                 <div>
                   <label
                     htmlFor="name"
-                    className="block font-medium mb-1 text-xl text-[#FFD700]"
+                    className="block font-medium mb-1 text-base text-[#FFD700]"
                   >
                     Name<span className="text-[#FFD700] ml-1">*</span>
                   </label>
@@ -137,107 +137,76 @@ const ContactPage = () => {
                     required
                     type="text"
                     id="name"
-                    className="w-full mb-2 bg-black text-white text-xl border border-[#FFD700] rounded-lg px-3 py-4 focus:outline-none focus:border-[#FFD700] focus:border-2"
+                    className="w-full mb-2 bg-black text-white text-base border border-[#FFD700] rounded-lg px-3 py-2 focus:outline-none focus:border-[#FFD700] focus:border-2"
                     placeholder="John Doe"
                     onChange={handleDataChange}
                   />
                 </div>
                 <div>
-                  <label
-                    htmlFor="email"
-                    className="block font-medium mb-1 text-xl text-[#FFD700]"
-                  >
-                    Email<span className="text-[#FFD700] ml-1">*</span>
-                  </label>
-                  <input
-                    required
-                    type="email"
-                    id="email"
-                    className="w-full mb-2 bg-black text-white text-xl border border-[#FFD700] rounded-lg px-3 py-4 focus:outline-none focus:border-[#FFD700] focus:border-6"
-                    placeholder="info@example.com"
-                    onChange={handleDataChange}
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="phone"
-                    className="block font-medium mb-1 text-xl text-[#FFD700]"
-                  >
-                    Phone
-                  </label>
-                  <div className="flex items-center border border-[#FFD700] rounded-lg h-16">
-                    {/* Country Code Dropdown */}
-                    <div
-                      className="bg-black text-white p-2 pl-4 pr-4 rounded-l-lg cursor-pointer flex items-center h-full"
-                      onClick={() => setDropdownOpen(!dropdownOpen)}
-                      ref={dropdownRef}
-                    >
-                      <div className="flex items-center">
-                        <img
-                          src={phoneCode === "+977" ? NepalFlag : IndiaFlag}
-                          alt="Country Flag"
-                          className="w-6 h-4 mr-2"
-                        />
-                        {phoneCode}
-                      </div>
-                      {dropdownOpen && (
-                        <div className="absolute mt-2 bg-black text-white shadow-lg rounded-lg w-32">
-                          <div
-                            className="flex items-center p-2 cursor-pointer border-2 border-[#FFD700] hover:bg-[#1a1919]  "
-                            onClick={() => handleFlagChange("+977")}
-                          >
-                            <img
-                              src={NepalFlag}
-                              alt="Nepal Flag"
-                              className="w-6 h-4 mr-2"
-                            />
-                            +977 (Nepal)
-                          </div>
-                          <div
-                            className="flex items-center p-2 cursor-pointer border-2 border-[#FFD700] hover:bg-[#1a1919]"
-                            onClick={() => handleFlagChange("+91")}
-                          >
-                            <img
-                              src={IndiaFlag}
-                              alt="India Flag"
-                              className="w-6 h-4 mr-2"
-                            />
-                            +91 (India)
-                          </div>
-                        </div>
-                      )}
+                  <div>
+                    <div>
+                      <label
+                        htmlFor="email"
+                        className="block font-medium mb-1 text-base text-[#FFD700]"
+                      >
+                        Email<span className="text-[#FFD700] ml-1">*</span>
+                      </label>
+                      <input
+                        required
+                        type="email"
+                        id="email"
+                        className="w-full mb-2 bg-black text-white text-base border border-[#FFD700] rounded-lg px-3 py-2 focus:outline-none focus:border-[#FFD700] focus:border-6 h-12"
+                        placeholder="info@example.com"
+                        onChange={handleDataChange}
+                      />
                     </div>
-
-                    {/* Phone Input */}
-                    <input
-                      type="tel"
-                      id="phone"
-                      className="w-full px-3 py-4 bg-black text-xl text-white border border-[#FFD700] focus:outline-none focus:border-[#FFD700] focus:border-2 rounded-r-lg h-full"
-                      placeholder="Phone Number"
-                      onChange={handleDataChange}
-                    />
+                    <div>
+                      <label
+                        htmlFor="phone"
+                        className="block font-medium mb-1 text-base text-[#FFD700]"
+                      >
+                        Phone
+                      </label>
+                      <div className="flex items-center border border-[#FFD700] rounded-lg h-12">
+                        <div className="bg-black text-white p-2 pl-4 pr-4 rounded-l-lg flex items-center h-full">
+                          <img
+                            src={NepalFlag}
+                            alt="Nepal Flag"
+                            className="w-6 h-4 mr-2"
+                          />
+                          +977
+                        </div>
+                        <input
+                          type="tel"
+                          id="phone"
+                          className="w-full px-3 py-2 bg-black text-base text-white border border-[#FFD700] focus:outline-none focus:border-[#FFD700] focus:border-2 rounded-r-lg h-full"
+                          placeholder="Phone Number"
+                          onChange={handleDataChange}
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
 
                 <div>
                   <label
                     htmlFor="message"
-                    className="block font-medium mb-1 text-xl text-[#FFD700]"
+                    className="block font-medium mb-1 text-base text-[#FFD700]"
                   >
                     Description<span className="text-[#FFD700] ml-1">*</span>
                   </label>
                   <textarea
                     required
                     id="message"
-                    className="w-full mb-2 h-40 resize-none text-xl border border-[#FFD700] rounded-lg px-3 py-4 bg-black text-white focus:outline-none focus:border-[#FFD700] focus:border-6"
+                    className="w-full mb-2 h-40 resize-none text-base border border-[#FFD700] rounded-lg px-3 py-4 bg-black text-white focus:outline-none focus:border-[#FFD700] focus:border-6"
                     placeholder="Enter your message..."
                     onChange={handleDataChange}
                   ></textarea>
                 </div>
-                <div className="flex items-center justify-start my-10">
+                <div className="flex items-center justify-start">
                   <button
                     type="submit"
-                    className="border border-white mt-3 flex items-center justify-center text-xl text-white px-8 py-5 rounded-full group hover:scale-105 hover:transition-all hover:text-[#FFD700] hover:border-[#FFD700]"
+                    className="border border-white mt-3 flex items-center justify-center text-base text-white px-6 py-3 rounded-full group hover:scale-105 hover:transition-all hover:text-[#FFD700] hover:border-[#FFD700]"
                   >
                     Submit
                     <IoSend
@@ -250,37 +219,40 @@ const ContactPage = () => {
             </div>
 
             {/* Vertical Separator */}
-            <div className="border-l border-[#FFD700] mx-4 sm:mx-8"></div>
+            <div className="border-l border-[#FFD700] mx-4 hidden sm:block"></div>
 
             {/* Right Side: Map */}
-            <div className="right-div w-full sm:w-1/2">
+            <div className="right-div w-full sm:w-1/2 flex flex-col relative">
               <div className="flex flex-col items-center justify-center text-center mb-6">
-                <h2 className="text-3xl font-bold mb-4 text-[#FFD700]">
+                <h2 className="text-2xl font-bold mb-4 text-[#FFD700]">
                   Our Location
                 </h2>
-                <p className="text-white text-sm">
+                <p className="text-white text-base">
                   Adda Ghar, M8QF+22X, Swet Binayak Marg, Kathmandu 44600
                 </p>
               </div>
+
+              {/* Map Container with z-index to avoid overlap */}
               <MapContainer
-                className="z-10"
                 center={[27.6938374, 85.3239596]}
                 zoom={14}
                 scrollWheelZoom={false}
-                style={{ height: "600px", width: "100%", borderRadius: "8px" }}
+                style={{
+                  height: "300px", // Default height for mobile
+                  width: "100%", // Full width
+                  borderRadius: "8px",
+                }}
+                className="flex-grow z-10" // Added z-index
               >
                 <TileLayer
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 />
                 <Marker position={[27.7103, 85.3222]} icon={markerIconCustom}>
-                  <Popup
-                    className="popup-content flex items-center justify-center text-center"
-                    autoOpen={true}
-                  >
+                  <Popup className="popup-content flex items-center justify-center text-center">
                     <div className="flex flex-col items-center justify-center text-center">
                       <a
-                        href="https://maps.app.goo.gl/nmhffJPpiKgFSMcY9"
+                        href="https://maps.app.goo.gl/bTdM4dC8kw3j6zwz6"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-blue-500 hover:underline"
@@ -332,6 +304,7 @@ const ContactPage = () => {
           </div>
         </div>
       </div>
+      ;
     </>
   );
 };

@@ -7,7 +7,7 @@ const Services = () => {
       id: "employment-law",
       title: "Employment Law",
       description:
-        "The Fair Labor Standards Act (FLSA) mandates that employees who work more than 40 hours in a week must be paid overtime unless they meet specific exemption criteria.Employment law governs the relationship between employers and employees, ensuring that both parties comply with legal obligations and rights. It covers a wide range of topics, including workplace discrimination, wrongful termination, wage disputes, and employee benefits.<br/> Employment law also addresses issues such as workplace safety, harassment, and union representation. Laws in this field are designed to protect workers' rights while balancing the needs of employers, promoting fairness, and preventing exploitation or abuse in the workplace.",
+        "The Fair Labor Standards Act (FLSA) mandates that employees who work more than 40 hours in a week must be paid overtime unless they meet specific exemption criteria.Employment law governs the relationship between employers and employees, ensuring that both parties comply with legal obligations and rights. It covers a wide range of topics, including workplace discrimination, wrongful termination, wage disputes, and employee benefits. Employment law also addresses issues such as workplace safety, harassment, and union representation. Laws in this field are designed to protect workers' rights while balancing the needs of employers, promoting fairness, and preventing exploitation or abuse in the workplace.",
       image: "/card/Employment.jpg",
     },
     {
@@ -60,10 +60,10 @@ const Services = () => {
   return (
     <div className="min-h-screen bg-black px-8 lg:px-20 py-10">
       <header className="text-center mb-16">
-        <h1 className="text-4xl lg:text-5xl font-bold text-[#FFD700]">
+        <h1 className="text-4xl lg:text-3xl font-bold text-[#FFD700]">
           Legal Topics
         </h1>
-        <p className="text-lg lg:text-xl text-white mt-4">
+        <p className="text-lg lg:text-lg text-white mt-2">
           Explore the essentials of various legal fields.
         </p>
       </header>
@@ -81,11 +81,11 @@ const Services = () => {
               {/* Parent Wrapper */}
               <div className="flex flex-col lg:flex-row items-center w-full">
                 {/* Image Section */}
-                <div className="w-full lg:w-1/2 h-auto rounded-lg shadow-md mb-6 lg:mb-0">
+                <div className="w-full lg:w-1/2 h-auto rounded-lg shadow-md mb-6 lg:mb-0 ml-10">
                   <img
                     src={topic.image}
                     alt={topic.title}
-                    className="w-full h-auto rounded-lg"
+                    className="w-[90%] h-auto rounded-lg"
                   />
                 </div>
 
@@ -94,13 +94,13 @@ const Services = () => {
                   {/* Vertical Line */}
                   <div>
                     <div className="flex">
-                      <div className="w-1 h-8 bg-[#FFD700] mr-2 mt-1"></div>
-                      <h2 className="text-2xl lg:text-3xl font-semibold text-[#FFD700]">
+                      <div className="w-1 h-6 bg-[#FFD700] mr-2 mt-1"></div>
+                      <h2 className="text-2xl lg:text-2xl font-semibold text-[#FFD700]">
                         {topic.title}
                       </h2>
                     </div>
 
-                    <div className="mt-4 text-white lg:text-xl max-h-96 overflow-y-hidden">
+                    <div className="mt-4 text-white lg:text-base max-h-96 overflow-y-hidden max-w-[95%]">
                       <p>{topic.description}</p>
                     </div>
                   </div>

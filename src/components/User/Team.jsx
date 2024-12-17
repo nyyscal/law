@@ -5,13 +5,13 @@ const About = () => {
   const slides = [
     {
       image: "/lawyer1.jpg",
-      text: `"As a proud member of this firm, I can confidently say that we are dedicated to providing the highest standard of legal representation. Our team is built on a foundation of integrity, professionalism, and respect for our clients. Every case we handle is approached with the utmost care, ensuring our clients receive tailored solutions. It's an honor to help protect the rights and interests of those we serve."`,
+      text: `"As a proud member of this firm, I can confidently say that we are dedicated to providing the highest standard of legal representation. Our team is built on a foundation of integrity, professionalism, and respect for our clients.  It's an honor to help protect the rights and interests of those we serve."`,
       name: "Theresa May",
       designation: "Senior Lawyer",
     },
     {
       image: "/lawyer2.jpg",
-      text: `"At our firm, we believe in justice and fairness, and we work tirelessly to achieve the best outcomes for our clients. Whether in the courtroom or through legal counsel, we strive to make complex matters simple and manageable. Our team’s expertise spans a variety of legal fields, allowing us to offer diverse solutions. We are here to stand by you through every step of the legal process."`,
+      text: `"At our firm, we work tirelessly to achieve the best outcomes for our clients. Whether in the courtroom or through legal counsel, we strive to make complex matters simple and manageable. Our team’s expertise spans a variety of legal fields, allowing us to offer diverse solutions. "`,
       name: "Jane Smith",
       designation: "Legal Consultant",
     },
@@ -34,14 +34,14 @@ const About = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <div className="bg-black flex flex-col md:flex-row w-full h-[700px] items-center p-2">
+    <div className="flex flex-col items-center justify-center ">
+      <div className="bg-black flex flex-col md:flex-row w-full h-[600px] items-center p-2 my-5">
         {/* Left Side: Image */}
         <div className="flex items-center justify-center w-full md:w-1/2 h-1/2 md:h-full">
           <img
             className="object-contain transition-all ease-in-out duration-700"
-            width={700}
-            height={700}
+            width={600}
+            height={650}
             src={slides[currentSlide].image}
             alt="Consultation"
           />
@@ -58,12 +58,12 @@ const About = () => {
             </h1>
           </div>
           {/* Fixed height container for text */}
-          <div className="transition-all ease-in-out duration-700 mb-4 text-gray-200 h-[150px] overflow-hidden">
+          <div className="transition-all ease-in-out duration-700 sm:mb-2 mb-8 text-gray-200 h-[150px]  max-w-[80%] text-sm sm:text-base">
             {slides[currentSlide].text}
           </div>
 
           {/* Name and Designation */}
-          <div className="font-semibold text-lg mt-4 text-[#FFD700]">
+          <div className="font-semibold text-lg mt-20 sm:mt-0 text-[#FFD700]">
             <p>- {slides[currentSlide].name}</p>
             <p className="text-sm text-slate-100">
               {slides[currentSlide].designation}

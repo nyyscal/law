@@ -1,9 +1,16 @@
+/* Google Fotns */
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Roboto+Slab:wght@400;700&family=Lora:wght@400;700&family=PT+Serif:wght@400;700&family=Libre+Baskerville:wght@400;700&family=Spectral:wght@400;700&family=Playfair+Display:wght@400;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 * {
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: "Merriweather", "Roboto Slab", "Lora", "PT Serif",
+    "Libre Baskerville", "Spectral", "Playfair Display", serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 a:hover {
@@ -25,5 +32,3 @@ a:hover {
 .custom-progress {
   background-color: #ffd900 !important; /* Gold progress bar */
 }
-
-

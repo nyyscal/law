@@ -72,17 +72,17 @@ const Header = () => {
     <Navbar fluid rounded className="bg-black w-full overflow-visible">
       <Navbar.Brand href="/">
         <img
-          src="/logo2.png"
+          src="/logo/logo2.png"
           className="ml-4 mt-1"
           alt="lawfirm logo"
-          height={100}
-          width={75}
+          height={95}
+          width={70}
         />
       </Navbar.Brand>
 
       {/* Desktop View */}
       <div className="hidden md:flex items-center md:order-2 gap-4">
-        <div className="flex items-center gap-5 text-white">
+        <div className="flex items-center gap-3 text-white">
           {/* Social Icons - Same as before */}
           <a
             href="https://linkedin.com"
@@ -91,7 +91,7 @@ const Header = () => {
           >
             <FaLinkedinIn
               className="hover:text-[#FFD700] transition duration-300"
-              size={25}
+              size={20}
             />
           </a>
           <a
@@ -101,7 +101,7 @@ const Header = () => {
           >
             <FaFacebookF
               className="hover:text-[#FFD700] transition duration-300"
-              size={25}
+              size={20}
             />
           </a>
           <a
@@ -111,20 +111,20 @@ const Header = () => {
           >
             <FaTwitter
               className="hover:text-[#FFD700] transition duration-300"
-              size={25}
+              size={20}
             />
           </a>
           <a href="https://wa.me" target="_blank" rel="noopener noreferrer">
             <FaWhatsapp
               className="hover:text-[#FFD700] transition duration-300"
-              size={25}
+              size={20}
             />
           </a>
         </div>
         <span className="text-white">|</span>
         <button
           onClick={() => navigate("/services")}
-          className="bg-[#FFD700] text-xl text-white px-4 py-3 rounded-[3px] hover:scale-105 transition-all"
+          className="bg-[#FFD700] text-sm text-white px-2 py-2 rounded-[3px] hover:scale-105 transition-all"
         >
           Free Consultation
         </button>
@@ -203,10 +203,10 @@ const Header = () => {
           isOpen ? "block" : "hidden"
         } md:block`}
       >
-        <div className="flex flex-col md:flex-row gap-6 md:gap-8">
+        <div className="flex flex-col md:flex-row gap-6 md:gap-6">
           <Link
             to="/"
-            className={`text-2xl relative group ${
+            className={`text-xl relative group ${
               activeLink === "/"
                 ? "text-[#FFD700]"
                 : "text-white hover:text-[#FFD700]"
@@ -219,7 +219,7 @@ const Header = () => {
 
           <Link
             to="/about"
-            className={`text-2xl relative group ${
+            className={`text-xl relative group ${
               activeLink === "/about"
                 ? "text-[#FFD700]"
                 : "text-white hover:text-[#FFD700]"
@@ -231,7 +231,7 @@ const Header = () => {
           </Link>
           <Link
             to="/team"
-            className={`text-2xl relative group ${
+            className={`text-xl relative group ${
               activeLink === "/team"
                 ? "text-[#FFD700]"
                 : "text-white hover:text-[#FFD700]"
@@ -245,7 +245,7 @@ const Header = () => {
           {/* Services Dropdown */}
           <div ref={servicesRef} className="relative group">
             <button
-              className={`text-2xl flex items-center ${
+              className={`text-xl flex items-center ${
                 activeLink === "/services"
                   ? "text-[#FFD700]"
                   : "text-white hover:text-[#FFD700]"
@@ -260,10 +260,8 @@ const Header = () => {
             >
               Services
               <FaChevronDown
-                size={20}
-                className={`ml-2 transform transition-transform duration-300 ${
-                  isServicesOpen ? "rotate-180" : ""
-                }`}
+                size={15}
+                className={`ml-2 transform transition-transform duration-300 group-hover:rotate-180`}
               />
             </button>
 
@@ -273,7 +271,7 @@ const Header = () => {
                 <button
                   key={item.id}
                   onClick={() => handleNavigate(item.id)}
-                  className={`block w-full text-left px-8 py-4 text-xl hover:bg-[#FFD700] hover:text-white transition ${
+                  className={`block w-full text-left  px-8 py-4 text-base hover:bg-[#FFD700] hover:text-white transition ${
                     index === 0 ? "rounded-t-lg" : ""
                   } ${
                     index !== serviceItems.length - 1
@@ -306,7 +304,7 @@ const Header = () => {
 
           <Link
             to="/blog"
-            className={`text-2xl relative group ${
+            className={`text-xl relative group ${
               activeLink === "/blog"
                 ? "text-[#FFD700]"
                 : "text-white hover:text-[#FFD700]"
@@ -319,7 +317,7 @@ const Header = () => {
 
           <Link
             to="/contact"
-            className={`text-2xl relative group ${
+            className={`text-xl relative group ${
               activeLink === "/contact"
                 ? "text-[#FFD700]"
                 : "text-white hover:text-[#FFD700]"
@@ -333,7 +331,7 @@ const Header = () => {
           {currentUser?.isAdmin && (
             <Link
               to="/dashboard"
-              className={`text-2xl relative group ${
+              className={`text-xl relative group ${
                 activeLink === "/dashboard"
                   ? "text-[#FFD700]"
                   : "text-white hover:text-[#FFD700]"

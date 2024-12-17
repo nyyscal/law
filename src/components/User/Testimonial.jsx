@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
-import user1 from "/user-1.png";
-import user2 from "/user-2.png";
-import user3 from "/user-3.png";
-import user4 from "/user-4.png";
+import user1 from "/testimonial/user-1.png";
+import user2 from "/testimonial/user-2.png";
+import user3 from "/testimonial/user-3.png";
+import user4 from "/testimonial/user-4.png";
 import Title from "./Title";
 
 const Testimonials = () => {
@@ -111,7 +111,7 @@ const Testimonials = () => {
         ); // Desktop view, show 2 testimonials
 
   return (
-    <div className="my-20 px-4 sm:px-6 md:px-8">
+    <div className="mb-4 my-6 px-4 sm:px-6 md:px-8">
       <Title subTitle="Testimonials" title="What our clients say?" />
 
       {/* Slider */}
@@ -136,7 +136,7 @@ const Testimonials = () => {
                       className="w-16 sm:w-20 lg:w-24 rounded-full mr-3 border-4 border-[#FFD700]"
                     />
                     <div>
-                      <h3 className="text-[#ffffff] text-base sm:text-lg font-semibold">
+                      <h3 className="text-[#ffffff] text-base sm:text-base font-semibold">
                         {testimonial.name}
                       </h3>
                       <span className="text-sm sm:text-base">
@@ -144,7 +144,7 @@ const Testimonials = () => {
                       </span>
                     </div>
                   </div>
-                  <p className="text-slate-200 text-base sm:text-xl">
+                  <p className="text-slate-200 text-base sm:text-base">
                     {testimonial.text}
                   </p>
                 </div>
@@ -154,7 +154,7 @@ const Testimonials = () => {
         </ul>
 
         {/* Navigation buttons */}
-        <div className="absolute top-1/2 w-full transform -translate-y-1/2 flex justify-between px-4 mt-44">
+        <div className="absolute top-1/2 w-full transform -translate-y-1/2 sm:hidden flex justify-between px-4 mt-44">
           <button
             className="text-[#FFD700] text-2xl"
             onClick={handlePrev}
@@ -163,7 +163,7 @@ const Testimonials = () => {
             &#8592;
           </button>
           <button
-            className="text-[#FFD700] text-2xl"
+            className="text-[#FFD700] text-2xl "
             onClick={handleNext}
             aria-label="Next"
           >
@@ -173,7 +173,7 @@ const Testimonials = () => {
       </div>
 
       {/* Navigation Dots */}
-      <div className="flex justify-center items-center space-x-2 mt-6">
+      <div className="flex justify-center items-center space-x-2 mt-2 mb-14">
         {window.innerWidth < 1024
           ? Array.from({ length: totalSlidesMobile }).map((_, index) => (
               <div

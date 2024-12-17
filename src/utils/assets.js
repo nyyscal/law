@@ -5,6 +5,7 @@ import senior1 from "/team/senior.jpg"
 import senior2 from "/team/sassociate.jpg"
 import CA from "/team/CA.jpg"
 import associate from "/team/associate.jpg"
+import builders from "/team/builders.jpg"
 
 import fir from "/documents/FIR.pdf"
 import company from "/documents/CompanyRegestration.pdf"
@@ -63,9 +64,9 @@ export const assets =[
   mail:"contact@info.com",
 },{
   id:8,
-  name:"Ram Krishna Dangal",
-  designation:"Associate",
-  image:senior1,
+  name:"Builders Academy",
+  designation:"IT Consultant",
+  image:builders,
   contact:98012345687,
   mail:"contact@info.com",
 },{

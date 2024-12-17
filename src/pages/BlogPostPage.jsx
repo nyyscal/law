@@ -50,25 +50,19 @@ export default function BlogPostPage() {
 
   return (
     <main className="px-4 py-8 flex flex-col items-center max-w-4xl mx-auto">
-      <h1 className="text-4xl font-bold text-center font-serif mb-6 lg:text-5xl text-[#FFD700] break-words sm:break-normal">
+      <h1 className="text-4xl font-bold text-center font-serif mb-6 lg:text-3xl text-[#FFD700] break-words sm:break-normal">
         {post?.title}
       </h1>
-      <Link
-        to={`/search?category=${post?.category}`}
-        className="mb-6 text-sm inline-block bg-gray-200 text-gray-700 rounded-full px-4 py-1 hover:bg-gray-300"
-      >
-        {post?.category}
-      </Link>
       <img
         src={post?.image}
         alt={post?.title}
         className="rounded-lg mb-6 w-full max-h-[500px] object-cover"
       />
       <div className="flex justify-between w-full border-b border-gray-300 pb-2 text-sm text-white mb-6">
-        <span>{post && new Date(post.createdAt).toLocaleDateString()}</span>
         <span>
           {post && `${(post.content.length / 1000).toFixed(0)} mins read`}
         </span>
+        <span>{post && new Date(post.createdAt).toLocaleDateString()}</span>
       </div>
       <div
         className="prose prose-lg max-w-full text-white text-xl"

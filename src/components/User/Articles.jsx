@@ -16,8 +16,8 @@ const Articles = () => {
   };
 
   return (
-    <div className="relative text-white bg-black mt-14">
-      <Title title="Articles & Publications" className="" />
+    <div className="relative text-white bg-black mt-20 sm:mt-0">
+      <Title title="Articles & Publications" />
 
       {/* Desktop view */}
       <div className="hidden sm:block overflow-hidden w-full h-auto relative mt-2 sm:mt-10">

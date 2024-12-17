@@ -5,9 +5,9 @@ import aboutImage from "/image1.jpg";
 const About = () => {
   return (
     <div className="bg-black">
-      <section className="container mx-auto my-24 flex flex-col lg:flex-row items-center justify-between px-4 w-full">
+      <section className="container mx-auto my-20 flex flex-col lg:flex-row items-center justify-between px-4 w-[80%]">
         {/* Left Section: Image */}
-        <div className="basis-full lg:basis-2/5 flex justify-center items-center mb-6 lg:mb-0">
+        <div className="basis-full lg:basis-2/5 flex justify-center items-center mb-6 lg:mb-0 lg:mt-8">
           <img
             src="/lawyer.jpg"
             alt="About Us"
@@ -16,15 +16,15 @@ const About = () => {
         </div>
 
         {/* Right Section: Text */}
-        <div className="basis-full lg:basis-7/12 lg:pl-4 flex flex-col justify-center relative text-center lg:text-left">
+        <div className="basis-full lg:basis-7/12 lg:pl-4 flex flex-col justify-center relative text-center lg:text-left mt-8">
           {/* Vertical Line beside "About Us" title */}
-          <div className="absolute left-[15px] top-0 h-[30px] w-[4px] bg-[#FFD700] hidden lg:block"></div>
+          <div className="absolute left-[15px] top-1 h-[25px] w-[4px] bg-[#FFD700] hidden lg:block"></div>
 
-          <h3 className="font-semibold text-3xl text-[#FFD700] flex items-center justify-center lg:justify-start relative pl-3 mb-4 mx-4 sm:mx-0">
+          <h3 className="font-semibold text-2xl text-[#FFD700] flex items-center justify-center lg:justify-start relative pl-3  mx-4 sm:mx-0">
             <span>About Us</span>
           </h3>
 
-          <h2 className="text-[28px] sm:text-[35px] text-white my-2 max-w-full sm:max-w-[500px] mx-auto lg:mx-0">
+          <h2 className="text-[28px] sm:text-3xl text-[#FFD700] my-2 mt-2 max-w-full sm:max-w-[500px] mx-auto lg:mx-0">
             Empowering Justice with Excellence
           </h2>
 
@@ -33,9 +33,7 @@ const About = () => {
             exceptional legal services in various Sector with a commitment to
             integrity, professionalism, and client satisfaction. With a team of
             experienced and dedicated lawyers, we offer strategic legal
-            solutions. Whether you're navigating complex business law, facing
-            personal legal challenges, or need expert advice on any legal
-            matter, our firm is here to guide you every step of the way.
+            solutions.
           </p>
           <p className="text-gray-200 mb-4 text-xl px-4 lg:px-0">
             We believe in building strong, long-lasting relationships with our
