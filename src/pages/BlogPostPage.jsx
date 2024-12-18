@@ -50,13 +50,13 @@ export default function BlogPostPage() {
 
   return (
     <main className="px-4 py-8 flex flex-col items-center max-w-4xl mx-auto">
-      <h1 className="text-4xl font-bold text-center font-serif mb-6 lg:text-3xl text-[#FFD700] break-words sm:break-normal">
+      <h1 className="text-4xl font-bold text-center font-serif mb-6 lg:text-2xl text-[#FFD700] break-words sm:break-normal">
         {post?.title}
       </h1>
       <img
         src={post?.image}
         alt={post?.title}
-        className="rounded-lg mb-6 w-full max-h-[500px] object-cover"
+        className="rounded-lg mb-6 w-full max-h-[450px] object-cover"
       />
       <div className="flex justify-between w-full border-b border-gray-300 pb-2 text-sm text-white mb-6">
         <span>
@@ -65,7 +65,7 @@ export default function BlogPostPage() {
         <span>{post && new Date(post.createdAt).toLocaleDateString()}</span>
       </div>
       <div
-        className="prose prose-lg max-w-full text-white text-xl"
+        className="prose prose-lg max-w-full text-white text-base text-left"
         dangerouslySetInnerHTML={{ __html: post?.content }}
       ></div>
     </main>

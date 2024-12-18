@@ -9,10 +9,11 @@ import Footers from "./components/User/Footers.jsx";
 import Team from "./pages/Ourteam.jsx";
 import CreatePost from "./pages/CreatePost.jsx";
 import BlogPostPage from "./pages/BlogPostPage.jsx";
-import Dashboard from "./pages/DashBoard.jsx";
 import OnlyAdminPrivateRoute from "./components/Admin/OnlyAdminPrivateRoute.jsx";
 import UpdatePost from "./pages/UpdatePost.jsx";
 import Login from "./pages/Login.jsx";
+import Profile from "./components/Admin/Profile.jsx";
+import Posts from "./components/Admin/Posts.jsx";
 
 function App() {
   return (
@@ -31,7 +32,8 @@ function App() {
         <Route element={<OnlyAdminPrivateRoute />}>
           <Route path="/create-post" element={<CreatePost />} />
           <Route path="/update-post/:postId" element={<UpdatePost />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/admin-post" element={<Posts />} />
+          <Route path="/admin-profile" element={<Profile />} />
         </Route>
         <Route path="*" element={<h1>Page not found</h1>} />
       </Routes>

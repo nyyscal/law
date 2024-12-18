@@ -39,12 +39,12 @@ const Footers = () => {
               </div>
 
               {/* Social Media Icons */}
-              <div className="flex items-start gap-4 mt-6 ml-10 sm:ml-6 sm:flex-col sm:items-center lg:flex-row lg:items-start lg:justify-start lg:mt-0">
+              <div className="flex items-start gap-4 mt-6 ml-2 sm:ml-6 sm:flex-col sm:items-center lg:flex-row lg:items-start lg:justify-start lg:mt-0">
                 {/* Social Media Section */}
                 <div className="flex flex-col gap-4 mt-4 sm:mt-4 sm:ml-0 text-white lg:flex lg:flex-col lg:gap-4 w-[250px] sm:w-[350px]">
                   <div className="flex items-center gap-3">
                     <FaPhoneAlt size={15} />
-                    <span className="sm:text-base truncate">
+                    <span className="sm:text-base text-sm truncate">
                       : +977 9846678402
                     </span>
                   </div>
@@ -53,7 +53,7 @@ const Footers = () => {
                     className="flex items-center gap-3 text-white hover:text-[#FFD700] transition-colors duration-300 cursor-pointer"
                   >
                     <FaEnvelope size={15} />
-                    <span className="sm:text-base truncate">
+                    <span className="sm:text-base text-sm truncate">
                       :&nbsp;gclawchamber@gmail
                     </span>
                   </a>
@@ -65,7 +65,7 @@ const Footers = () => {
                     className="flex items-center gap-3 text-white hover:text-[#FFD700] transition-colors duration-300"
                   >
                     <FaFacebook size={20} />
-                    <span className="sm:text-base truncate">
+                    <span className="sm:text-base text-sm truncate">
                       :&nbsp;GC Law Chamber
                     </span>
                   </a>
@@ -76,7 +76,7 @@ const Footers = () => {
                     className="flex items-center gap-3 text-white hover:text-[#FFD700] transition-colors duration-300"
                   >
                     <FaInstagram size={20} />
-                    <span className="sm:text-base truncate">
+                    <span className="sm:text-base text-sm truncate">
                       :&nbsp;GC Law Chamber
                     </span>
                   </a>
@@ -84,7 +84,7 @@ const Footers = () => {
               </div>
             </div>
             {/* Center and Right Sections - Modified for mobile layout */}
-            <div className="ml-2 grid grid-cols-2 gap-4 mt-3 sm:grid-cols-2 lg:grid-cols-3 sm:gap-4 lg:gap-8 lg:mr-4">
+            <div className="ml-0 grid grid-cols-2 gap-y-4 gap-x-0 mt-3 px-2 sm:grid-cols-2 lg:grid-cols-3 sm:gap-4 lg:gap-8 lg:mr-4">
               {/* Quick Links Section */}
               <div className="w-[80%]">
                 <h3 className="mb-2 text-[#FFD700] text-lg font-semibold">
@@ -116,7 +116,7 @@ const Footers = () => {
 
               {/* Services Section */}
               <div className="w-full">
-                <h3 className="mb-2 text-[#FFD700] text-lg font-semibold">
+                <h3 className="mb-2 mr-2 text-[#FFD700] text-lg font-semibold">
                   Services
                 </h3>
                 <ul className="text-white space-y-3 mt-2">

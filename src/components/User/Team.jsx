@@ -57,12 +57,12 @@ const About = () => {
             </h1>
           </div>
           {/* Fixed height container for text */}
-          <div className="transition-all ease-in-out duration-700 sm:mb-2 mb-8 text-gray-200 h-[150px]  max-w-[80%] text-sm sm:text-base">
+          <div className="transition-all ease-in-out duration-700 sm:mb-2 mb-8 text-gray-200 h-[150px] max-w-[90%]  sm:max-w-[80%] text-base sm:text-base ">
             {slides[currentSlide].text}
           </div>
 
           {/* Name and Designation */}
-          <div className="font-semibold text-lg mt-20 sm:mt-0 text-[#FFD700]">
+          <div className="font-semibold text-lg mt-14 sm:mt-0 text-[#FFD700]">
             <p>- {slides[currentSlide].name}</p>
             <p className="text-sm text-slate-100">
               {slides[currentSlide].designation}

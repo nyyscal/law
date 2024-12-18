@@ -10,7 +10,7 @@ import { toast, ToastContainer } from "react-toastify";
 import axiosInstance from "../../utils/axiosInstance";
 import "react-toastify/dist/ReactToastify.css";
 
-const DashProfile = () => {
+const Profile = () => {
   const { currentUser } = useSelector((state) => state.user);
   const [formData, setFormData] = useState({});
   const dispatch = useDispatch();
@@ -75,7 +75,7 @@ const DashProfile = () => {
   return (
     <>
       <ToastContainer />
-      <div className="w-full max-w-lg mx-auto p-4 bg-black border-4 border-[#FFD700] rounded-lg shadow-lg overflow-auto">
+      <div className="w-full max-w-lg mx-auto p-4 my-6 bg-black border-4 border-[#FFD700] rounded-lg shadow-lg overflow-auto">
         <h1 className="text-3xl text-center text-[#FFD700] mb-6">
           GC Law Chamber Dashboard
         </h1>
@@ -149,4 +149,4 @@ const DashProfile = () => {
   );
 };
 
-export default DashProfile;
+export default Profile;

@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axiosInstance from "../utils/axiosInstance";
-import DashSidebar from "../components/Admin/DashSidebar";
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
@@ -31,11 +30,11 @@ const CreatePost = () => {
       if (res.status === 201) {
         toast.success("Post created successfully!", {
           position: "top-right",
-          autoClose: 3000,
+          autoClose: 2000,
         });
 
         setTimeout(() => {
-          navigate("/dashboard?tab=posts");
+          navigate("/admin-post");
         }, 3500);
       } else {
         toast.error("Failed to create post", {
@@ -53,7 +52,7 @@ const CreatePost = () => {
   };
 
   const handleBack = () => {
-    navigate("/dashboard?tab=posts");
+    navigate("/admin-post");
   };
 
   const handleClearFile = () => {
@@ -63,10 +62,6 @@ const CreatePost = () => {
 
   return (
     <div className="min-h-screen flex bg-black">
-      <div className="md:w-56">
-        <DashSidebar />
-      </div>
-
       <div className="flex-1 flex justify-center">
         <div className="max-w-3xl w-full p-4">
           <ToastContainer />

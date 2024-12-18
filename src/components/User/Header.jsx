@@ -8,8 +8,11 @@ import {
 } from "react-icons/fa";
 import "../../index.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect, useRef } from "react";
+import axiosInstance from "../../utils/axiosInstance";
+import { toast } from "react-toastify";
+import { signOutSuccess } from "../../redux/user/userSlice";
 
 const Header = () => {
   const { currentUser } = useSelector((state) => state.user);
@@ -19,6 +22,29 @@ const Header = () => {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const menuRef = useRef();
   const servicesRef = useRef();
+  const dispatch = useDispatch();
+
+  const handleLogout = async () => {
+    try {
+      const res = await axiosInstance.post("/api/admin/signout");
+      if (res.status === 200) {
+        toast.success("Logout successful!", { position: "top-right" });
+        dispatch(signOutSuccess());
+        setTimeout(() => {
+          navigate("/admin-portal"); // Navigate to the appropriate page after logout
+        }, 2000);
+      } else {
+        toast.error("Logout failed. Please try again.", {
+          position: "top-right",
+        });
+      }
+    } catch (error) {
+      console.error("Logout Error: ", error.message);
+      toast.error("An error occurred during logout.", {
+        position: "top-right",
+      });
+    }
+  };
 
   // Handle click outside for main menu
   useEffect(() => {
@@ -123,14 +149,18 @@ const Header = () => {
         </div>
         <span className="text-white">|</span>
         <button
-          onClick={() => navigate("/services")}
-          className="bg-[#FFD700] text-sm text-white px-2 py-2 rounded-[3px] hover:scale-105 transition-all"
+          onClick={() =>
+            currentUser?.isAdmin ? handleLogout() : navigate("/services")
+          }
+          className={`${
+            currentUser?.isAdmin ? "bg-[#FF2200]" : "bg-[#FFD700]"
+          } text-sm text-white px-2 py-2 rounded-[3px] hover:scale-105 transition-all`}
         >
-          Free Consultation
+          {currentUser?.isAdmin ? "Logout" : "Free Consultation"}
         </button>
       </div>
 
-      {/* Mobile View - Updated Layout */}
+      {/* Mobile View */}
       <div className="flex md:hidden items-center gap-4">
         <div className="flex items-center gap-3 text-white">
           {/* Social Icons - Mobile */}
@@ -199,161 +229,181 @@ const Header = () => {
       {/* Navigation Menu */}
       <Navbar.Collapse
         ref={menuRef}
-        className={`ml-10 font-bold transition-all duration-300 ${
+        className={`ml-2 px-2 font-bold transition-all duration-300 ${
           isOpen ? "block" : "hidden"
         } md:block`}
       >
         <div className="flex flex-col md:flex-row gap-6 md:gap-6">
-          <Link
-            to="/"
-            className={`text-xl relative group ${
-              activeLink === "/"
-                ? "text-[#FFD700]"
-                : "text-white hover:text-[#FFD700]"
-            }`}
-            onClick={() => handleSetActive("/")}
-          >
-            Home
-            <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full group-hover:bg-[#FFD700]" />
-          </Link>
+          {!currentUser?.isAdmin && (
+            <>
+              <Link
+                to="/"
+                className={`text-xl relative group ${
+                  activeLink === "/"
+                    ? "text-[#FFD700]"
+                    : "text-white hover:text-[#FFD700]"
+                }`}
+                onClick={() => handleSetActive("/")}
+              >
+                Home
+                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full group-hover:bg-[#FFD700]" />
+              </Link>
 
-          <Link
-            to="/about"
-            className={`text-xl relative group ${
-              activeLink === "/about"
-                ? "text-[#FFD700]"
-                : "text-white hover:text-[#FFD700]"
-            }`}
-            onClick={() => handleSetActive("/about")}
-          >
-            About
-            <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full group-hover:bg-[#FFD700]" />
-          </Link>
-          <Link
-            to="/team"
-            className={`text-xl relative group ${
-              activeLink === "/team"
-                ? "text-[#FFD700]"
-                : "text-white hover:text-[#FFD700]"
-            }`}
-            onClick={() => handleSetActive("/team")}
-          >
-            Team
-            <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full group-hover:bg-[#FFD700]" />
-          </Link>
+              <Link
+                to="/about"
+                className={`text-xl relative group ${
+                  activeLink === "/about"
+                    ? "text-[#FFD700]"
+                    : "text-white hover:text-[#FFD700]"
+                }`}
+                onClick={() => handleSetActive("/about")}
+              >
+                About
+                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full group-hover:bg-[#FFD700]" />
+              </Link>
 
-          {/* Services Dropdown */}
-          <div ref={servicesRef} className="relative group">
-            <button
-              className={`text-xl flex items-center ${
-                activeLink === "/services"
-                  ? "text-[#FFD700]"
-                  : "text-white hover:text-[#FFD700]"
-              }`}
-              onClick={() => {
-                if (window.innerWidth < 768) {
-                  toggleServices();
-                } else {
-                  handleSetActive("/services");
-                }
-              }}
-            >
-              Services
-              <FaChevronDown
-                size={15}
-                className={`ml-2 transform transition-transform duration-300 group-hover:rotate-180`}
-              />
-            </button>
+              <Link
+                to="/team"
+                className={`text-xl relative group ${
+                  activeLink === "/team"
+                    ? "text-[#FFD700]"
+                    : "text-white hover:text-[#FFD700]"
+                }`}
+                onClick={() => handleSetActive("/team")}
+              >
+                Team
+                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full group-hover:bg-[#FFD700]" />
+              </Link>
 
-            {/* Desktop Dropdown */}
-            <div className="hidden md:group-hover:block absolute left-0 top-full w-80 bg-black text-white border border-[#FFD700] rounded-lg shadow-lg z-50">
-              {serviceItems.map((item, index) => (
+              {/* Services Dropdown */}
+              <div ref={servicesRef} className="relative group">
                 <button
-                  key={item.id}
-                  onClick={() => handleNavigate(item.id)}
-                  className={`block w-full text-left  px-8 py-4 text-base hover:bg-[#FFD700] hover:text-white transition ${
-                    index === 0 ? "rounded-t-lg" : ""
-                  } ${
-                    index !== serviceItems.length - 1
-                      ? "border-b border-[#FFD700]"
-                      : "rounded-b-lg"
+                  className={`text-xl flex items-center ${
+                    activeLink === "/services"
+                      ? "text-[#FFD700]"
+                      : "text-white hover:text-[#FFD700]"
                   }`}
+                  onClick={() => {
+                    if (window.innerWidth < 768) {
+                      toggleServices();
+                    } else {
+                      handleSetActive("/services");
+                    }
+                  }}
                 >
-                  {item.label}
+                  Services
+                  <FaChevronDown
+                    size={15}
+                    className={`ml-2 transform transition-transform duration-300 group-hover:rotate-180`}
+                  />
                 </button>
-              ))}
-            </div>
 
-            {/* Mobile Dropdown */}
-            <div
-              className={`md:hidden ${
-                isServicesOpen ? "block" : "hidden"
-              } bg-black border-l-2 border-[#FFD700] ml-4 mt-2`}
-            >
-              {serviceItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => handleNavigate(item.id)}
-                  className="block w-full text-left px-6 py-3 text-lg text-white hover:bg-[#FFD700] hover:text-white transition"
+                {/* Desktop Dropdown */}
+                <div className="hidden md:group-hover:block absolute left-0 top-full w-80 bg-black text-white border border-[#FFD700] rounded-lg shadow-lg z-50">
+                  {serviceItems.map((item, index) => (
+                    <button
+                      key={item.id}
+                      onClick={() => handleNavigate(item.id)}
+                      className={`block w-full text-left  px-8 py-4 text-base hover:bg-[#FFD700] hover:text-white transition ${
+                        index === 0 ? "rounded-t-lg" : ""
+                      } ${
+                        index !== serviceItems.length - 1
+                          ? "border-b border-[#FFD700]"
+                          : "rounded-b-lg"
+                      }`}
+                    >
+                      {item.label}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Mobile Dropdown */}
+                <div
+                  className={`md:hidden ${
+                    isServicesOpen ? "block" : "hidden"
+                  } bg-black border-l-2 border-[#FFD700] ml-4 mt-2`}
                 >
-                  {item.label}
-                </button>
-              ))}
-            </div>
-          </div>
+                  {serviceItems.map((item) => (
+                    <button
+                      key={item.id}
+                      onClick={() => handleNavigate(item.id)}
+                      className="block w-full text-left px-6 py-3 text-lg text-white hover:bg-[#FFD700] hover:text-white transition"
+                    >
+                      {item.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
 
-          <Link
-            to="/blog"
-            className={`text-xl relative group ${
-              activeLink === "/blog"
-                ? "text-[#FFD700]"
-                : "text-white hover:text-[#FFD700]"
-            }`}
-            onClick={() => handleSetActive("/blog")}
-          >
-            Blog
-            <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full group-hover:bg-[#FFD700]" />
-          </Link>
+              <Link
+                to="/blog"
+                className={`text-xl relative group ${
+                  activeLink === "/blog"
+                    ? "text-[#FFD700]"
+                    : "text-white hover:text-[#FFD700]"
+                }`}
+                onClick={() => handleSetActive("/blog")}
+              >
+                Blog
+                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full group-hover:bg-[#FFD700]" />
+              </Link>
 
-          <Link
-            to="/contact"
-            className={`text-xl relative group ${
-              activeLink === "/contact"
-                ? "text-[#FFD700]"
-                : "text-white hover:text-[#FFD700]"
-            }`}
-            onClick={() => handleSetActive("/contact")}
-          >
-            Contact
-            <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full group-hover:bg-[#FFD700]" />
-          </Link>
+              <Link
+                to="/contact"
+                className={`text-xl relative group ${
+                  activeLink === "/contact"
+                    ? "text-[#FFD700]"
+                    : "text-white hover:text-[#FFD700]"
+                }`}
+                onClick={() => handleSetActive("/contact")}
+              >
+                Contact
+                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full group-hover:bg-[#FFD700]" />
+              </Link>
+            </>
+          )}
 
           {currentUser?.isAdmin && (
-            <Link
-              to="/dashboard"
-              className={`text-xl relative group ${
-                activeLink === "/dashboard"
-                  ? "text-[#FFD700]"
-                  : "text-white hover:text-[#FFD700]"
-              }`}
-              onClick={() => handleSetActive("/dashboard")}
-            >
-              Dashboard
-              <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full group-hover:bg-[#FFD700]" />
-            </Link>
+            <>
+              <Link
+                to="/admin-profile"
+                className={`text-xl relative group ${
+                  activeLink === "/admin-profile"
+                    ? "text-[#FFD700]"
+                    : "text-white hover:text-[#FFD700]"
+                }`}
+                onClick={() => handleSetActive("/admin-profile")}
+              >
+                Profile
+                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full group-hover:bg-[#FFD700]" />
+              </Link>
+              <Link
+                to="/admin-post"
+                className={`text-xl relative group ${
+                  activeLink === "/admin-post"
+                    ? "text-[#FFD700]"
+                    : "text-white hover:text-[#FFD700]"
+                }`}
+                onClick={() => handleSetActive("/admin-post")}
+              >
+                Post
+                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full group-hover:bg-[#FFD700]" />
+              </Link>
+            </>
           )}
         </div>
 
-        {/* Mobile Free Consultation Button */}
+        {/* Mobile Free Consultation/Logout Button */}
         <div className="md:hidden mt-6 border-t border-[#FFD700] pt-4">
           <button
-            onClick={() => {
-              navigate("/services");
-              setIsOpen(false);
-            }}
-            className="w-full bg-[#FFD700] text-xl text-white px-4 py-3 rounded-[3px] hover:scale-105 transition-all"
+            onClick={() =>
+              currentUser?.isAdmin ? handleLogout() : navigate("/services")
+            }
+            className={`${
+              currentUser?.isAdmin ? "bg-[#FF2200]" : "bg-[#FFD700]"
+            } text-sm text-white px-2 py-3 rounded-[3px] w-full hover:scale-105 transition-all`}
           >
-            Free Consultation
+            {currentUser?.isAdmin ? "Logout" : "Free Consultation"}
           </button>
         </div>
       </Navbar.Collapse>

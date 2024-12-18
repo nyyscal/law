@@ -168,7 +168,7 @@ const ContactPage = () => {
                         Phone
                       </label>
                       <div className="flex items-center border border-[#FFD700] rounded-lg h-12">
-                        <div className="bg-black text-white p-2 pl-4 pr-4 rounded-l-lg flex items-center h-full">
+                        <div className="bg-black text-white text-sm mr-2s p-2 pl-2 pr-4 rounded-l-lg flex items-center h-full">
                           <img
                             src={NepalFlag}
                             alt="Nepal Flag"

@@ -35,7 +35,7 @@ const SignIn = () => {
       dispatch(signInSuccess(res.data));
 
       setTimeout(() => {
-        navigate("/");
+        navigate("/admin-profile");
       }, 1500);
     } catch (error) {
       dispatch(signInFailure(error.response?.data?.message || "Login failed"));
@@ -59,7 +59,7 @@ const SignIn = () => {
             Sign in to manage your account and post blogs on the website.
           </p>
           <img
-            src="logo2.png"
+            src="/logo/logo2.png"
             alt="Law Illustration"
             className="w-3/4 sm:w-2/3 mx-auto hidden sm:block"
           />
@@ -90,7 +90,7 @@ const SignIn = () => {
               id="username"
               placeholder="Enter your username"
               onChange={handleChange}
-              className="pl-12 py-3 bg-gray-700 text-white rounded-lg focus:ring-[#FFD700] focus:border-[#FFD700] placeholder-gray-400"
+              className="pl-12 pr-3 py-3 bg-gray-700 text-white rounded-lg focus:ring-[#FFD700] focus:border-[#FFD700] placeholder-gray-400"
             />
           </div>
 

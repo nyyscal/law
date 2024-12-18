@@ -8,7 +8,7 @@ import { Button, Modal, Spinner, Table } from "flowbite-react";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 
-const DashPosts = () => {
+const Posts = () => {
   const { currentUser } = useSelector((state) => state.user);
   const [userPosts, setUserPosts] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -113,7 +113,7 @@ const DashPosts = () => {
           Manage Posts
         </h1>
         {currentUser?.isAdmin && (
-          <Link to="/createpost">
+          <Link to="/create-post">
             <button className="bg-[#FFD700] hover:bg-yellow-600 text-black font-semibold py-2 px-4 rounded-full shadow-lg hidden sm:flex items-center">
               <IoMdAddCircle size={24} className="mr-2" />
               <span>Create a Post</span>
@@ -172,7 +172,7 @@ const DashPosts = () => {
                       </Table.Cell>
                       <Table.Cell className="py-4 px-4 text-lg">
                         <Link
-                          to={`/post/${post.slug}`}
+                          to={`/blogpostpage/${post.slug}`}
                           className="text-[#FFD700] text-xl"
                         >
                           {post.title}
@@ -181,7 +181,7 @@ const DashPosts = () => {
                       <Table.Cell className="py-4 px-4 text-lg">
                         {post.category}
                       </Table.Cell>
-                      <Table.Cell className="py-4 px-4 flex items-center space-x-6">
+                      <Table.Cell className="py-10 px-4 flex items-center  space-x-6">
                         <FiTrash2
                           className="text-red-500 hover:text-red-700 cursor-pointer"
                           size={28}
@@ -214,7 +214,7 @@ const DashPosts = () => {
 
       {/* Fixed Mobile Add Button */}
       {currentUser?.isAdmin && (
-        <Link to="/createpost">
+        <Link to="/create-post">
           <button className="sm:hidden fixed bottom-4 right-4 bg-[#FFD700] hover:bg-yellow-600 text-black font-semibold p-4 rounded-full shadow-lg flex items-center z-50">
             <IoMdAddCircle size={28} />
           </button>
@@ -249,4 +249,4 @@ const DashPosts = () => {
   );
 };
 
-export default DashPosts;
+export default Posts;
