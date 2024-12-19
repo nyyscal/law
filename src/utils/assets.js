@@ -1,4 +1,4 @@
-import founder from "/team/founder.jpg"
+import founder from "/team/hero.jpg"
 import criminalLaw from "/team/criminalLaw.jpg"
 import corporate from "/team/corporate.jpg"
 import senior1 from "/team/senior.jpg"
@@ -67,13 +67,6 @@ export const assets =[
   name:"Builders Academy",
   designation:"IT Consultant",
   image:builders,
-  contact:98012345687,
-  mail:"contact@info.com",
-},{
-  id:9,
-  name:"Ram Krishna Dangal",
-  designation:"Associate",
-  image:senior2,
   contact:98012345687,
   mail:"contact@info.com",
 }]

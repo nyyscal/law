@@ -1,7 +1,4 @@
 import Title from "../components/User/Title.jsx";
-import Team from "../components/User/Team.jsx";
-import { IoIosMail } from "react-icons/io";
-import { FaPhoneAlt } from "react-icons/fa";
 import { assets } from "../utils/assets.js";
 
 const About2 = () => {
@@ -21,14 +18,6 @@ const About2 = () => {
               />
               <h3 className="mt-2 text-xl text-[#FFD700]">{member.name}</h3>
               <p className="text-gray-400 text-base">{member.designation}</p>
-              <div className="flex items-center gap-2 text-gray-300 text-base">
-                <FaPhoneAlt size={15} />
-                <span>:+977&nbsp;{member.contact}</span>
-              </div>
-              <div className="flex items-center gap-2 text-gray-300 text-base">
-                <IoIosMail size={20} />
-                <span>:&nbsp;{member.mail}</span>
-              </div>
             </div>
           ))}
         </div>
@@ -44,14 +33,6 @@ const About2 = () => {
               />
               <h3 className="mt-2 text-xl text-[#FFD700]">{member.name}</h3>
               <p className="text-gray-400 text-base">{member.designation}</p>
-              <div className="flex items-center gap-2 text-gray-300 text-base">
-                <FaPhoneAlt size={15} />
-                <span>:+977&nbsp;{member.contact}</span>
-              </div>
-              <div className="flex items-center gap-2 text-gray-300 text-base">
-                <IoIosMail size={20} />
-                <span>:&nbsp;{member.mail}</span>
-              </div>
             </div>
           ))}
         </div>
@@ -67,14 +48,6 @@ const About2 = () => {
               />
               <h3 className="mt-2 text-xl text-[#FFD700]">{member.name}</h3>
               <p className="text-gray-400 text-base">{member.designation}</p>
-              <div className="flex items-center gap-2 text-gray-300 text-base">
-                <FaPhoneAlt size={15} />
-                <span>:+977&nbsp;{member.contact}</span>
-              </div>
-              <div className="flex items-center gap-2 text-gray-300 text-base">
-                <IoIosMail size={20} />
-                <span>:&nbsp;{member.mail}</span>
-              </div>
             </div>
           ))}
         </div>
