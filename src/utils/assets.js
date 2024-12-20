@@ -15,7 +15,7 @@ import court from "/documents/CourtMarrige.pdf"
 export const assets =[
   {
     id:1,
-    name:"Sagar G.C",
+    name:"Sagar G.C.",
     designation:"Founder",
     image:founder,
     contact:98012345687,
