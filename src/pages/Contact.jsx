@@ -59,8 +59,6 @@ const ContactPage = () => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
   };
 
-  console.log(formData);
-
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     console.log("test successful");

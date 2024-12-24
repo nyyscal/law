@@ -40,14 +40,14 @@ const UpdatePost = () => {
     }
   }, [postId]);
 
-  console.log(
-    "formdata title:",
-    formData.title,
-    "formdata content:",
-    formData.content
-  );
+  // console.log(
+  //   "formdata title:",
+  //   formData.title,
+  //   "formdata content:",
+  //   formData.content
+  // );
 
-  console.log(formData.title);
+  // console.log(formData.title);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -102,7 +102,7 @@ const UpdatePost = () => {
 
         <ReactQuill
           theme="snow"
-          className="h-72 mb-12"
+          className="h-72 mb-12 text-white"
           required
           onChange={(value) => {
             setFormData({ ...formData, content: value });

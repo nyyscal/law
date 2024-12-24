@@ -2,12 +2,15 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { FaArrowRight } from "react-icons/fa";
 import { FaCircleArrowRight } from "react-icons/fa6";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 export default function PostCard({ post }) {
   return (
     <div className="w-full border border-[#FFD700] h-[400px] overflow-hidden rounded-lg">
       <Link to={`/blogpostpage/${post.slug}`}>
-        <img
+        <LazyLoadImage
+          effect="blur"
           src={post.image}
           alt="post cover"
           className="h-[260px] w-full object-cover"

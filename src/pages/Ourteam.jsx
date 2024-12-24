@@ -1,5 +1,7 @@
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import Title from "../components/User/Title.jsx";
 import { assets } from "../utils/assets.js";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const About2 = () => {
   return (
@@ -26,7 +28,8 @@ const About2 = () => {
         <div className="flex flex-wrap justify-center gap-12 mt-6">
           {assets.slice(2, 5).map((member) => (
             <div key={member.id} className="flex flex-col items-center">
-              <img
+              <LazyLoadImage
+                effect="blur"
                 src={member.image}
                 alt={member.name}
                 className="w-[18rem] h-[18rem] border-4 border-[#FFD700] object-fit"
@@ -41,7 +44,8 @@ const About2 = () => {
         <div className="flex flex-wrap justify-center gap-12 mt-6">
           {assets.slice(5).map((member) => (
             <div key={member.id} className="flex flex-col items-center">
-              <img
+              <LazyLoadImage
+                effect="blur"
                 src={member.image}
                 alt={member.name}
                 className="w-[18rem] h-[18rem] border-4 border-[#FFD700] object-fit"

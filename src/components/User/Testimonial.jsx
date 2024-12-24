@@ -1,53 +1,11 @@
-import React, { useEffect, useState, useRef } from "react";
-import user1 from "/testimonial/user-1.png";
-import user2 from "/testimonial/user-2.png";
-import user3 from "/testimonial/user-3.png";
-import user4 from "/testimonial/user-4.png";
+import React, { useEffect, useState } from "react";
 import Title from "./Title";
+import { testimonials } from "../../utils/assets";
 
 const Testimonials = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [swipeStart, setSwipeStart] = useState(0);
   const [swipeEnd, setSwipeEnd] = useState(0);
-
-  const testimonials = [
-    {
-      image: user1,
-      name: "Jessica Thompson",
-      company: "Thompson & Co., USA",
-      text: "The team at this law firm provided outstanding legal representation during a very stressful time. They were compassionate, professional, and always kept me informed throughout the process. I couldn't be more grateful for their expertise and dedication.",
-    },
-    {
-      image: user2,
-      name: "Michael Rogers",
-      company: "Rogers Law Group, UK",
-      text: "The team at this law firm provided outstanding legal representation during a very stressful time. They were compassionate, professional, and always kept me informed throughout the process. I couldn't be more grateful for their expertise and dedication.",
-    },
-    {
-      image: user3,
-      name: "Sophia Carter",
-      company: "Carter Legal Services, Canada",
-      text: "The team at this law firm provided outstanding legal representation during a very stressful time. They were compassionate, professional, and always kept me informed throughout the process. I couldn't be more grateful for their expertise and dedication.",
-    },
-    {
-      image: user4,
-      name: "David Brown",
-      company: "Brown & Associates, Australia",
-      text: "The team at this law firm provided outstanding legal representation during a very stressful time. They were compassionate, professional, and always kept me informed throughout the process. I couldn't be more grateful for their expertise and dedication.",
-    },
-    {
-      image: user2,
-      name: "Bart Simpson",
-      company: "Thompson & Co., USA",
-      text: "The team at this law firm provided outstanding legal representation during a very stressful time. They were compassionate, professional, and always kept me informed throughout the process. I couldn't be more grateful for their expertise and dedication.",
-    },
-    {
-      image: user1,
-      name: "Peter Griffin",
-      company: "Rogers Law Group, UK",
-      text: "The team at this law firm provided outstanding legal representation during a very stressful time. They were compassionate, professional, and always kept me informed throughout the process. I couldn't be more grateful for their expertise and dedication.",
-    },
-  ];
 
   const slidesPerPageMobile = 1; // 1 testimonial per slide on mobile
   const slidesPerPageDesktop = 2; // 2 testimonials per slide on desktop

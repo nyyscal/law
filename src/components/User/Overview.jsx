@@ -1,35 +1,22 @@
 import React from "react";
 import { FaCircleCheck } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import { listItems } from "../../utils/assets";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const Overview = () => {
   const navigate = useNavigate();
-
-  // Data for the list items
-  const listItems = [
-    { title: "Experienced Team", description: "Over 7+ years of experience." },
-    {
-      title: "Personalized Service",
-      description: "Every client is unique, we treat you as such.",
-    },
-    {
-      title: "Transparent Pricing",
-      description: "No hidden fees or unexpected charges.",
-    },
-    {
-      title: "Award-Winning",
-      description: "Our attorneys have been recognized by legal bodies.",
-    },
-  ];
 
   return (
     <div className="bg-black flex flex-col md:flex-row w-full h-auto mb-8 items-center gap-6 p-4 md:p-6 overflow-hidden">
       {/* Left Side: Image */}
       <div className="flex items-center justify-center w-full pl-4 md:w-1/2 h-[250px] sm:h-[350px] md:h-[350px] lg:h-[400px]">
-        <img
+        <LazyLoadImage
           className="object-cover rounded-3xl w-full h-full md:w-[70%] md:h-[80%] lg:w-[80%] lg:h-[90%]"
           src="/overview.jpg"
           alt="Overview"
+          effect="blur"
         />
       </div>
 

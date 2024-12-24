@@ -122,7 +122,7 @@ const Posts = () => {
         )}
       </div>
 
-      <div className="p-4">
+      <div className="p-10">
         {isLoading ? (
           <div className="flex justify-center items-center min-h-[50vh]">
             <Spinner color="yellow" size="xl" />

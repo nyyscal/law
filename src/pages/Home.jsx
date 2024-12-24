@@ -1,14 +1,17 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import Hero from "../components/User/Hero";
 import Info from "../components/User/Info";
 import Program from "../components/User/Program";
 import Title from "../components/User/Title";
-import Testimonials from "../components/User/Testimonial";
 import Newsletter from "../components/User/Newsletter";
 import Overview from "../components/User/Overview";
 import Logo from "../components/User/Logo";
-import Card from "../components/User/Card";
 import ResponsiveCard from "../components/User/ResponsiveCard";
+
+// Lazy load the Testimonials component
+const Testimonials = lazy(() => import("../components/User/Testimonial"));
+const ResponsiveCards = lazy(() => import("../components/User/ResponsiveCard"));
+
 const Home = () => {
   return (
     <div className="bg-black">
@@ -21,9 +24,12 @@ const Home = () => {
       <Title title="WHY CHOOSE US?" />
       <Overview />
       <Title title="OUR SERVICES" />
-      <ResponsiveCard />
-
-      <Testimonials />
+      <Suspense fallback={<div>Loading Services...</div>}>
+        <ResponsiveCards />
+      </Suspense>
+      <Suspense fallback={<div>Loading Testimonials...</div>}>
+        <Testimonials />
+      </Suspense>
       <Newsletter />
     </div>
   );

@@ -11,7 +11,7 @@ const Program = () => {
   }));
 
   return (
-    <div className="mx-auto my-16 px-4 sm:px-6 md:px-8">
+    <div className="mx-auto my-16 px-4 sm:px-6 md:px-28">
       {/* Programs Grid */}
       <div className="flex flex-wrap justify-between items-center gap-y-8 gap-x-0">
         {selectedPrograms.map((program, index) => (

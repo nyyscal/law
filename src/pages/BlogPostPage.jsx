@@ -49,7 +49,7 @@ export default function BlogPostPage() {
     );
 
   return (
-    <main className="px-4 py-8 flex flex-col items-center max-w-4xl mx-auto">
+    <main className="px-4 py-8 flex flex-col max-w-4xl mx-auto">
       <h1 className="text-4xl font-bold text-center font-serif mb-6 lg:text-2xl text-[#FFD700] break-words sm:break-normal">
         {post?.title}
       </h1>
@@ -65,7 +65,7 @@ export default function BlogPostPage() {
         <span>{post && new Date(post.createdAt).toLocaleDateString()}</span>
       </div>
       <div
-        className="prose prose-lg max-w-full text-white text-base text-left"
+        className="prose prose-lg max-w-full text-white text-base text-start"
         dangerouslySetInnerHTML={{ __html: post?.content }}
       ></div>
     </main>

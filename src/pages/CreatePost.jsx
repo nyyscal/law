@@ -30,12 +30,12 @@ const CreatePost = () => {
       if (res.status === 201) {
         toast.success("Post created successfully!", {
           position: "top-right",
-          autoClose: 2000,
+          autoClose: 1000,
         });
 
         setTimeout(() => {
           navigate("/admin-post");
-        }, 3500);
+        }, 2000);
       } else {
         toast.error("Failed to create post", {
           position: "top-right",
@@ -57,7 +57,7 @@ const CreatePost = () => {
 
   const handleClearFile = () => {
     setSeletedFile(null);
-    document.getElementById("file-upload").value = ""; // Clears the input field
+    document.getElementById("file-upload").value = "";
   };
 
   return (

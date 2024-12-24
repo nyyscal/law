@@ -1,8 +1,10 @@
+import React, { lazy, Suspense } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import Articles from "../components/User/Articles.jsx";
 import Team from "../components/User/Team.jsx";
-import Testimonials from "../components/User/Testimonial.jsx";
 
 const About = () => {
+  const Testimonials = lazy(() => import("../components/User/Testimonial"));
   return (
     <div className="bg-black">
       <Team />
@@ -10,7 +12,7 @@ const About = () => {
       <div className="bg-black flex flex-col px-10 py-20 md:flex-row w-[800] h-[800] items-center gap-6 p-6">
         {/* Left Side: Image */}
         <div className="flex items-center justify-center w-full md:w-1/2 h-1/2 md:h-full mt-4">
-          <img
+          <LazyLoadImage
             className="object-contain"
             width={550}
             height={600}
@@ -46,7 +48,9 @@ const About = () => {
           </div>
         </div>
       </div>
-      <Testimonials />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Testimonials />
+      </Suspense>
     </div>
   );
 };

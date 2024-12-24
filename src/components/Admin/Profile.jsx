@@ -9,10 +9,13 @@ import {
 import { toast, ToastContainer } from "react-toastify";
 import axiosInstance from "../../utils/axiosInstance";
 import "react-toastify/dist/ReactToastify.css";
+import { HiEye, HiEyeOff, HiUser, HiKey } from "react-icons/hi";
 
 const Profile = () => {
   const { currentUser } = useSelector((state) => state.user);
   const [formData, setFormData] = useState({});
+  const [showOldPassword, setShowOldPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -107,7 +110,7 @@ const Profile = () => {
               className="text-black p-2 rounded-md w-full border border-gray-300 focus:ring-2 focus:ring-[#FFD700]"
             />
           </div>
-          <div>
+          <div className="relative">
             <Label
               htmlFor="old_password"
               className="mb-2 block text-[#FFD700] font-semibold"
@@ -115,14 +118,24 @@ const Profile = () => {
               Old Password
             </Label>
             <TextInput
-              type="password"
+              type={showOldPassword ? "text" : "password"}
               id="old_password"
               placeholder="Enter your old password"
               onChange={handleChange}
               className="text-black p-2 rounded-md w-full border border-gray-300 focus:ring-2 focus:ring-[#FFD700]"
             />
+            <div
+              className="absolute pt-6 pr-2 top-1/2 right-3 transform -translate-y-1/2 cursor-pointer"
+              onClick={() => setShowOldPassword(!showOldPassword)}
+            >
+              {showOldPassword ? (
+                <HiEyeOff className="w-5 h-5 text-gray-500" />
+              ) : (
+                <HiEye className="w-5 h-5 text-gray-500" />
+              )}
+            </div>
           </div>
-          <div>
+          <div className="relative">
             <Label
               htmlFor="new_password"
               className="mb-2 block text-[#FFD700] font-semibold"
@@ -130,12 +143,22 @@ const Profile = () => {
               New Password
             </Label>
             <TextInput
-              type="password"
+              type={showNewPassword ? "text" : "password"}
               id="new_password"
               placeholder="Enter your new password"
               onChange={handleChange}
               className="text-black p-2 rounded-md w-full border border-gray-300 focus:ring-2 focus:ring-[#FFD700]"
             />
+            <div
+              className="absolute pt-6 pr-2 top-1/2 right-3 transform -translate-y-1/2 cursor-pointer"
+              onClick={() => setShowNewPassword(!showNewPassword)}
+            >
+              {showNewPassword ? (
+                <HiEyeOff className="w-5 h-5 text-gray-500" />
+              ) : (
+                <HiEye className="w-5 h-5 text-gray-500" />
+              )}
+            </div>
           </div>
           <Button
             type="submit"

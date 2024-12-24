@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const MobileCard = ({ cardData }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -59,9 +61,10 @@ const MobileCard = ({ cardData }) => {
         onTouchEnd={handleSwipeEnd}
       >
         <div className="transition-all duration-300 transform p-4 bg-black shadow-md rounded-2xl border-4 border-white">
-          <img
+          <LazyLoadImage
             src={cardData[currentIndex].image}
             alt={cardData[currentIndex].title}
+            effect="blur"
             className="w-full h-[200px] md:h-48 object-cover rounded-t-lg mb-4"
           />
           <h2 className="text-2xl font-semibold mb-2 text-[#FFD700]">

@@ -1,27 +1,6 @@
 import React, { useState, useEffect } from "react";
-
+import { slides } from "../../utils/assets";
 const About = () => {
-  const slides = [
-    {
-      image: "/lawyer1.jpg",
-      text: `"As a proud member of this firm, I can confidently say that we are dedicated to providing the highest standard of legal representation. Our team is built on a foundation of integrity, professionalism, and respect for our clients.  It's an honor to help protect the rights and interests of those we serve."`,
-      name: "Theresa May",
-      designation: "Senior Lawyer",
-    },
-    {
-      image: "/lawyer2.jpg",
-      text: `"At our firm, we work tirelessly to achieve the best outcomes for our clients. Whether in the courtroom or through legal counsel, we strive to make complex matters simple and manageable. Our team’s expertise spans a variety of legal fields, allowing us to offer diverse solutions. "`,
-      name: "Jane Smith",
-      designation: "Legal Consultant",
-    },
-    {
-      image: "/lawyer3.1.jpg",
-      text: `"I am proud to be part of a firm that prioritizes the well-being and success of its clients. We approach each case with dedication and a commitment to excellence. From legal consultation to representation, we offer comprehensive services that meet the needs of individuals and businesses alike. "`,
-      name: "Alex Brown",
-      designation: "Managing Partner",
-    },
-  ];
-
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {

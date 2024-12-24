@@ -1,5 +1,6 @@
 import { Navbar } from "flowbite-react";
 import {
+  FaBell,
   FaChevronDown,
   FaFacebookF,
   FaLinkedinIn,
@@ -108,45 +109,51 @@ const Header = () => {
 
       {/* Desktop View */}
       <div className="hidden md:flex items-center md:order-2 gap-4">
-        <div className="flex items-center gap-3 text-white">
-          {/* Social Icons - Same as before */}
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaLinkedinIn
-              className="hover:text-[#FFD700] transition duration-300"
-              size={20}
-            />
-          </a>
-          <a
-            href="https://facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaFacebookF
-              className="hover:text-[#FFD700] transition duration-300"
-              size={20}
-            />
-          </a>
-          <a
-            href="https://twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaTwitter
-              className="hover:text-[#FFD700] transition duration-300"
-              size={20}
-            />
-          </a>
-          <a href="https://wa.me" target="_blank" rel="noopener noreferrer">
-            <FaWhatsapp
-              className="hover:text-[#FFD700] transition duration-300"
-              size={20}
-            />
-          </a>
-        </div>
+        {currentUser?.isAdmin ? (
+          <button className="hover:text-[#FFD700] transition duration-300">
+            <FaBell size={20} className="text-white hover:text-[#FFD700]" />
+          </button>
+        ) : (
+          <div className="flex items-center gap-3 text-white">
+            {/* Social Icons - Same as before */}
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaLinkedinIn
+                className="hover:text-[#FFD700] transition duration-300"
+                size={20}
+              />
+            </a>
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaFacebookF
+                className="hover:text-[#FFD700] transition duration-300"
+                size={20}
+              />
+            </a>
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaTwitter
+                className="hover:text-[#FFD700] transition duration-300"
+                size={20}
+              />
+            </a>
+            <a href="https://wa.me" target="_blank" rel="noopener noreferrer">
+              <FaWhatsapp
+                className="hover:text-[#FFD700] transition duration-300"
+                size={20}
+              />
+            </a>
+          </div>
+        )}
         <span className="text-white">|</span>
         <button
           onClick={() =>
@@ -162,45 +169,51 @@ const Header = () => {
 
       {/* Mobile View */}
       <div className="flex md:hidden items-center gap-4">
-        <div className="flex items-center gap-3 text-white">
-          {/* Social Icons - Mobile */}
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaLinkedinIn
-              className="hover:text-[#FFD700] transition duration-300"
-              size={20}
-            />
-          </a>
-          <a
-            href="https://facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaFacebookF
-              className="hover:text-[#FFD700] transition duration-300"
-              size={20}
-            />
-          </a>
-          <a
-            href="https://twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaTwitter
-              className="hover:text-[#FFD700] transition duration-300"
-              size={20}
-            />
-          </a>
-          <a href="https://wa.me" target="_blank" rel="noopener noreferrer">
-            <FaWhatsapp
-              className="hover:text-[#FFD700] transition duration-300"
-              size={20}
-            />
-          </a>
-        </div>
+        {currentUser?.isAdmin ? (
+          <button className="hover:text-[#FFD700] transition duration-300">
+            <FaBell size={20} className="text-white hover:text-[#FFD700]" />
+          </button>
+        ) : (
+          <div className="flex items-center gap-3 text-white">
+            {/* Social Icons - Mobile */}
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaLinkedinIn
+                className="hover:text-[#FFD700] transition duration-300"
+                size={20}
+              />
+            </a>
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaFacebookF
+                className="hover:text-[#FFD700] transition duration-300"
+                size={20}
+              />
+            </a>
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaTwitter
+                className="hover:text-[#FFD700] transition duration-300"
+                size={20}
+              />
+            </a>
+            <a href="https://wa.me" target="_blank" rel="noopener noreferrer">
+              <FaWhatsapp
+                className="hover:text-[#FFD700] transition duration-300"
+                size={20}
+              />
+            </a>
+          </div>
+        )}
         <span className="text-white">|</span>
         <button
           onClick={toggleMenu}

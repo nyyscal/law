@@ -1,5 +1,6 @@
 import React from "react";
-import aboutImage from "/image1.jpg";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const About = () => {
   return (
@@ -7,10 +8,11 @@ const About = () => {
       <section className="container mx-auto my-20 flex flex-col lg:flex-row items-center justify-between px-4 w-[80%]">
         {/* Left Section: Image */}
         <div className="basis-full lg:basis-2/5 flex justify-center items-center mb-6 lg:mb-0 lg:mt-8">
-          <img
+          <LazyLoadImage
             src="/image1.jpg"
             alt="About Us"
             className="w-full h-auto max-h-[400px] object-cover"
+            effect="blur"
           />
         </div>
 
