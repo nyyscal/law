@@ -61,17 +61,16 @@ const ContactPage = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    console.log("test successful");
-    console.log(formData.name);
+    // console.log("test successful");
+    // console.log(formData.name);
 
     if (!formData.name && !formData.email && !formData.messsage) {
       return dispatch(signInFailure("Please fill in all fields"));
     }
     try {
-      console.log("test");
+      // console.log("test");
       const res = await axiosInstance.post(`/api/user/email`, formData);
-      console.log(res);
-      console.log("response");
+      // console.log(res);
     } catch (error) {
       return console.log(error.message);
     }
