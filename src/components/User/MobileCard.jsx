@@ -65,7 +65,7 @@ const MobileCard = ({ cardData }) => {
             src={cardData[currentIndex].image}
             alt={cardData[currentIndex].title}
             effect="blur"
-            className="w-full h-[200px] md:h-48 object-cover rounded-t-lg mb-4"
+            className="w-full h-[200px] md:h-48 object-fit rounded-t-lg mb-4"
           />
           <h2 className="text-2xl font-semibold mb-2 text-[#FFD700]">
             {cardData[currentIndex].title}
