@@ -233,7 +233,7 @@ const ContactPage = () => {
               <MapContainer
                 center={[27.7098374, 85.3239596]}
                 zoom={14}
-                scrollWheelZoom={false}
+                scrollWheelZoom={true}
                 style={{
                   height: "300px", // Default height for mobile
                   width: "100%", // Full width
