@@ -231,7 +231,7 @@ const ContactPage = () => {
 
               {/* Map Container with z-index to avoid overlap */}
               <MapContainer
-                center={[27.6938374, 85.3239596]}
+                center={[27.7098374, 85.3239596]}
                 zoom={14}
                 scrollWheelZoom={false}
                 style={{
