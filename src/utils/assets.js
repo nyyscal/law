@@ -90,6 +90,6 @@ export const docs = [
   {
     id:4,
     doc1:foreign,
-    name:"Foreign Court Marrige"
+    name:"Foreign Person Court Marrige"
 },
 ]
