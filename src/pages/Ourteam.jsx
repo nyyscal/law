@@ -16,7 +16,7 @@ const About2 = () => {
               <img
                 src={member.image}
                 alt={member.name}
-                className="w-[20rem] h-[20rem] border-4 border-[#FFD700] object-fit"
+                className="md:w-[20rem] md:h-[20rem] w-[18rem] h-[18rem] border-4 border-[#FFD700] object-fit"
               />
               <h3 className="mt-2 text-xl text-[#FFD700]">{member.name}</h3>
               <p className="text-gray-400 text-base">{member.designation}</p>
