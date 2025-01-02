@@ -34,7 +34,7 @@ export const assets =[
 },{
   id:4,
   name:"Saugat Jung Pandey",
-  designation:"Human Right Practice and Policy Consultant",
+  designation:"Human Right Practice & Policy Consultant",
   image:saugat,
 
 },{
@@ -51,15 +51,15 @@ export const assets =[
 
 },{
   id:7,
-  name:"Ashish Rai Sunuwar",
-  designation:"CA",
-  image:CA,
-
-},{
-  id:8,
   name:"Ram Krishna Dangal",
   designation:"Associate",
   image:associate,
+
+},{
+  id:8,
+  name:"Ashish Rai Sunuwar",
+  designation:"CA",
+  image:CA,
 
 },{
   id:9,
