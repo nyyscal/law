@@ -29,8 +29,9 @@ const SignIn = () => {
 
     try {
       setLoading(true);
-      const res = await axiosInstance.post(`/api/admin/signin`, formData);
 
+      console.log("Response:");
+      const res = await axiosInstance.post(`/api/admin/signin`, formData);
       toast.success("Login successful!", { position: "top-right" });
       dispatch(signInSuccess(res.data));
 

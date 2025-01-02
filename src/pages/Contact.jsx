@@ -20,6 +20,7 @@ import markerIconUrl from "leaflet/dist/images/marker-icon.png";
 import markerShadowUrl from "leaflet/dist/images/marker-shadow.png";
 import Title from "../components/User/Title";
 import { useDispatch } from "react-redux";
+import { signInFailure } from "../redux/user/userSlice";
 
 // Explicitly set marker icon
 const markerIconCustom = new L.Icon({
@@ -71,20 +72,20 @@ const ContactPage = () => {
       // console.log("test");
       const res = await axiosInstance.post(`/api/user/email`, formData);
       console.log(res);
+      toast.success(`${res.data.message}`, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "dark",
+        className: "custom-toast",
+        progressClassName: "custom-progress",
+      });
     } catch (error) {
       return console.log(error.message);
     }
-    toast.success("Your response has been successfully submitted!", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      theme: "dark",
-      className: "custom-toast",
-      progressClassName: "custom-progress",
-    });
   };
   return (
     <>
