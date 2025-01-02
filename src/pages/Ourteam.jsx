@@ -42,7 +42,7 @@ const About2 = () => {
 
         {/* Third Row */}
         <div className="flex flex-wrap justify-center gap-12 mt-6">
-          {assets.slice(4, 8).map((member) => (
+          {assets.slice(4, 10).map((member) => (
             <div key={member.id} className="flex flex-col items-center">
               <LazyLoadImage
                 effect="blur"

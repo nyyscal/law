@@ -7,6 +7,7 @@ import CA from "/team/CA.jpg"
 import associate from "/team/associate.jpg"
 import builders from "/team/builders.jpg"
 import saugat from "/team/Saugat.jpg"
+import managing from "/team/managing.jpg"
 import fir from "/documents/FIR.pdf"
 import company from "/documents/CompanyRegestration.pdf"
 import foreign from "/documents/ForeignPolicy.pdf"
@@ -30,6 +31,13 @@ export const assets =[
   name:"Rajkumar Khatiwada",
   designation:"Corporate Law Expert",
   image:corporate,
+
+},
+{
+  id:3,
+  name:"Dinesh Rokka",
+  designation:"Managing Partner",
+  image:managing,
 
 },{
   id:4,
