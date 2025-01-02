@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import  { useEffect, useRef, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -70,7 +70,7 @@ const ContactPage = () => {
     }
     try {
       // console.log("test");
-      const res = await axiosInstance.post(`/api/user/email`, formData);
+      const res = await axiosInstance.post(`/api/user/postEmail`, formData);
       console.log(res);
       toast.success(`${res.data.message}`, {
         position: "top-right",

@@ -4,6 +4,7 @@ import About from "./pages/About.jsx";
 import Services from "./pages/Services.jsx";
 import Blog from "./pages/Blog.jsx";
 import Contact from "./pages/Contact.jsx";
+import PageNotFound from "./pages/PageNotFound.jsx";
 import Header from "./components/User/Header.jsx";
 import Footers from "./components/User/Footers.jsx";
 import Team from "./pages/Ourteam.jsx";
@@ -35,7 +36,7 @@ function App() {
           <Route path="/admin-post" element={<Posts />} />
           <Route path="/admin-profile" element={<Profile />} />
         </Route>
-        <Route path="*" element={<h1>Page not found</h1>} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footers />
     </div>
