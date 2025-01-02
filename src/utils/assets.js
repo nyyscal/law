@@ -6,7 +6,7 @@ import senior2 from "/team/sassociate.jpg"
 import CA from "/team/CA.jpg"
 import associate from "/team/associate.jpg"
 import builders from "/team/builders.jpg"
-
+import saugat from "/team/Saugat.jpg"
 import fir from "/documents/FIR.pdf"
 import company from "/documents/CompanyRegestration.pdf"
 import foreign from "/documents/ForeignPolicy.pdf"
@@ -18,57 +18,55 @@ export const assets =[
     name:"Sagar G.C.",
     designation:"Founder",
     image:founder,
-    contact:98012345687,
-    mail:"contact@info.com",
+
 },{
   id:2,
   name:"Samba Raj Aryal",
   designation:"Criminal Law Expert",
   image:criminalLaw,
-  contact:98012345687,
-  mail:"contact@info.com",
+
 },{
   id:3,
   name:"Rajkumar Khatiwada",
   designation:"Corporate Law Expert",
   image:corporate,
-  contact:98012345687,
-  mail:"contact@info.com",
+
 },{
   id:4,
+  name:"Saugat Jung Pandey",
+  designation:"Human Right Practice and Policy Consultant",
+  image:saugat,
+
+},{
+  id:5,
   name:"Ram Pandit",
   designation:"Senior Associate",
   image:senior1,
-  contact:98012345687,
-  mail:"contact@info.com",
+
 },{
-  id:5,
+  id:6,
   name:"Bijay Sharma Khatiwada",
   designation:"Senior Assocaite",
   image:senior2,
-  contact:98012345687,
-  mail:"contact@info.com",
+
 },{
-  id:6,
+  id:7,
   name:"Ashish Rai Sunuwar",
   designation:"CA",
   image:CA,
-  contact:98012345687,
-  mail:"contact@info.com",
+
 },{
-  id:7,
+  id:8,
   name:"Ram Krishna Dangal",
   designation:"Associate",
   image:associate,
-  contact:98012345687,
-  mail:"contact@info.com",
+
 },{
-  id:8,
+  id:9,
   name:"Builders Academy",
   designation:"IT Consultant",
   image:builders,
-  contact:98012345687,
-  mail:"contact@info.com",
+
 }]
 
 export const docs = [

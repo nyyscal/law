@@ -9,12 +9,14 @@ export default function PostCard({ post }) {
   return (
     <div className="w-full border border-[#FFD700] h-[400px] overflow-hidden rounded-lg">
       <Link to={`/blogpostpage/${post.slug}`}>
-        <LazyLoadImage
-          effect="blur"
-          src={post.image}
-          alt="post cover"
-          className="h-[260px] w-full object-cover"
-        />
+        <div className="w-full h-[260px]">
+          <LazyLoadImage
+            effect="blur"
+            src={post.image}
+            alt="post cover"
+            className="h-[260px] w-[445px] object-cover"
+          />
+        </div>
       </Link>
       <div className="p-4 flex flex-col justify-between h-[140px]">
         {/* Post Title */}

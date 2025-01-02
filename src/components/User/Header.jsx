@@ -14,6 +14,7 @@ import { useState, useEffect, useRef } from "react";
 import axiosInstance from "../../utils/axiosInstance";
 import { toast } from "react-toastify";
 import { signOutSuccess } from "../../redux/user/userSlice";
+import NotificationBell from "../Admin/NotificationBell";
 
 const Header = () => {
   const { currentUser } = useSelector((state) => state.user);
@@ -24,6 +25,13 @@ const Header = () => {
   const menuRef = useRef();
   const servicesRef = useRef();
   const dispatch = useDispatch();
+
+  const [notifications] = useState([
+    "ABC has sent you a message.",
+    "IJK has sent you a message.",
+    "XYZ has sent you a message.",
+    "Aez has sent you a message.",
+  ]);
 
   const handleLogout = async () => {
     try {
@@ -110,8 +118,8 @@ const Header = () => {
       {/* Desktop View */}
       <div className="hidden md:flex items-center md:order-2 gap-4">
         {currentUser?.isAdmin ? (
-          <button className="hover:text-[#FFD700] transition duration-300">
-            <FaBell size={20} className="text-white hover:text-[#FFD700]" />
+          <button className="">
+            <NotificationBell notifications={notifications} />
           </button>
         ) : (
           <div className="flex items-center gap-3 text-white">

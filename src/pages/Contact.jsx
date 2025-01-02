@@ -70,7 +70,7 @@ const ContactPage = () => {
     try {
       // console.log("test");
       const res = await axiosInstance.post(`/api/user/email`, formData);
-      // console.log(res);
+      console.log(res);
     } catch (error) {
       return console.log(error.message);
     }
@@ -86,12 +86,6 @@ const ContactPage = () => {
       progressClassName: "custom-progress",
     });
   };
-
-  const handleFlagChange = (code) => {
-    setPhoneCode(code);
-    setDropdownOpen(false); // Close the dropdown after selecting a flag
-  };
-
   return (
     <>
       <style>
