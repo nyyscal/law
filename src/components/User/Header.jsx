@@ -27,10 +27,10 @@ const Header = () => {
   const dispatch = useDispatch();
 
   const [notifications] = useState([
-    "ABC has sent you a message.",
-    "IJK has sent you a message.",
-    "XYZ has sent you a message.",
-    "Aez has sent you a message.",
+    "Ramesh has sent you a message.",
+    "Mahan has sent you a message.",
+    "Basanta has sent you a message.",
+    "Nischal has sent you a message.",
   ]);
 
   const handleLogout = async () => {
@@ -178,8 +178,8 @@ const Header = () => {
       {/* Mobile View */}
       <div className="flex md:hidden items-center gap-4">
         {currentUser?.isAdmin ? (
-          <button className="hover:text-[#FFD700] transition duration-300">
-            <FaBell size={20} className="text-white hover:text-[#FFD700]" />
+          <button className="">
+            <NotificationBell notifications={notifications} />
           </button>
         ) : (
           <div className="flex items-center gap-3 text-white">
