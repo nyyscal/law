@@ -244,7 +244,7 @@ export const testimonials = [
   },
   {
     image: "/testimonial/user-4.png",
-    name: "/testimonial/user-1.png",
+    name: "Jack Dempsey",
     company: "Brown & Associates, Australia",
     text: "The team at this law firm provided outstanding legal representation during a very stressful time. They were compassionate, professional, and always kept me informed throughout the process. I couldn't be more grateful for their expertise and dedication.",
   },
