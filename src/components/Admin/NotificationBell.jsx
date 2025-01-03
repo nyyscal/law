@@ -1,13 +1,37 @@
-import  { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { FaBell } from "react-icons/fa";
 import NotificationDropdown from "./NotificationDropdown";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
+import { setNotifications } from "../../redux/user/userSlice";
+import axiosInstance from "../../utils/axiosInstance";
 
-const NotificationBell = ({ notifications }) => {
-  console.log(notifications)
+const NotificationBell = () => {
+  // console.log(notifications)
+  const dispatch = useDispatch();
+  const { triggerFetch, notifications } = useSelector((state) => state.user);
+
   const [showNotifications, setShowNotifications] = useState(false);
-  const [unreadCount, setUnreadCount] = useState(notifications.length);
+  const [unreadCount, setUnreadCount] = useState(notifications?.length);
   const dropdownRef = useRef(null);
+
+  //fetching unread notifications
+
+  const fetchUnreadNotifications = async () => {
+    try {
+      console.log("Fetching unread notifications");
+      const res = await axiosInstance.get(`/api/notificaton/getNotification`);
+      console.log(res.data);
+      console.log(typeof res.data)
+      dispatch(setNotifications(res.data));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUnreadNotifications();
+  }, [triggerFetch]);
 
   const toggleNotifications = () => {
     setShowNotifications((prev) => !prev);
@@ -53,6 +77,6 @@ const NotificationBell = ({ notifications }) => {
 
 export default NotificationBell;
 
-NotificationBell.propTypes = {
-  notifications: PropTypes.arrayOf(PropTypes.string).isRequired,
-};
+// NotificationBell.propTypes = {
+//   notification: PropTypes.arrayOf(PropTypes.string).isRequired,
+// };
