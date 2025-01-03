@@ -30,7 +30,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/admin-portal" element={<Login />} />
         <Route path="/blogpostpage/:postSlug" element={<BlogPostPage />} />
-        <Route element={<OnlyAdminPrivateRoute />}>
+        <Route  element={<OnlyAdminPrivateRoute />}>
           <Route path="/create-post" element={<CreatePost />} />
           <Route path="/update-post/:postId" element={<UpdatePost />} />
           <Route path="/admin-post" element={<Posts />} />
