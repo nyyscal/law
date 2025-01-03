@@ -1,9 +1,13 @@
 import { Button, Spinner, TextInput } from "flowbite-react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axiosInstance from "../utils/axiosInstance";
-import { useDispatch } from "react-redux";
-import { signInFailure, signInSuccess } from "../redux/user/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  signInFailure,
+  signInStart,
+  signInSuccess,
+} from "../redux/user/userSlice";
 import { toast, ToastContainer } from "react-toastify";
 import { HiEye, HiEyeOff, HiUser, HiKey } from "react-icons/hi";
 import "react-toastify/dist/ReactToastify.css";
@@ -14,6 +18,12 @@ const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+
+  if (isAuthenticated) {
+    return <Navigate to="/admin-profile" />;
+  }
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
@@ -26,7 +36,7 @@ const SignIn = () => {
       toast.warn("Please fill in all fields!", { position: "top-right" });
       return dispatch(signInFailure("Please fill in all fields"));
     }
-
+    dispatch(signInStart());
     try {
       setLoading(true);
 
