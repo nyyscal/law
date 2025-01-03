@@ -1,8 +1,10 @@
-import React, { useState, useRef, useEffect } from "react";
+import  { useState, useRef, useEffect } from "react";
 import { FaBell } from "react-icons/fa";
 import NotificationDropdown from "./NotificationDropdown";
+import PropTypes from "prop-types";
 
 const NotificationBell = ({ notifications }) => {
+  console.log(notifications)
   const [showNotifications, setShowNotifications] = useState(false);
   const [unreadCount, setUnreadCount] = useState(notifications.length);
   const dropdownRef = useRef(null);
@@ -50,3 +52,7 @@ const NotificationBell = ({ notifications }) => {
 };
 
 export default NotificationBell;
+
+NotificationBell.propTypes = {
+  notifications: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
