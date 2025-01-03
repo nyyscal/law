@@ -26,12 +26,12 @@ const Header = () => {
   const servicesRef = useRef();
   const dispatch = useDispatch();
 
-  const [notifications] = useState([
-    "Ramesh has sent you a message.",
-    "Mahan has sent you a message.",
-    "Basanta has sent you a message.",
-    "Nischal has sent you a message.",
-  ]);
+  // const [notifications] = useState([
+  //   "Ramesh has sent you a message.",
+  //   "Mahan has sent you a message.",
+  //   "Basanta has sent you a message.",
+  //   "Nischal has sent you a message.",
+  // ]);
 
   const handleLogout = async () => {
     try {
@@ -119,7 +119,7 @@ const Header = () => {
       <div className="hidden md:flex items-center md:order-2 gap-4">
         {currentUser?.isAdmin ? (
           <button className="">
-            <NotificationBell notifications={notifications} />
+            <NotificationBell  />
           </button>
         ) : (
           <div className="flex items-center gap-3 text-white">
@@ -179,7 +179,7 @@ const Header = () => {
       <div className="flex md:hidden items-center gap-4">
         {currentUser?.isAdmin ? (
           <button className="">
-            <NotificationBell notifications={notifications} />
+            <NotificationBell  />
           </button>
         ) : (
           <div className="flex items-center gap-3 text-white">
