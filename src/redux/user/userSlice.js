@@ -4,6 +4,9 @@ const initialState = {
   currentUser: null,
   error: null,
   loading: false,
+  notifications: [],
+  triggerFetch: false,
+  isAuthenticated: false,
 };
 
 const userSlice = createSlice({
@@ -18,6 +21,8 @@ const userSlice = createSlice({
       state.currentUser = action.payload;
       state.loading = false;
       state.error = null;
+      state.triggerFetch = !state.triggerFetch;
+      state.isAuthenticated = true;
     },
     signInFailure: (state, action) => {
       state.loading = false;
@@ -39,6 +44,16 @@ const userSlice = createSlice({
       state.currentUser = null;
       state.loading = false;
       state.error = null;
+      state.notifications = [];
+      state.isAuthenticated = false;
+    },
+    setNotifications: (state, action) => {
+      if (Array.isArray(action.payload)) {
+        console.log(action.payload);
+        state.notifications = action.payload;
+      } else {
+        console.error("Invalid payload for notifications:", action.payload);
+      }
     },
   },
 });
@@ -51,6 +66,7 @@ export const {
   updateSuccess,
   updateFailure,
   signOutSuccess,
+  setNotifications,
 } = userSlice.actions;
 
 export default userSlice.reducer;
