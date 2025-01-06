@@ -105,15 +105,27 @@ const Header = () => {
 
   return (
     <Navbar fluid rounded className="bg-black w-full overflow-visible">
-      <Navbar.Brand href="/">
-        <img
-          src="/logo/logo2.png"
-          className="ml-4 mt-1"
-          alt="lawfirm logo"
-          height={95}
-          width={70}
-        />
-      </Navbar.Brand>
+      {currentUser?.isAdmin ? (
+        <Navbar.Brand href="/admin-post">
+          <img
+            src="/logo/logo2.png"
+            className="ml-4 mt-1"
+            alt="lawfirm logo"
+            height={95}
+            width={70}
+          />
+        </Navbar.Brand>
+      ) : (
+        <Navbar.Brand href="/">
+          <img
+            src="/logo/logo2.png"
+            className="ml-4 mt-1"
+            alt="lawfirm logo"
+            height={95}
+            width={70}
+          />
+        </Navbar.Brand>
+      )}
 
       {/* Desktop View */}
       <div className="hidden md:flex items-center md:order-2 gap-4">
