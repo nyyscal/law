@@ -106,7 +106,7 @@ export const cardData = [
       title: "Real Estate Law",
       content:
         "In real estate law, a closing refers to the final step in a property transaction, where the buyer formally takes ownership, and the title is transferred.",
-      image: "/card/Tax.jpg",
+      image: "/card/Real.webp",
     },
     {
       id: 2,
@@ -198,7 +198,7 @@ export const cardData = [
           title: "Real Estate Law",
           description:
             "In real estate law, a closing refers to the final step in a property transaction, where the buyer formally takes ownership, and the title is transferred.Real estate law governs the buying, selling, and use of land and properties. It encompasses a broad range of issues, including property rights, leases, title disputes, zoning laws, and environmental regulations. Real estate law is critical for individuals and businesses involved in transactions involving commercial or residential properties, as well as those dealing with landlord-tenant relationships. ",
-          image: "/card/Tax.webp",
+          image: "/card/Real.webp",
         },
         {
           id: "divorce-settlement",
