@@ -219,7 +219,7 @@ export const cardData = [
           title: "Tax Law",
           description:
             "Tax law governs how taxes are imposed, collected, and managed. It includes regulations on income tax, corporate tax, and other levies that ensure government funding for public services.Tax law involves the regulation of taxes levied by government authorities, guiding individuals and businesses on how to comply with tax obligations. It covers everything from income tax, corporate tax, and sales tax to estate tax and tax deductions. Professionals in tax law assist clients with tax planning, dispute resolution, audits, and ensuring compliance with local, state, and federal tax requirements.",
-          image: "/card/Tax.webp",
+          image: "/card/Tax1.webp",
         },
         {
           id: "immigration-law",
@@ -238,72 +238,72 @@ export const cardData = [
           title: "Criminal & Civil Litigation",
           description:
             "We provide skilled representation in criminal and civil litigation, focusing on achieving the best possible outcomes for our clients.Our team handles cases with precision, from pre-trial negotiations to courtroom advocacy.In criminal matters, we ensure robust defense strategies to protect your rights.For civil cases, we pursue justice and remedies for disputes involving contracts, property, and more.We prioritize client communication, keeping you informed every step of the way.With our expertise, you can navigate complex legal proceedings with confidence.",
-          image: "/card/civil-law.jpg",
+          image: "/card/civil-law.webp",
         },{
           id: "immigration-law",
           title: "Legal Research & Opinion",
           description:
             "Our legal research services offer deep insights into complex legal challenges.We provide tailored legal opinions to help clients make informed decisions.Our team analyzes statutes, case laws, and precedents relevant to your case.Whether it’s for litigation, contracts, or regulatory compliance, our advice is precise.We help bridge gaps in understanding intricate legal frameworks.Count on us for thorough research and practical solutions to your legal queries.",
-          image: "/card/legalresearch.jpg",
+          image: "/card/legalresearch.webp",
         },{
           id: "immigration-law",
           title: "Drafting & Negotiation of Commercial Contracts",
           description:
             "Effective contracts are the backbone of successful business relationships.We draft comprehensive commercial agreements tailored to your specific needs.Our team ensures contracts are clear, enforceable, and aligned with your goals.We specialize in negotiating terms to achieve balanced and favorable outcomes.From vendor agreements to joint ventures, we handle all contract types.Protect your business interests with our expert drafting and negotiation services.",
-          image: "/card/drafting.jpg",
+          image: "/card/drafting.webp",
         },{
           id: "immigration-law",
           title: "Court Marriage",
           description:
             "Court marriage is a straightforward and legally binding process.We guide couples through the required documentation and procedural steps.Our services ensure compliance with the Marriage Act and other legal norms.From filing applications to obtaining the marriage certificate, we handle it all.We provide a smooth experience, respecting your privacy and time.Start your journey together with hassle-free court marriage assistance.",
-          image: "/card/court-marriage.jpg",
+          image: "/card/court-marriage.webp",
         },{
           id: "immigration-law",
           title: "Foreign Direct Investment & Business Incorporation",
           description:
             "Entering a new market requires strategic legal guidance.We assist foreign investors in navigating FDI regulations and opportunities.Our team handles company registration, licensing, and compliance requirements.We ensure seamless incorporation of businesses in line with local laws.With our support, you can focus on growth while we handle legal complexities.Achieve success in global markets with our expert assistance.",
-          image: "/card/fdi.jpg",
+          image: "/card/fdi.webp",
         },{
           id: "immigration-law",
           title: "Intellectual Property",
          description:
             "Your intellectual property deserves robust protection in a competitive market.We assist with trademark registration, copyright protection, and patent filing.Our team ensures that your IP rights are enforced against infringement.We provide strategic advice for managing and monetizing your intellectual assets.From startups to established businesses, we offer tailored IP solutions.Protect your ideas and creations with our comprehensive legal support.",
-          image: "/card/copyright.jpg",
+          image: "/card/copyright.webp",
         },
         {
           id: "immigration-law",
           title: "Mergers and Acquisitions",
          description:
             "Mergers and acquisitions involve intricate legal and financial considerations.We guide businesses through due diligence, ensuring informed decision-making.Our team assists in structuring deals, drafting agreements, and regulatory compliance.We aim to facilitate seamless transitions that align with your strategic goals.With our expertise, you can navigate the complexities of M&A with confidence.Secure growth and competitive advantage through successful M&A transactions.",
-          image: "/card/merger.jpg",
+          image: "/card/merger.webp",
         },
         {
           id: "immigration-law",
           title: "Franchise License Service",
          description:
             "Franchising offers a pathway for business expansion and growth.We provide expert guidance in securing franchise licenses and drafting agreements.Our services ensure compliance with franchising laws and intellectual property protection.We assist both franchisors and franchisees in structuring fair and effective deals.Grow your brand and establish successful franchises with our legal expertise.Maximize opportunities with tailored franchise license services.",
-          image: "/card/franchise.jpg",
+          image: "/card/franchise.webp",
         },
         {
           id: "immigration-law",
           title: "NGO & INGO",
          description:
             "Starting and managing an NGO/INGO requires sound legal support.We assist with registration, tax exemptions, and regulatory compliance.Our team ensures governance structures align with legal and ethical standards.We help organizations secure necessary approvals and licenses efficiently.From funding agreements to operational policies, we provide end-to-end assistance.Empower your nonprofit to achieve its mission with our legal guidance.",
-          image: "/card/ngo-ingo.jpg",
+          image: "/card/ngo-ingo.webp",
         },
         {
           id: "immigration-law",
           title: "Due Diligence",
          description:
             "Due diligence is essential for informed decision-making in investments and partnerships.Our services involve assessing legal, financial, and operational risks.We conduct comprehensive reviews of contracts, compliance, and company records.Our team ensures transparency and mitigates potential liabilities.We provide actionable insights to help you proceed with confidence.Trust us to safeguard your interests through meticulous due diligence.",
-          image: "/card/due-deligence.jpg",
+          image: "/card/due-deligence.webp",
         },
         {
           id: "immigration-law",
           title: "Energy & Infrastructure Law",
          description:
             "Energy and infrastructure projects involve unique legal challenges.We provide guidance on project financing, regulatory compliance, and risk management.Our team specializes in drafting agreements and resolving disputes in this sector.From renewable energy to large-scale infrastructure, we ensure legal alignment.We help clients achieve sustainable and profitable outcomes in complex projects.Leverage our expertise to navigate the dynamic energy and infrastructure landscape.",
-          image: "/card/energy.jpg",
+          image: "/card/energy.webp",
         },
       ];
 
