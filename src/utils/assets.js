@@ -250,7 +250,7 @@ export const cardData = [
           title: "Drafting & Negotiation of Commercial Contracts",
           description:
             "Effective contracts are the backbone of successful business relationships.We draft comprehensive commercial agreements tailored to your specific needs.Our team ensures contracts are clear, enforceable, and aligned with your goals.We specialize in negotiating terms to achieve balanced and favorable outcomes.From vendor agreements to joint ventures, we handle all contract types.Protect your business interests with our expert drafting and negotiation services.",
-          image: "/card/Immigration.jpg",
+          image: "/card/drafting.jpg",
         },{
           id: "immigration-law",
           title: "Court Marriage",
